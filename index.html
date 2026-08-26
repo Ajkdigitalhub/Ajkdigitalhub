@@ -3,8 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0d2616">
   <title>AJK Digital Hub</title>
   <style>
     * {
@@ -16,12 +14,33 @@
 
     body {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
       background: linear-gradient(135deg, #093318 0%, #051d0d 60%, #1c2b18 100%);
       color: #ffffff;
       padding: 20px 0;
+    }
+
+    /* Header Styling */
+    .app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 360px;
+      margin-bottom: 12px;
+      padding: 10px 14px;
+      background: rgba(13, 38, 22, 0.9);
+      border-radius: 12px;
+      border: 1px solid #ca8a04;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .container {
@@ -32,6 +51,32 @@
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
       border: 2px solid #eab308;
       position: relative;
+    }
+
+    /* Footer Styling */
+    .app-footer {
+      width: 360px;
+      margin-top: 15px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #86efac;
+    }
+
+    .share-btn {
+      background: #144523;
+      border: 1px solid #eab308;
+      color: #fde047;
+      padding: 6px 12px;
+      border-radius: 8px;
+      margin-top: 8px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: bold;
+      transition: all 0.2s;
+    }
+
+    .share-btn:hover {
+      background: #166534;
     }
 
     /* Top Strip Design */
@@ -385,6 +430,15 @@
 </head>
 <body>
 
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="logo-area">
+      <span class="flag-icon">🌲</span>
+      <h2 style="font-size: 1.1rem; color: #fde047;">AJK Digital Hub</h2>
+    </div>
+    <div class="date-badge" id="live-date" style="font-size: 0.8rem; color: #86efac;">--:--</div>
+  </header>
+
   <div class="container">
     <div class="flag-strip">
       <div class="green"></div>
@@ -668,7 +722,36 @@
 
   </div>
 
+  <!-- FOOTER -->
+  <footer class="app-footer">
+    <p>© 2026 Azad Kashmir Digital Hub</p>
+    <button class="share-btn" onclick="shareApp()">🔗 Share App</button>
+  </footer>
+
   <script>
+    // Live Clock Function for Header
+    function updateClock() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const dateBadge = document.getElementById('live-date');
+      if (dateBadge) dateBadge.innerText = timeString;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Share App Function for Footer
+    function shareApp() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'AJK Digital Hub',
+          url: window.location.href
+        }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert("App link copied to clipboard!");
+      }
+    }
+
     // Navigation Control
     function showView(viewId) {
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -916,7 +999,6 @@
       document.getElementById('unit-result').style.display = 'block';
     }
   </script>
-
 
 </body>
 </html>
