@@ -15,7 +15,7 @@
     body {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       min-height: 100vh;
       background: linear-gradient(135deg, #093318 0%, #051d0d 60%, #1c2b18 100%);
@@ -23,15 +23,15 @@
       padding: 20px 0;
     }
 
-    /* Header Styling */
+    /* Fixed Header Styling */
     .app-header {
-      display: flex;
+      display: flex !important;
       justify-content: space-between;
       align-items: center;
       width: 360px;
       margin-bottom: 12px;
       padding: 10px 14px;
-      background: rgba(13, 38, 22, 0.9);
+      background: rgba(13, 38, 22, 0.95);
       border-radius: 12px;
       border: 1px solid #ca8a04;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
@@ -53,8 +53,9 @@
       position: relative;
     }
 
-    /* Footer Styling */
+    /* Fixed Footer Styling */
     .app-footer {
+      display: block !important;
       width: 360px;
       margin-top: 15px;
       text-align: center;
@@ -188,7 +189,7 @@
     }
 
     .view.active {
-      display: block;
+      display: block !important;
     }
 
     /* Simple Calculator View Styles */
@@ -434,11 +435,12 @@
   <header class="app-header">
     <div class="logo-area">
       <span class="flag-icon">🌲</span>
-      <h2 style="font-size: 1.1rem; color: #fde047;">AJK Digital Hub</h2>
+      <h2 style="font-size: 1.1rem; color: #fde047; margin: 0;">AJK Digital Hub</h2>
     </div>
-    <div class="date-badge" id="live-date" style="font-size: 0.8rem; color: #86efac;">--:--</div>
+    <div class="date-badge" id="live-date" style="font-size: 0.8rem; color: #86efac; font-weight: bold;">--:--</div>
   </header>
 
+  <!-- MAIN CONTAINER -->
   <div class="container">
     <div class="flag-strip">
       <div class="green"></div>
@@ -747,15 +749,26 @@
           url: window.location.href
         }).catch(() => {});
       } else {
-        navigator.clipboard.writeText(window.location.href);
-        alert("App link copied to clipboard!");
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(window.location.href);
+          alert("App link copied to clipboard!");
+        } else {
+          alert("Link: " + window.location.href);
+        }
       }
     }
 
     // Navigation Control
     function showView(viewId) {
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-      document.getElementById(viewId).classList.add('active');
+      document.querySelectorAll('.view').forEach(v => {
+        v.classList.remove('active');
+        v.style.display = 'none';
+      });
+      const selectedView = document.getElementById(viewId);
+      if (selectedView) {
+        selectedView.classList.add('active');
+        selectedView.style.display = 'block';
+      }
     }
 
     // Fuel Hub Tab Switcher
@@ -779,21 +792,22 @@
     }
 
     // 1. Simple Calculator Logic
-    const display = document.getElementById('display');
-
     function appendValue(val) {
+      const display = document.getElementById('display');
       display.value += val;
     }
 
     function clearDisplay() {
-      display.value = '';
+      document.getElementById('display').value = '';
     }
 
     function deleteLast() {
+      const display = document.getElementById('display');
       display.value = display.value.slice(0, -1);
     }
 
     function calculate() {
+      const display = document.getElementById('display');
       try {
         if (display.value.trim() === '') return;
         display.value = Function('"use strict"; return (' + display.value + ')')();
