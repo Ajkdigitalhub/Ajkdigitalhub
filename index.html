@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJK Digital Hub</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #093318 0%, #051d0d 60%, #1c2b18 100%);
+      color: #ffffff;
+      padding: 20px 0;
+    }
+
+    .container {
+      width: 360px;
+      padding: 24px;
+      background: #0d2616;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+      border: 2px solid #eab308;
+      position: relative;
+    }
+
+    /* Top Strip Design */
+    .flag-strip {
+      display: flex;
+      height: 10px;
+      width: 100%;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .flag-strip .green { flex: 1; background-color: #15803d; }
+    .flag-strip .gold { flex: 1; background-color: #eab308; }
+    .flag-strip .white { flex: 1; background-color: #ffffff; }
+
+    /* Home View Elements */
+    .header-box {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .header-box h1 {
+      color: #fde047;
+      font-size: 1.6rem;
+      margin-bottom: 5px;
+    }
+
+    .header-box p {
+      color: #86efac;
+      font-size: 0.85rem;
+    }
+
+    .menu-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .menu-btn {
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #eab308;
+      background-color: #144523;
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 3px 0 #0b2914;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .menu-btn:hover {
+      background-color: #166534;
+    }
+
+    .menu-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #0b2914;
+    }
+
+    /* Sub-menu inside view */
+    .sub-menu-box {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    .sub-tab-btn {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #166534;
+      background-color: #0d2616;
+      color: #86efac;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sub-tab-btn.active {
+      background-color: #eab308;
+      color: #051d0d;
+      border-color: #facc15;
+    }
+
+    /* Back Button for Sub-views */
+    .back-btn {
+      background: #c2410c;
+      border: 1px solid #ea580c;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+
+    /* Views Toggle */
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    /* Simple Calculator View Styles */
+    .display-container {
+      background-color: #05140a;
+      border: 1px solid #ca8a04;
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 20px;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
+    }
+
+    .header-text {
+      display: flex;
+      justify-content: space-between;
+      color: #fde047;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    #display {
+      width: 100%;
+      height: 50px;
+      background-color: transparent;
+      border: none;
+      color: #ffffff;
+      font-size: 2.2rem;
+      text-align: right;
+      outline: none;
+      font-weight: bold;
+    }
+
+    .calc-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .calc-buttons button {
+      height: 50px;
+      border-radius: 12px;
+      border: 1px solid #166534;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      background-color: #144523;
+      color: #f0fdf4;
+      box-shadow: 0 4px 0 #0b2914;
+      transition: all 0.1s ease;
+    }
+
+    .calc-buttons button:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 #0b2914;
+    }
+
+    .calc-buttons button.operator {
+      background-color: #c2410c;
+      border-color: #ea580c;
+      box-shadow: 0 4px 0 #7c2d12;
+    }
+
+    .calc-buttons button.action {
+      background-color: #b91c1c;
+      border-color: #dc2626;
+      box-shadow: 0 4px 0 #7f1d1d;
+    }
+
+    .calc-buttons button.equal {
+      background-color: #eab308;
+      border-color: #facc15;
+      color: #051d0d;
+      grid-row: span 2;
+      height: 100%;
+      font-weight: 900;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 0 #a16207;
+    }
+
+    .calc-buttons button.zero {
+      grid-column: span 2;
+    }
+
+    /* Common Form & Input Styles */
+    .hub-form {
+      background: #05140a;
+      border: 1px solid #ca8a04;
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .input-group {
+      margin-bottom: 12px;
+    }
+
+    .input-group label {
+      display: block;
+      color: #fde047;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .input-group input, .input-group select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #166534;
+      background-color: #0d2616;
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: bold;
+      outline: none;
+    }
+
+    .input-group input:focus, .input-group select:focus {
+      border-color: #eab308;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      background-color: #eab308;
+      color: #051d0d;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 3px 0 #a16207;
+      transition: all 0.1s ease;
+      margin-top: 5px;
+    }
+
+    .submit-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #a16207;
+    }
+
+    /* Card & Result Display */
+    .results-container {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .result-card {
+      background: #0d2616;
+      border: 1px solid #166534;
+      padding: 10px 12px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .result-card .tag {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .result-card .percent {
+      font-size: 0.75rem;
+      color: #86efac;
+    }
+
+    .result-card .amount {
+      font-size: 0.95rem;
+      font-weight: bold;
+      color: #fde047;
+    }
+
+    .needs { border-left: 4px solid #ef4444; }
+    .wants { border-left: 4px solid #3b82f6; }
+    .savings { border-left: 4px solid #22c55e; }
+
+    /* Age Grid Display */
+    .age-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .age-box {
+      background: #0d2616;
+      border: 1px solid #166534;
+      border-top: 3px solid #eab308;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .age-box .value {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #fde047;
+    }
+
+    .age-box .label {
+      font-size: 0.7rem;
+      color: #86efac;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* Single Highlight Output Box */
+    .single-result {
+      background: #0d2616;
+      border: 1px solid #eab308;
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .single-result .val {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #fde047;
+    }
+
+    .single-result .lbl {
+      font-size: 0.8rem;
+      color: #86efac;
+      margin-top: 4px;
+    }
+
+    .single-result.not-eligible {
+      border-color: #ef4444;
+    }
+
+    .single-result.not-eligible .val {
+      color: #ef4444;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="flag-strip">
+      <div class="green"></div>
+      <div class="gold"></div>
+      <div class="white"></div>
+    </div>
+
+    <!-- MAIN MENU FRONT PAGE -->
+    <div id="home-view" class="view active">
+      <div class="header-box">
+        <h1>🌲 Azad Kashmir HUB</h1>
+        <p>Select your required tool</p>
+      </div>
+
+      <div class="menu-buttons">
+        <button class="menu-btn" onclick="showView('calc-view')">🧮 Simple Calculator</button>
+        <button class="menu-btn" onclick="showView('budget-view')">📊 Budget Calculator</button>
+        <button class="menu-btn" onclick="showView('age-view')">🎂 Age Calculator</button>
+        <button class="menu-btn" onclick="showView('currency-view')">🔀 Currency Converter</button>
+        <button class="menu-btn" onclick="showView('zakat-view')">🌙 Zakat Calculator</button>
+        <button class="menu-btn" onclick="showView('fuel-hub-view')">⛽ Fuel Calculator</button>
+        <button class="menu-btn" onclick="showView('unit-view')">📏 Unit Converter</button>
+      </div>
+    </div>
+
+    <!-- 1. CALCULATOR SCREEN -->
+    <div id="calc-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Back to Menu</button>
+      
+      <div class="display-container">
+        <div class="header-text">
+          <span>🌲 Azad Kashmir</span>
+          <span>Calculator</span>
+        </div>
+        <input type="text" id="display" readonly placeholder="0">
+      </div>
+
+      <div class="calc-buttons">
+        <button class="action" onclick="clearDisplay()">C</button>
+        <button class="action" onclick="deleteLast()">DEL</button>
+        <button class="operator" onclick="appendValue('/')">÷</button>
+        <button class="operator" onclick="appendValue('*')">×</button>
+        
+        <button onclick="appendValue('7')">7</button>
+        <button onclick="appendValue('8')">8</button>
+        <button onclick="appendValue('9')">9</button>
+        <button class="operator" onclick="appendValue('-')">-</button>
+        
+        <button onclick="appendValue('4')">4</button>
+        <button onclick="appendValue('5')">5</button>
+        <button onclick="appendValue('6')">6</button>
+        <button class="operator" onclick="appendValue('+')">+</button>
+        
+        <button onclick="appendValue('1')">1</button>
+        <button onclick="appendValue('2')">2</button>
+        <button onclick="appendValue('3')">3</button>
+        <button class="equal" onclick="calculate()">=</button>
+        
+        <button class="zero" onclick="appendValue('0')">0</button>
+        <button onclick="appendValue('.')">.</button>
+      </div>
+    </div>
+
+    <!-- 2. BUDGET CALCULATOR SCREEN -->
+    <div id="budget-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Back to Menu</button>
+      
+      <div class="hub-form">
+        <div class="input-group">
+          <label for="monthly-salary">Enter Monthly Salary (PKR):</label>
+          <input type="number" id="monthly-salary" placeholder="e.g. 50000">
+        </div>
+        <button class="submit-btn" onclick="calculateBudget()">Calculate Plan</button>
+
+        <div class="results-container" id="budget-results" style="display: none;">
+          <div class="result-card needs">
+            <div>
+              <div class="tag">Needs (Zarooriyat)</div>
+              <div class="percent">50% (Rent, Bills, Food)</div>
+            </div>
+            <div class="amount" id="needs-amount">Rs 0</div>
+          </div>
+
+          <div class="result-card wants">
+            <div>
+              <div class="tag">Wants (Khwahishat)</div>
+              <div class="percent">30% (Shopping, Travel)</div>
+            </div>
+            <div class="amount" id="wants-amount">Rs 0</div>
+          </div>
+
+          <div class="result-card savings">
+            <div>
+              <div class="tag">Savings (Bachat)</div>
+              <div class="percent">20% (Emergency, Future)</div>
+            </div>
+            <div class="amount" id="savings-amount">Rs 0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. AGE CALCULATOR SCREEN -->
+    <div id="age-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Back to Menu</button>
+      
+      <div class="hub-form">
+        <div class="input-group">
+          <label for="dob">Select Date of Birth:</label>
+          <input type="date" id="dob">
+        </div>
+        <button class="submit-btn" onclick="calculateAge()">Calculate Age</button>
+
+        <div class="age-grid" id="age-results" style="display: none;">
+          <div class="age-box">
+            <div class="value" id="age-years">0</div>
+            <div class="label">Years</div>
+          </div>
+          <div class="age-box">
+            <div class="value" id="age-months">0</div>
+            <div class="label">Months</div>
+          </div>
+          <div class="age-box">
+            <div class="value" id="age-weeks">0</div>
+            <div class="label">Weeks</div>
+          </div>
+          <div class="age-box">
+            <div class="value" id="age-days">0</div>
+            <div class="label">Days</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. CURRENCY CONVERTER SCREEN -->
+    <div id="currency-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Back to Menu</button>
+      
+      <div class="hub-form">
+        <div class="input-group">
+          <label for="curr-amount">Amount:</label>
+          <input type="number" id="curr-amount" placeholder="e.g. 100">
+        </div>
+        <div class="input-group">
+          <label for="curr-from">From Currency:</label>
+          <select id="curr-from">
+            <option value="USD">USD ($)</option>
+            <option value="SAR">SAR (Saudi Riyal)</option>
+            <option value="AED">AED (UAE Dirham)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="PKR" selected>PKR (Pak Rupee)</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="curr-to">To Currency:</label>
+          <select id="curr-to">
+            <option value="PKR" selected>PKR (Pak Rupee)</option>
+            <option value="USD">USD ($)</option>
+            <option value="SAR">SAR (Saudi Riyal)</option>
+            <option value="AED">AED (UAE Dirham)</option>
+            <option value="EUR">EUR (€)</option>
+          </select>
+        </div>
+        <button class="submit-btn" onclick="convertCurrency()">Convert Now</button>
+
+        <div class="single-result" id="curr-result" style="display: none;">
+          <div class="val" id="curr-val">0</div>
+          <div class="lbl" id="curr-lbl">Converted Amount</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. ZAKAT CALCULATOR SCREEN -->
+    <div id="zakat-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Back to Menu</button>
+      
+      <div class="hub-form">
+        <div class="input-group">
+          <label for="silver-rate">Silver Rate per Tola (PKR):</label>
+          <input type="number" id="silver-rate" value="7450" placeholder="e.g. 7450">
+        </div>
+        <div class="input-group">
+          <label for="zakat-cash">Total Cash & Savings (PKR):</label>
+          <input type="number" id="zakat-cash" placeholder="0">
+        </div>
+        <div class="input-group">
+          <label for="zakat-gold">Value of Gold & Silver (PKR):</label>
+          <input type="number" id="zakat-gold" placeholder="0">
+        </div>
+        <div class="input-group">
+          <label for="zakat-business">Business Goods / Investments (PKR):</label>
+          <input type="number" id="zakat-business" placeholder="0">
+        </div>
+        <button class="submit-btn" onclick="calculateZakat()">Calculate Zakat (2.5%)</button>
+
+        <div class="single-result" id="zakat-result" style="display: none;">
+          <div class="val" id="zakat-val">Rs 0</div>
+          <div class="lbl" id="zakat-lbl">Total Payable Zakat</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. MERGED FUEL HUB SCREEN -->
+    <div id="fuel-hub-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Back to Menu</button>
+      
+      <div class="sub-menu-box">
+        <button class="sub-tab-btn active" id="tab-cost-btn" onclick="switchFuelTab('cost')">⛽ Fuel Cost</button>
+        <button class="sub-tab-btn" id="tab-avg-btn" onclick="switchFuelTab('avg')">🛵 Fuel Average</button>
+      </div>
+
+      <!-- Fuel Cost Form -->
+      <div id="fuel-cost-tab" class="hub-form">
+        <div class="input-group">
+          <label for="trip-dist">Total Distance (KM):</label>
+          <input type="number" id="trip-dist" placeholder="e.g. 150">
+        </div>
+        <div class="input-group">
+          <label for="trip-avg">Vehicle Average (KM/Litre):</label>
+          <input type="number" id="trip-avg" placeholder="e.g. 15 for Car, 45 for Bike">
+        </div>
+        <div class="input-group">
+          <label for="trip-price">Petrol Price per Litre (PKR):</label>
+          <input type="number" id="trip-price" placeholder="e.g. 280">
+        </div>
+        <button class="submit-btn" onclick="calculateTripCost()">Calculate Trip Cost</button>
+
+        <div class="single-result" id="trip-result" style="display: none;">
+          <div class="val" id="trip-val">Rs 0</div>
+          <div class="lbl" id="trip-litres">0 Litres Required</div>
+        </div>
+      </div>
+
+      <!-- Fuel Average Form -->
+      <div id="fuel-avg-tab" class="hub-form" style="display: none;">
+        <div class="input-group">
+          <label for="avg-dist">Total Distance Travelled (KM):</label>
+          <input type="number" id="avg-dist" placeholder="e.g. 300">
+        </div>
+        <div class="input-group">
+          <label for="avg-fuel">Fuel Consumed (Litres):</label>
+          <input type="number" id="avg-fuel" placeholder="e.g. 20">
+        </div>
+        <button class="submit-btn" onclick="calculateFuelAverage()">Calculate Average</button>
+
+        <div class="single-result" id="avg-result" style="display: none;">
+          <div class="val" id="avg-val">0 KM/L</div>
+          <div class="lbl">Vehicle Fuel Mileage</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. UNIT CONVERTER SCREEN -->
+    <div id="unit-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Back to Menu</button>
+      
+      <div class="hub-form">
+        <div class="input-group">
+          <label for="unit-val">Enter Value:</label>
+          <input type="number" id="unit-val" placeholder="0">
+        </div>
+        <div class="input-group">
+          <label for="unit-type">Conversion Type:</label>
+          <select id="unit-type">
+            <option value="ft-m">Feet to Meters</option>
+            <option value="m-ft">Meters to Feet</option>
+            <option value="kg-lbs">KG to Pounds (lbs)</option>
+            <option value="lbs-kg">Pounds (lbs) to KG</option>
+            <option value="c-f">Celsius to Fahrenheit</option>
+            <option value="f-c">Fahrenheit to Celsius</option>
+          </select>
+        </div>
+        <button class="submit-btn" onclick="convertUnit()">Convert Unit</button>
+
+        <div class="single-result" id="unit-result" style="display: none;">
+          <div class="val" id="unit-res-val">0</div>
+          <div class="lbl" id="unit-res-lbl">Result</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Navigation Control
+    function showView(viewId) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById(viewId).classList.add('active');
+    }
+
+    // Fuel Hub Tab Switcher
+    function switchFuelTab(tab) {
+      const costTab = document.getElementById('fuel-cost-tab');
+      const avgTab = document.getElementById('fuel-avg-tab');
+      const costBtn = document.getElementById('tab-cost-btn');
+      const avgBtn = document.getElementById('tab-avg-btn');
+
+      if (tab === 'cost') {
+        costTab.style.display = 'block';
+        avgTab.style.display = 'none';
+        costBtn.classList.add('active');
+        avgBtn.classList.remove('active');
+      } else {
+        costTab.style.display = 'none';
+        avgTab.style.display = 'block';
+        avgBtn.classList.add('active');
+        costBtn.classList.remove('active');
+      }
+    }
+
+    // 1. Simple Calculator Logic
+    const display = document.getElementById('display');
+
+    function appendValue(val) {
+      display.value += val;
+    }
+
+    function clearDisplay() {
+      display.value = '';
+    }
+
+    function deleteLast() {
+      display.value = display.value.slice(0, -1);
+    }
+
+    function calculate() {
+      try {
+        if (display.value.trim() === '') return;
+        display.value = Function('"use strict"; return (' + display.value + ')')();
+      } catch (error) {
+        display.value = 'Error';
+        setTimeout(clearDisplay, 1500);
+      }
+    }
+
+    // 2. Budget Calculator Logic
+    function calculateBudget() {
+      const salary = parseFloat(document.getElementById('monthly-salary').value);
+      const resultsDiv = document.getElementById('budget-results');
+
+      if (isNaN(salary) || salary <= 0) {
+        alert("Please enter a valid salary amount.");
+        return;
+      }
+
+      const needs = salary * 0.50;
+      const wants = salary * 0.30;
+      const savings = salary * 0.20;
+
+      document.getElementById('needs-amount').innerText = "Rs " + needs.toLocaleString();
+      document.getElementById('wants-amount').innerText = "Rs " + wants.toLocaleString();
+      document.getElementById('savings-amount').innerText = "Rs " + savings.toLocaleString();
+
+      resultsDiv.style.display = 'flex';
+    }
+
+    // 3. Age Calculator Logic
+    function calculateAge() {
+      const dobInput = document.getElementById('dob').value;
+      if (!dobInput) {
+        alert("Please select your date of birth.");
+        return;
+      }
+
+      const birthDate = new Date(dobInput);
+      const today = new Date();
+
+      if (birthDate > today) {
+        alert("Date of birth cannot be in the future!");
+        return;
+      }
+
+      let years = today.getFullYear() - birthDate.getFullYear();
+      let monthDiff = today.getMonth() - birthDate.getMonth();
+      let dayDiff = today.getDate() - birthDate.getDate();
+
+      if (dayDiff < 0) monthDiff--;
+      if (monthDiff < 0) {
+        years--;
+        monthDiff += 12;
+      }
+
+      const diffTime = Math.abs(today - birthDate);
+      const totalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      const totalWeeks = Math.floor(totalDays / 7);
+      const totalMonths = (years * 12) + monthDiff;
+
+      document.getElementById('age-years').innerText = years.toLocaleString();
+      document.getElementById('age-months').innerText = totalMonths.toLocaleString();
+      document.getElementById('age-weeks').innerText = totalWeeks.toLocaleString();
+      document.getElementById('age-days').innerText = totalDays.toLocaleString();
+
+      document.getElementById('age-results').style.display = 'grid';
+    }
+
+    // 4. Currency Converter Logic
+    function convertCurrency() {
+      const amount = parseFloat(document.getElementById('curr-amount').value);
+      const from = document.getElementById('curr-from').value;
+      const to = document.getElementById('curr-to').value;
+
+      if (isNaN(amount) || amount <= 0) {
+        alert("Please enter a valid amount.");
+        return;
+      }
+
+      const ratesInPKR = {
+        PKR: 1,
+        USD: 278,
+        SAR: 74,
+        AED: 75.5,
+        EUR: 300
+      };
+
+      const amountInPKR = amount * ratesInPKR[from];
+      const converted = amountInPKR / ratesInPKR[to];
+
+      document.getElementById('curr-val').innerText = converted.toFixed(2) + " " + to;
+      document.getElementById('curr-lbl').innerText = `${amount} ${from} = ${converted.toFixed(2)} ${to}`;
+      document.getElementById('curr-result').style.display = 'block';
+    }
+
+    // 5. Zakat Calculator Logic
+    function calculateZakat() {
+      const silverRate = parseFloat(document.getElementById('silver-rate').value) || 7450;
+      const cash = parseFloat(document.getElementById('zakat-cash').value) || 0;
+      const gold = parseFloat(document.getElementById('zakat-gold').value) || 0;
+      const business = parseFloat(document.getElementById('zakat-business').value) || 0;
+
+      const totalAssets = cash + gold + business;
+      const nisabThreshold = 52.5 * silverRate;
+      const resultBox = document.getElementById('zakat-result');
+
+      if (totalAssets <= 0) {
+        alert("Please enter asset values.");
+        return;
+      }
+
+      resultBox.style.display = 'block';
+
+      if (totalAssets < nisabThreshold) {
+        resultBox.classList.add('not-eligible');
+        document.getElementById('zakat-val').innerText = "Aap Par Zakat Farz Nahi Hai";
+        document.getElementById('zakat-lbl').innerText = `Aap ki kul raqam (Rs ${totalAssets.toLocaleString()}) 52.5 tola chandi k nisab (Rs ${nisabThreshold.toLocaleString()}) se kam hai.`;
+      } else {
+        resultBox.classList.remove('not-eligible');
+        const zakatPayable = totalAssets * 0.025;
+        document.getElementById('zakat-val').innerText = "Rs " + zakatPayable.toLocaleString(undefined, {maximumFractionDigits: 2});
+        document.getElementById('zakat-lbl').innerText = `Total Payable Zakat (Nisab: Rs ${nisabThreshold.toLocaleString()})`;
+      }
+    }
+
+    // 6. Fuel Calculations
+    function calculateTripCost() {
+      const dist = parseFloat(document.getElementById('trip-dist').value);
+      const avg = parseFloat(document.getElementById('trip-avg').value);
+      const price = parseFloat(document.getElementById('trip-price').value);
+
+      if (!dist || !avg || !price || avg <= 0) {
+        alert("Please fill all fields with valid numbers.");
+        return;
+      }
+
+      const litresRequired = dist / avg;
+      const totalCost = litresRequired * price;
+
+      document.getElementById('trip-val').innerText = "Rs " + totalCost.toLocaleString(undefined, {maximumFractionDigits: 2});
+      document.getElementById('trip-litres').innerText = litresRequired.toFixed(2) + " Litres Fuel Required";
+      document.getElementById('trip-result').style.display = 'block';
+    }
+
+    function calculateFuelAverage() {
+      const dist = parseFloat(document.getElementById('avg-dist').value);
+      const fuel = parseFloat(document.getElementById('avg-fuel').value);
+
+      if (!dist || !fuel || fuel <= 0) {
+        alert("Please enter valid distance and fuel numbers.");
+        return;
+      }
+
+      const average = dist / fuel;
+
+      document.getElementById('avg-val').innerText = average.toFixed(2) + " KM/L";
+      document.getElementById('avg-result').style.display = 'block';
+    }
+
+    // 7. Unit Converter Logic
+    function convertUnit() {
+      const val = parseFloat(document.getElementById('unit-val').value);
+      const type = document.getElementById('unit-type').value;
+
+      if (isNaN(val)) {
+        alert("Please enter a value to convert.");
+        return;
+      }
+
+      let res = 0;
+      let label = "";
+
+      switch (type) {
+        case 'ft-m':
+          res = val * 0.3048;
+          label = `${val} Feet = ${res.toFixed(2)} Meters`;
+          break;
+        case 'm-ft':
+          res = val * 3.28084;
+          label = `${val} Meters = ${res.toFixed(2)} Feet`;
+          break;
+        case 'kg-lbs':
+          res = val * 2.20462;
+          label = `${val} KG = ${res.toFixed(2)} Lbs`;
+          break;
+        case 'lbs-kg':
+          res = val / 2.20462;
+          label = `${val} Lbs = ${res.toFixed(2)} KG`;
+          break;
+        case 'c-f':
+          res = (val * 9/5) + 32;
+          label = `${val}°C = ${res.toFixed(2)}°F`;
+          break;
+        case 'f-c':
+          res = (val - 32) * 5/9;
+          label = `${val}°F = ${res.toFixed(2)}°C`;
+          break;
+      }
+
+      document.getElementById('unit-res-val').innerText = res.toFixed(2);
+      document.getElementById('unit-res-lbl').innerText = label;
+      document.getElementById('unit-result').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
