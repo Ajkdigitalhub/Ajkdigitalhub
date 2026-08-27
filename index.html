@@ -55,23 +55,9 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      background: #000000;
-      color: var(--text-main);
-      padding: 0;
-    }
-
-    /* MOBILE WRAPPER FOR SYSTEM DISPLAY */
-    .app-wrapper {
-      width: 100%;
-      max-width: 500px;
-      min-height: 100vh;
       background: var(--bg-gradient);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      color: var(--text-main);
       padding: 12px 12px 80px 12px;
-      position: relative;
-      box-shadow: 0 0 40px rgba(0,0,0,0.8);
     }
 
     /* HEADER & NAV BAR STYLES */
@@ -80,6 +66,7 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
+      max-width: 500px;
       margin-bottom: 12px;
       padding: 10px 14px;
       background: var(--glass-bg);
@@ -131,6 +118,7 @@
       flex-direction: column;
       gap: 8px;
       width: 100%;
+      max-width: 500px;
       background: var(--glass-bg);
       backdrop-filter: var(--backdrop-blur);
       border: 1px solid var(--glass-border);
@@ -162,6 +150,7 @@
 
     .container {
       width: 100%;
+      max-width: 500px;
       padding: 20px;
       background: var(--glass-bg);
       backdrop-filter: var(--backdrop-blur);
@@ -322,7 +311,7 @@
     .call-now-btn { background: #dc2626; color: white; padding: 8px 14px; border-radius: 8px; text-decoration: none; font-weight: 800; font-size: 0.82rem; display: flex; align-items: center; gap: 4px; }
 
     /* FOOTER & BOTTOM NAV */
-    .app-footer { width: 100%; margin-top: 20px; text-align: center; font-size: 0.78rem; color: var(--text-muted); }
+    .app-footer { width: 100%; max-width: 500px; margin-top: 20px; text-align: center; font-size: 0.78rem; color: var(--text-muted); }
     .share-btn { background: var(--btn-bg); border: 1px solid var(--glass-border); color: var(--accent-gold); padding: 8px 16px; border-radius: 10px; margin-top: 8px; cursor: pointer; font-size: 0.8rem; font-weight: 700; }
 
     .bottom-nav {
@@ -359,335 +348,333 @@
 </head>
 <body>
 
-  <div class="app-wrapper">
-    <!-- HEADER -->
-    <header class="app-header">
-      <div class="logo-area" onclick="showView('home-view')">
-        <span style="font-size: 1.3rem;">🌲</span>
-        <div>
-          <h2 style="font-size: 1rem; color: var(--accent-gold); margin: 0; line-height: 1;">AJK Hub</h2>
-          <span style="font-size: 0.68rem; color: var(--text-muted);">Digital Suite</span>
-        </div>
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="logo-area" onclick="showView('home-view')">
+      <span style="font-size: 1.3rem;">🌲</span>
+      <div>
+        <h2 style="font-size: 1rem; color: var(--accent-gold); margin: 0; line-height: 1;">AJK Hub</h2>
+        <span style="font-size: 0.68rem; color: var(--text-muted);">Digital Suite</span>
       </div>
-      <div class="header-actions">
-        <button class="menu-toggle-btn" onclick="toggleDrawer()" title="Menu">☰</button>
-        <button class="icon-toggle" id="sound-btn" onclick="toggleSound()">🔊</button>
-        <button class="icon-toggle" id="theme-btn" onclick="toggleTheme()">🌙</button>
-        <div id="live-date" style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">--:--</div>
-      </div>
-    </header>
-
-    <!-- NAVIGATION DRAWER -->
-    <nav class="nav-drawer" id="nav-drawer">
-      <button class="nav-btn" onclick="navigateTo('tourist-guide-view')">
-        <span>🏔️ AJK Tourism Guide</span> ➔
-      </button>
-      <button class="nav-btn" onclick="navigateTo('ajk-hierarchy-view')">
-        <span>🗺️ AJK Info (Divisions & Tehsils)</span> ➔
-      </button>
-      <button class="nav-btn emergency" onclick="navigateTo('emergency-view')">
-        <span>🚨 Helpline & Emergency Contacts</span> ➔
-      </button>
-    </nav>
-
-    <main class="container">
-      <div class="flag-strip">
-        <div class="green"></div>
-        <div class="gold"></div>
-        <div class="white"></div>
-      </div>
-
-      <!-- MAIN DASHBOARD -->
-      <section id="home-view" class="view active">
-        <div class="header-box">
-          <h1>Azad Kashmir Suite</h1>
-          <p>Explore AJK Directory & Utilities</p>
-        </div>
-
-        <div class="section-label">📍 AJK Directory & Tourism</div>
-        <div class="grid-menu single">
-          <div class="menu-card" onclick="showView('ajk-hierarchy-view')">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <span class="icon">🗺️</span>
-              <div>
-                <div class="title">Divisions, Districts & Tehsils</div>
-                <div class="sub">3 Divisions ➔ 10 Districts ➔ 32 Tehsils</div>
-              </div>
-            </div>
-          </div>
-          <div class="menu-card" onclick="showView('tourist-guide-view')">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <span class="icon">🏔️</span>
-              <div>
-                <div class="title">District-wise Tourist Guide</div>
-                <div class="sub">Top visited places categorized by district</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="section-label">🧮 Smart Calculators & Tools</div>
-        <div class="grid-menu">
-          <div class="menu-card" onclick="showView('calc-view')">
-            <span class="icon">🔢</span>
-            <div class="title">Calculator</div>
-            <div class="sub">Standard Math</div>
-          </div>
-          <div class="menu-card" onclick="showView('budget-view')">
-            <span class="icon">📊</span>
-            <div class="title">Budget Plan</div>
-            <div class="sub">50/30/20 Rule</div>
-          </div>
-          <div class="menu-card" onclick="showView('fuel-hub-view')">
-            <span class="icon">⛽</span>
-            <div class="title">Fuel & Trip</div>
-            <div class="sub">Cost & Average</div>
-          </div>
-          <div class="menu-card" onclick="showView('currency-view')">
-            <span class="icon">🔀</span>
-            <div class="title">Currency</div>
-            <div class="sub">Rates Converter</div>
-          </div>
-          <div class="menu-card" onclick="showView('age-view')">
-            <span class="icon">🎂</span>
-            <div class="title">Age Calculator</div>
-            <div class="sub">Exact Age & DOB</div>
-          </div>
-          <div class="menu-card" onclick="showView('zakat-view')">
-            <span class="icon">🌙</span>
-            <div class="title">Zakat Calc</div>
-            <div class="sub">2.5% Calculation</div>
-          </div>
-          <div class="menu-card" onclick="showView('unit-view')" style="grid-column: span 2;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <span class="icon">📏</span>
-              <div>
-                <div class="title">Unit Converter</div>
-                <div class="sub">Feet, Meters, Weight & Temp</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- EMERGENCY CONTACTS -->
-      <section id="emergency-view" class="view">
-        <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
-        <div class="header-box" style="margin-bottom: 12px;">
-          <h2 style="color: #ef4444; font-size: 1.2rem;">Emergency Contacts</h2>
-          <p>AJK Police, Tourism & Rescue Helplines</p>
-        </div>
-        <div class="emergency-grid">
-          <div class="emergency-card">
-            <div>
-              <h4>🏕️ Tourism Police AJK</h4>
-              <p>Tourist assistance & safety</p>
-            </div>
-            <a href="tel:1422" class="call-now-btn">📞 1422</a>
-          </div>
-          <div class="emergency-card">
-            <div>
-              <h4>🚑 Rescue 1122</h4>
-              <p>Medical & Fire Emergency</p>
-            </div>
-            <a href="tel:1122" class="call-now-btn">📞 1122</a>
-          </div>
-          <div class="emergency-card">
-            <div>
-              <h4>🚔 Police Emergency</h4>
-              <p>General Police Helpline</p>
-            </div>
-            <a href="tel:15" class="call-now-btn">📞 15</a>
-          </div>
-          <div class="emergency-card">
-            <div>
-              <h4>🛣️ National Highway Police</h4>
-              <p>Travel & Road Advisory</p>
-            </div>
-            <a href="tel:130" class="call-now-btn">📞 130</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- 1. AJK DIVISIONS / DISTRICTS / TEHSILS -->
-      <section id="ajk-hierarchy-view" class="view">
-        <button class="back-btn" id="hierarchy-back-btn" onclick="handleHierarchyBack()">← Back</button>
-        <div class="header-box" style="margin-bottom: 12px;">
-          <h2 id="hierarchy-title" style="color: var(--accent-gold); font-size: 1.2rem;">AJK Divisions</h2>
-          <p id="hierarchy-subtitle">Select a Division</p>
-        </div>
-        <div class="hierarchy-container" id="hierarchy-list"></div>
-      </section>
-
-      <!-- 2. DISTRICT-WISE TOURIST GUIDE -->
-      <section id="tourist-guide-view" class="view">
-        <button class="back-btn" id="tourist-back-btn" onclick="handleTouristBack()">← Back</button>
-        <div class="header-box" style="margin-bottom: 12px;">
-          <h2 id="tourist-title" style="color: var(--accent-gold); font-size: 1.2rem;">AJK Tourist Guide</h2>
-          <p id="tourist-subtitle">Select a District to explore famous places</p>
-        </div>
-        <div class="hierarchy-container" id="tourist-list"></div>
-      </section>
-
-      <!-- 3. CALCULATOR SCREEN -->
-      <section id="calc-view" class="view">
-        <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
-        <div class="display-container">
-          <div class="header-text"><span>AJK Digital</span><span>Calculator</span></div>
-          <input type="text" id="display" readonly placeholder="0">
-        </div>
-        <div class="calc-buttons">
-          <button class="action" onclick="clearDisplay()">C</button>
-          <button class="action" onclick="deleteLast()">DEL</button>
-          <button class="operator" onclick="appendValue('/')">÷</button>
-          <button class="operator" onclick="appendValue('*')">×</button>
-          <button onclick="appendValue('7')">7</button><button onclick="appendValue('8')">8</button><button onclick="appendValue('9')">9</button>
-          <button class="operator" onclick="appendValue('-')">-</button>
-          <button onclick="appendValue('4')">4</button><button onclick="appendValue('5')">5</button><button onclick="appendValue('6')">6</button>
-          <button class="operator" onclick="appendValue('+')">+</button>
-          <button onclick="appendValue('1')">1</button><button onclick="appendValue('2')">2</button><button onclick="appendValue('3')">3</button>
-          <button class="equal" onclick="calculate()">=</button>
-          <button class="zero" onclick="appendValue('0')">0</button><button onclick="appendValue('.')">.</button>
-        </div>
-      </section>
-
-      <!-- 4. BUDGET CALCULATOR -->
-      <section id="budget-view" class="view">
-        <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
-        <div class="hub-form">
-          <div class="input-group">
-            <label for="monthly-salary">Enter Monthly Salary (PKR):</label>
-            <input type="number" id="monthly-salary" placeholder="e.g. 50000">
-          </div>
-          <button class="submit-btn" onclick="calculateBudget()">Calculate Plan</button>
-          <div class="results-container" id="budget-results" style="display: none;">
-            <div class="single-result"><div class="val" id="needs-amount">Rs 0</div><div class="lbl">Needs (50%)</div></div>
-            <div class="single-result"><div class="val" id="wants-amount">Rs 0</div><div class="lbl">Wants (30%)</div></div>
-            <div class="single-result"><div class="val" id="savings-amount">Rs 0</div><div class="lbl">Savings (20%)</div></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 5. AGE CALCULATOR -->
-      <section id="age-view" class="view">
-        <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
-        <div class="hub-form">
-          <div class="input-group">
-            <label for="dob">Select Date of Birth:</label>
-            <input type="date" id="dob">
-          </div>
-          <button class="submit-btn" onclick="calculateAge()">Calculate Age</button>
-          <div class="single-result" id="age-results" style="display: none;">
-            <div class="val" id="age-years">0 Years Old</div>
-            <div class="lbl" id="age-detail">0 Months, 0 Days</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 6. CURRENCY CONVERTER -->
-      <section id="currency-view" class="view">
-        <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
-        <div class="hub-form">
-          <div class="input-group"><label>Amount:</label><input type="number" id="curr-amount" placeholder="100"></div>
-          <div class="input-group">
-            <label>From:</label>
-            <select id="curr-from"><option value="USD">USD ($)</option><option value="SAR">SAR</option><option value="AED">AED</option><option value="PKR" selected>PKR</option></select>
-          </div>
-          <div class="input-group">
-            <label>To:</label>
-            <select id="curr-to"><option value="PKR" selected>PKR</option><option value="USD">USD ($)</option><option value="SAR">SAR</option><option value="AED">AED</option></select>
-          </div>
-          <button class="submit-btn" onclick="convertCurrency()">Convert</button>
-          <div class="single-result" id="curr-result" style="display: none;"><div class="val" id="curr-val">0</div></div>
-        </div>
-      </section>
-
-      <!-- 7. ZAKAT CALCULATOR -->
-      <section id="zakat-view" class="view">
-        <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
-        <div class="hub-form">
-          <div class="input-group">
-            <label>Current Silver Price per Tola (PKR):</label>
-            <input type="number" id="silver-price-tola" placeholder="e.g. 2500" value="2500">
-          </div>
-          <div class="input-group">
-            <label>Total Wealth & Assets Value (PKR):</label>
-            <input type="number" id="zakat-cash" placeholder="0">
-          </div>
-          <button class="submit-btn" onclick="calculateZakat()">Calculate Zakat (2.5%)</button>
-          <div class="single-result" id="zakat-result" style="display: none;">
-            <div class="val" id="zakat-val">Rs 0</div>
-            <div class="lbl" id="zakat-status" style="margin-top: 6px; font-weight: bold;"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 8. FUEL & TRIP HUB -->
-      <section id="fuel-hub-view" class="view">
-        <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
-        <div class="sub-menu-box">
-          <button class="sub-tab-btn active" id="tab-cost-btn" onclick="switchFuelTab('cost')">⛽ Trip Cost</button>
-          <button class="sub-tab-btn" id="tab-avg-btn" onclick="switchFuelTab('avg')">🛵 Fuel Average</button>
-        </div>
-        <div id="fuel-cost-tab" class="hub-form">
-          <div class="input-group"><label>Distance (KM):</label><input type="number" id="trip-dist" placeholder="150"></div>
-          <div class="input-group"><label>Average (KM/Litre):</label><input type="number" id="trip-avg" placeholder="15"></div>
-          <div class="input-group"><label>Petrol Price / Litre:</label><input type="number" id="trip-price" placeholder="280"></div>
-          <button class="submit-btn" onclick="calculateTripCost()">Calculate Cost</button>
-          <div class="single-result" id="trip-result" style="display: none;"><div class="val" id="trip-val">Rs 0</div></div>
-        </div>
-        <div id="fuel-avg-tab" class="hub-form" style="display: none;">
-          <div class="input-group"><label>Distance Travelled (KM):</label><input type="number" id="avg-dist" placeholder="300"></div>
-          <div class="input-group"><label>Fuel Consumed (Litres):</label><input type="number" id="avg-fuel" placeholder="20"></div>
-          <button class="submit-btn" onclick="calculateFuelAverage()">Calculate Average</button>
-          <div class="single-result" id="avg-result" style="display: none;"><div class="val" id="avg-val">0 KM/L</div></div>
-        </div>
-      </section>
-
-      <!-- 9. UNIT CONVERTER -->
-      <section id="unit-view" class="view">
-        <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
-        <div class="hub-form">
-          <div class="input-group"><label>Enter Value:</label><input type="number" id="unit-val" placeholder="0"></div>
-          <div class="input-group">
-            <label>Conversion Type:</label>
-            <select id="unit-type">
-              <option value="ft-m">Feet to Meters</option>
-              <option value="m-ft">Meters to Feet</option>
-              <option value="kg-lbs">KG to Pounds</option>
-              <option value="c-f">Celsius to Fahrenheit</option>
-            </select>
-          </div>
-          <button class="submit-btn" onclick="convertUnit()">Convert</button>
-          <div class="single-result" id="unit-result" style="display: none;"><div class="val" id="unit-res-val">0</div></div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="app-footer">
-      <p>© 2026 Azad Kashmir Digital Suite</p>
-      <button class="share-btn" onclick="shareApp()">🔗 Share App</button>
-    </footer>
-
-    <!-- MOBILE SMART BOTTOM NAVIGATION -->
-    <div class="bottom-nav">
-      <button class="bottom-nav-item" onclick="showView('home-view')">
-        <span class="nav-icon">🏠</span>
-        <span>Home</span>
-      </button>
-      <button class="bottom-nav-item" onclick="showView('tourist-guide-view')">
-        <span class="nav-icon">🏔️</span>
-        <span>Tourism</span>
-      </button>
-      <button class="bottom-nav-item" onclick="showView('ajk-hierarchy-view')">
-        <span class="nav-icon">🗺️</span>
-        <span>Directory</span>
-      </button>
-      <button class="bottom-nav-item" onclick="showView('emergency-view')" style="color: #fca5a5;">
-        <span class="nav-icon">🚨</span>
-        <span>Emergency</span>
-      </button>
     </div>
+    <div class="header-actions">
+      <button class="menu-toggle-btn" onclick="toggleDrawer()" title="Menu">☰</button>
+      <button class="icon-toggle" id="sound-btn" onclick="toggleSound()">🔊</button>
+      <button class="icon-toggle" id="theme-btn" onclick="toggleTheme()">🌙</button>
+      <div id="live-date" style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">--:--</div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION DRAWER -->
+  <nav class="nav-drawer" id="nav-drawer">
+    <button class="nav-btn" onclick="navigateTo('tourist-guide-view')">
+      <span>🏔️ AJK Tourism Guide</span> ➔
+    </button>
+    <button class="nav-btn" onclick="navigateTo('ajk-hierarchy-view')">
+      <span>🗺️ AJK Info (Divisions & Tehsils)</span> ➔
+    </button>
+    <button class="nav-btn emergency" onclick="navigateTo('emergency-view')">
+      <span>🚨 Helpline & Emergency Contacts</span> ➔
+    </button>
+  </nav>
+
+  <main class="container">
+    <div class="flag-strip">
+      <div class="green"></div>
+      <div class="gold"></div>
+      <div class="white"></div>
+    </div>
+
+    <!-- MAIN DASHBOARD -->
+    <section id="home-view" class="view active">
+      <div class="header-box">
+        <h1>Azad Kashmir Suite</h1>
+        <p>Explore AJK Directory & Utilities</p>
+      </div>
+
+      <div class="section-label">📍 AJK Directory & Tourism</div>
+      <div class="grid-menu single">
+        <div class="menu-card" onclick="showView('ajk-hierarchy-view')">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="icon">🗺️</span>
+            <div>
+              <div class="title">Divisions, Districts & Tehsils</div>
+              <div class="sub">3 Divisions ➔ 10 Districts ➔ 32 Tehsils</div>
+            </div>
+          </div>
+        </div>
+        <div class="menu-card" onclick="showView('tourist-guide-view')">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="icon">🏔️</span>
+            <div>
+              <div class="title">District-wise Tourist Guide</div>
+              <div class="sub">Top visited places categorized by district</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label">🧮 Smart Calculators & Tools</div>
+      <div class="grid-menu">
+        <div class="menu-card" onclick="showView('calc-view')">
+          <span class="icon">🔢</span>
+          <div class="title">Calculator</div>
+          <div class="sub">Standard Math</div>
+        </div>
+        <div class="menu-card" onclick="showView('budget-view')">
+          <span class="icon">📊</span>
+          <div class="title">Budget Plan</div>
+          <div class="sub">50/30/20 Rule</div>
+        </div>
+        <div class="menu-card" onclick="showView('fuel-hub-view')">
+          <span class="icon">⛽</span>
+          <div class="title">Fuel & Trip</div>
+          <div class="sub">Cost & Average</div>
+        </div>
+        <div class="menu-card" onclick="showView('currency-view')">
+          <span class="icon">🔀</span>
+          <div class="title">Currency</div>
+          <div class="sub">Rates Converter</div>
+        </div>
+        <div class="menu-card" onclick="showView('age-view')">
+          <span class="icon">🎂</span>
+          <div class="title">Age Calculator</div>
+          <div class="sub">Exact Age & DOB</div>
+        </div>
+        <div class="menu-card" onclick="showView('zakat-view')">
+          <span class="icon">🌙</span>
+          <div class="title">Zakat Calc</div>
+          <div class="sub">2.5% Calculation</div>
+        </div>
+        <div class="menu-card" onclick="showView('unit-view')" style="grid-column: span 2;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="icon">📏</span>
+            <div>
+              <div class="title">Unit Converter</div>
+              <div class="sub">Feet, Meters, Weight & Temp</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EMERGENCY CONTACTS -->
+    <section id="emergency-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
+      <div class="header-box" style="margin-bottom: 12px;">
+        <h2 style="color: #ef4444; font-size: 1.2rem;">Emergency Contacts</h2>
+        <p>AJK Police, Tourism & Rescue Helplines</p>
+      </div>
+      <div class="emergency-grid">
+        <div class="emergency-card">
+          <div>
+            <h4>🏕️ Tourism Police AJK</h4>
+            <p>Tourist assistance & safety</p>
+          </div>
+          <a href="tel:1422" class="call-now-btn">📞 1422</a>
+        </div>
+        <div class="emergency-card">
+          <div>
+            <h4>🚑 Rescue 1122</h4>
+            <p>Medical & Fire Emergency</p>
+          </div>
+          <a href="tel:1122" class="call-now-btn">📞 1122</a>
+        </div>
+        <div class="emergency-card">
+          <div>
+            <h4>🚔 Police Emergency</h4>
+            <p>General Police Helpline</p>
+          </div>
+          <a href="tel:15" class="call-now-btn">📞 15</a>
+        </div>
+        <div class="emergency-card">
+          <div>
+            <h4>🛣️ National Highway Police</h4>
+            <p>Travel & Road Advisory</p>
+          </div>
+          <a href="tel:130" class="call-now-btn">📞 130</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. AJK DIVISIONS / DISTRICTS / TEHSILS -->
+    <section id="ajk-hierarchy-view" class="view">
+      <button class="back-btn" id="hierarchy-back-btn" onclick="handleHierarchyBack()">← Back</button>
+      <div class="header-box" style="margin-bottom: 12px;">
+        <h2 id="hierarchy-title" style="color: var(--accent-gold); font-size: 1.2rem;">AJK Divisions</h2>
+        <p id="hierarchy-subtitle">Select a Division</p>
+      </div>
+      <div class="hierarchy-container" id="hierarchy-list"></div>
+    </section>
+
+    <!-- 2. DISTRICT-WISE TOURIST GUIDE -->
+    <section id="tourist-guide-view" class="view">
+      <button class="back-btn" id="tourist-back-btn" onclick="handleTouristBack()">← Back</button>
+      <div class="header-box" style="margin-bottom: 12px;">
+        <h2 id="tourist-title" style="color: var(--accent-gold); font-size: 1.2rem;">AJK Tourist Guide</h2>
+        <p id="tourist-subtitle">Select a District to explore famous places</p>
+      </div>
+      <div class="hierarchy-container" id="tourist-list"></div>
+    </section>
+
+    <!-- 3. CALCULATOR SCREEN -->
+    <section id="calc-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
+      <div class="display-container">
+        <div class="header-text"><span>AJK Digital</span><span>Calculator</span></div>
+        <input type="text" id="display" readonly placeholder="0">
+      </div>
+      <div class="calc-buttons">
+        <button class="action" onclick="clearDisplay()">C</button>
+        <button class="action" onclick="deleteLast()">DEL</button>
+        <button class="operator" onclick="appendValue('/')">÷</button>
+        <button class="operator" onclick="appendValue('*')">×</button>
+        <button onclick="appendValue('7')">7</button><button onclick="appendValue('8')">8</button><button onclick="appendValue('9')">9</button>
+        <button class="operator" onclick="appendValue('-')">-</button>
+        <button onclick="appendValue('4')">4</button><button onclick="appendValue('5')">5</button><button onclick="appendValue('6')">6</button>
+        <button class="operator" onclick="appendValue('+')">+</button>
+        <button onclick="appendValue('1')">1</button><button onclick="appendValue('2')">2</button><button onclick="appendValue('3')">3</button>
+        <button class="equal" onclick="calculate()">=</button>
+        <button class="zero" onclick="appendValue('0')">0</button><button onclick="appendValue('.')">.</button>
+      </div>
+    </section>
+
+    <!-- 4. BUDGET CALCULATOR -->
+    <section id="budget-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
+      <div class="hub-form">
+        <div class="input-group">
+          <label for="monthly-salary">Enter Monthly Salary (PKR):</label>
+          <input type="number" id="monthly-salary" placeholder="e.g. 50000">
+        </div>
+        <button class="submit-btn" onclick="calculateBudget()">Calculate Plan</button>
+        <div class="results-container" id="budget-results" style="display: none;">
+          <div class="single-result"><div class="val" id="needs-amount">Rs 0</div><div class="lbl">Needs (50%)</div></div>
+          <div class="single-result"><div class="val" id="wants-amount">Rs 0</div><div class="lbl">Wants (30%)</div></div>
+          <div class="single-result"><div class="val" id="savings-amount">Rs 0</div><div class="lbl">Savings (20%)</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. AGE CALCULATOR -->
+    <section id="age-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
+      <div class="hub-form">
+        <div class="input-group">
+          <label for="dob">Select Date of Birth:</label>
+          <input type="date" id="dob">
+        </div>
+        <button class="submit-btn" onclick="calculateAge()">Calculate Age</button>
+        <div class="single-result" id="age-results" style="display: none;">
+          <div class="val" id="age-years">0 Years Old</div>
+          <div class="lbl" id="age-detail">0 Months, 0 Days</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CURRENCY CONVERTER -->
+    <section id="currency-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
+      <div class="hub-form">
+        <div class="input-group"><label>Amount:</label><input type="number" id="curr-amount" placeholder="100"></div>
+        <div class="input-group">
+          <label>From:</label>
+          <select id="curr-from"><option value="USD">USD ($)</option><option value="SAR">SAR</option><option value="AED">AED</option><option value="PKR" selected>PKR</option></select>
+        </div>
+        <div class="input-group">
+          <label>To:</label>
+          <select id="curr-to"><option value="PKR" selected>PKR</option><option value="USD">USD ($)</option><option value="SAR">SAR</option><option value="AED">AED</option></select>
+        </div>
+        <button class="submit-btn" onclick="convertCurrency()">Convert</button>
+        <div class="single-result" id="curr-result" style="display: none;"><div class="val" id="curr-val">0</div></div>
+      </div>
+    </section>
+
+    <!-- 7. ZAKAT CALCULATOR -->
+    <section id="zakat-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
+      <div class="hub-form">
+        <div class="input-group">
+          <label>Current Silver Price per Tola (PKR):</label>
+          <input type="number" id="silver-price-tola" placeholder="e.g. 2500" value="2500">
+        </div>
+        <div class="input-group">
+          <label>Total Wealth & Assets Value (PKR):</label>
+          <input type="number" id="zakat-cash" placeholder="0">
+        </div>
+        <button class="submit-btn" onclick="calculateZakat()">Calculate Zakat (2.5%)</button>
+        <div class="single-result" id="zakat-result" style="display: none;">
+          <div class="val" id="zakat-val">Rs 0</div>
+          <div class="lbl" id="zakat-status" style="margin-top: 6px; font-weight: bold;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. FUEL & TRIP HUB -->
+    <section id="fuel-hub-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
+      <div class="sub-menu-box">
+        <button class="sub-tab-btn active" id="tab-cost-btn" onclick="switchFuelTab('cost')">⛽ Trip Cost</button>
+        <button class="sub-tab-btn" id="tab-avg-btn" onclick="switchFuelTab('avg')">🛵 Fuel Average</button>
+      </div>
+      <div id="fuel-cost-tab" class="hub-form">
+        <div class="input-group"><label>Distance (KM):</label><input type="number" id="trip-dist" placeholder="150"></div>
+        <div class="input-group"><label>Average (KM/Litre):</label><input type="number" id="trip-avg" placeholder="15"></div>
+        <div class="input-group"><label>Petrol Price / Litre:</label><input type="number" id="trip-price" placeholder="280"></div>
+        <button class="submit-btn" onclick="calculateTripCost()">Calculate Cost</button>
+        <div class="single-result" id="trip-result" style="display: none;"><div class="val" id="trip-val">Rs 0</div></div>
+      </div>
+      <div id="fuel-avg-tab" class="hub-form" style="display: none;">
+        <div class="input-group"><label>Distance Travelled (KM):</label><input type="number" id="avg-dist" placeholder="300"></div>
+        <div class="input-group"><label>Fuel Consumed (Litres):</label><input type="number" id="avg-fuel" placeholder="20"></div>
+        <button class="submit-btn" onclick="calculateFuelAverage()">Calculate Average</button>
+        <div class="single-result" id="avg-result" style="display: none;"><div class="val" id="avg-val">0 KM/L</div></div>
+      </div>
+    </section>
+
+    <!-- 9. UNIT CONVERTER -->
+    <section id="unit-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
+      <div class="hub-form">
+        <div class="input-group"><label>Enter Value:</label><input type="number" id="unit-val" placeholder="0"></div>
+        <div class="input-group">
+          <label>Conversion Type:</label>
+          <select id="unit-type">
+            <option value="ft-m">Feet to Meters</option>
+            <option value="m-ft">Meters to Feet</option>
+            <option value="kg-lbs">KG to Pounds</option>
+            <option value="c-f">Celsius to Fahrenheit</option>
+          </select>
+        </div>
+        <button class="submit-btn" onclick="convertUnit()">Convert</button>
+        <div class="single-result" id="unit-result" style="display: none;"><div class="val" id="unit-res-val">0</div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>© 2026 Azad Kashmir Digital Suite</p>
+    <button class="share-btn" onclick="shareApp()">🔗 Share App</button>
+  </footer>
+
+  <!-- MOBILE SMART BOTTOM NAVIGATION -->
+  <div class="bottom-nav">
+    <button class="bottom-nav-item" onclick="showView('home-view')">
+      <span class="nav-icon">🏠</span>
+      <span>Home</span>
+    </button>
+    <button class="bottom-nav-item" onclick="showView('tourist-guide-view')">
+      <span class="nav-icon">🏔️</span>
+      <span>Tourism</span>
+    </button>
+    <button class="bottom-nav-item" onclick="showView('ajk-hierarchy-view')">
+      <span class="nav-icon">🗺️</span>
+      <span>Directory</span>
+    </button>
+    <button class="bottom-nav-item" onclick="showView('emergency-view')" style="color: #fca5a5;">
+      <span class="nav-icon">🚨</span>
+      <span>Emergency</span>
+    </button>
   </div>
 
   <script>
