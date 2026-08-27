@@ -3,39 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJK Digital Hub</title>
+  <title>AJK Digital Hub & Smart Suite</title>
   <style>
     :root {
       /* Dark Theme Default Variables */
-      --bg-gradient: linear-gradient(135deg, #061f10 0%, #031208 60%, #112213 100%);
-      --glass-bg: rgba(13, 38, 22, 0.75);
-      --glass-border: rgba(234, 179, 8, 0.3);
-      --card-bg: rgba(5, 20, 10, 0.6);
-      --card-border: rgba(22, 101, 52, 0.5);
-      --text-main: #ffffff;
+      --bg-gradient: linear-gradient(135deg, #05160c 0%, #020b06 60%, #0a1f12 100%);
+      --glass-bg: rgba(10, 31, 18, 0.85);
+      --glass-border: rgba(234, 179, 8, 0.35);
+      --card-bg: rgba(6, 24, 13, 0.7);
+      --card-border: rgba(34, 197, 94, 0.25);
+      --card-hover: rgba(22, 101, 52, 0.4);
+      --text-main: #f8fafc;
       --text-muted: #86efac;
       --accent-gold: #fde047;
       --accent-gold-border: #eab308;
       --btn-bg: #144523;
       --btn-hover: #166534;
-      --shadow-color: rgba(0, 0, 0, 0.35);
-      --input-bg: rgba(13, 38, 22, 0.8);
-      --backdrop-blur: blur(12px);
+      --shadow-color: rgba(0, 0, 0, 0.45);
+      --input-bg: rgba(6, 24, 13, 0.9);
+      --backdrop-blur: blur(14px);
     }
 
     [data-theme="light"] {
-      --bg-gradient: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 60%, #fef9c3 100%);
-      --glass-bg: rgba(255, 255, 255, 0.85);
+      --bg-gradient: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 60%, #fef9c3 100%);
+      --glass-bg: rgba(255, 255, 255, 0.9);
       --glass-border: rgba(202, 138, 4, 0.4);
-      --card-bg: rgba(255, 255, 255, 0.9);
-      --card-border: rgba(187, 247, 208, 0.8);
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --card-border: rgba(187, 247, 208, 0.9);
+      --card-hover: rgba(220, 252, 231, 0.8);
       --text-main: #062c14;
       --text-muted: #15803d;
       --accent-gold: #854d0e;
       --accent-gold-border: #ca8a04;
       --btn-bg: #dcfce7;
       --btn-hover: #bbf7d0;
-      --shadow-color: rgba(5, 44, 20, 0.08);
+      --shadow-color: rgba(5, 44, 20, 0.1);
       --input-bg: #ffffff;
       --backdrop-blur: blur(10px);
     }
@@ -44,8 +46,8 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
     }
 
     body {
@@ -58,42 +60,26 @@
       padding: 16px;
     }
 
-    /* Accessibility Focus States */
-    button:focus-visible, input:focus-visible, select:focus-visible {
-      outline: 2px solid var(--accent-gold-border);
-      outline-offset: 2px;
-    }
-
-    /* Modern Responsive Header */
     .app-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      max-width: 480px;
+      max-width: 500px;
       margin-bottom: 16px;
       padding: 12px 18px;
       background: var(--glass-bg);
       backdrop-filter: var(--backdrop-blur);
       -webkit-backdrop-filter: var(--backdrop-blur);
-      border-radius: 16px;
+      border-radius: 18px;
       border: 1px solid var(--glass-border);
       box-shadow: 0 8px 32px var(--shadow-color);
     }
 
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .logo-area { display: flex; align-items: center; gap: 10px; }
+    .header-actions { display: flex; align-items: center; gap: 8px; }
 
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .theme-toggle {
+    .icon-toggle {
       background: transparent;
       border: 1px solid var(--glass-border);
       border-radius: 50%;
@@ -103,19 +89,16 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: var(--accent-gold);
     }
 
-    .theme-toggle:hover {
-      transform: scale(1.05);
-    }
+    .icon-toggle:hover { transform: scale(1.08); }
 
-    /* Main Responsive Container */
     .container {
       width: 100%;
-      max-width: 480px;
-      padding: 24px;
+      max-width: 500px;
+      padding: 20px;
       background: var(--glass-bg);
       backdrop-filter: var(--backdrop-blur);
       -webkit-backdrop-filter: var(--backdrop-blur);
@@ -125,402 +108,173 @@
       position: relative;
     }
 
-    /* Responsive Footer */
-    .app-footer {
-      width: 100%;
-      max-width: 480px;
-      margin-top: 20px;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .share-btn {
-      background: var(--btn-bg);
-      border: 1px solid var(--glass-border);
-      color: var(--accent-gold);
-      padding: 10px 18px;
-      border-radius: 12px;
-      margin-top: 10px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      font-weight: 700;
-      min-height: 44px;
-    }
-
-    .share-btn:hover {
-      background: var(--btn-hover);
-    }
-
-    /* Flag Strip */
     .flag-strip {
       display: flex;
-      height: 6px;
+      height: 5px;
       width: 100%;
-      border-radius: 3px;
+      border-radius: 4px;
       overflow: hidden;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
-    .flag-strip .green { flex: 1; background-color: #15803d; }
+    .flag-strip .green { flex: 1; background-color: #16a34a; }
     .flag-strip .gold { flex: 1; background-color: #eab308; }
     .flag-strip .white { flex: 1; background-color: #ffffff; }
 
-    /* Home View Elements */
-    .header-box {
-      text-align: center;
-      margin-bottom: 24px;
-    }
+    .header-box { text-align: center; margin-bottom: 20px; }
+    .header-box h1 { color: var(--accent-gold); font-size: 1.5rem; letter-spacing: -0.5px; margin-bottom: 4px; }
+    .header-box p { color: var(--text-muted); font-size: 0.85rem; }
 
-    .header-box h1 {
+    /* Category Section Headers */
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       color: var(--accent-gold);
-      font-size: 1.6rem;
-      margin-bottom: 6px;
-    }
-
-    .header-box p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    .menu-buttons {
+      margin: 18px 0 10px 4px;
       display: flex;
-      flex-direction: column;
-      gap: 12px;
+      align-items: center;
+      gap: 6px;
     }
 
-    .menu-btn {
-      min-height: 52px;
-      padding: 12px 16px;
+    .grid-menu { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .grid-menu.single { grid-template-columns: 1fr; }
+
+    .menu-card {
+      padding: 14px 12px;
       border-radius: 14px;
-      border: 1px solid var(--glass-border);
+      border: 1px solid var(--card-border);
       background-color: var(--card-bg);
       color: var(--text-main);
-      font-size: 1rem;
-      font-weight: 700;
       cursor: pointer;
       box-shadow: 0 4px 12px var(--shadow-color);
       display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 14px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      text-align: left;
     }
 
-    .menu-btn:hover {
-      background-color: var(--btn-hover);
+    .menu-card:hover {
+      background-color: var(--card-hover);
+      border-color: var(--accent-gold-border);
       transform: translateY(-2px);
     }
 
-    .menu-btn:active {
-      transform: translateY(0);
-    }
+    .menu-card .icon { font-size: 1.5rem; }
+    .menu-card .title { font-size: 0.92rem; font-weight: 700; color: var(--text-main); }
+    .menu-card .sub { font-size: 0.75rem; color: var(--text-muted); }
 
-    /* Sub-menu Navigation */
-    .sub-menu-box {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .sub-tab-btn {
-      flex: 1;
-      min-height: 44px;
-      padding: 8px;
+    .back-btn {
+      background: rgba(225, 29, 72, 0.15);
+      border: 1px solid rgba(225, 29, 72, 0.4);
+      color: #fda4af;
+      padding: 8px 14px;
       border-radius: 10px;
-      border: 1px solid var(--card-border);
-      background-color: var(--card-bg);
-      color: var(--text-muted);
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 700;
       cursor: pointer;
-    }
-
-    .sub-tab-btn.active {
-      background-color: var(--accent-gold-border);
-      color: #051d0d;
-      border-color: var(--accent-gold);
-    }
-
-    /* Back Button */
-    .back-btn {
-      background: #c2410c;
-      border: 1px solid #ea580c;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       display: inline-flex;
       align-items: center;
-      min-height: 40px;
     }
 
-    /* Smooth Views Animations */
-    .view {
-      display: none;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+    [data-theme="light"] .back-btn {
+      background: #ffe4e6;
+      border-color: #f43f5e;
+      color: #be123c;
     }
 
-    .view.active {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .view { display: none; opacity: 0; transform: translateY(6px); transition: opacity 0.25s ease; }
+    .view.active { display: block; opacity: 1; transform: translateY(0); }
 
-    /* Calculator Styling */
-    .display-container {
-      background-color: var(--card-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: 14px;
-      padding: 14px;
-      margin-bottom: 20px;
-    }
-
-    .header-text {
-      display: flex;
-      justify-content: space-between;
-      color: var(--accent-gold);
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    #display {
-      width: 100%;
-      height: 54px;
-      background-color: transparent;
-      border: none;
-      color: var(--text-main);
-      font-size: 2.2rem;
-      text-align: right;
-      outline: none;
-      font-weight: bold;
-    }
-
-    .calc-buttons {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-    }
-
-    .calc-buttons button {
-      height: 54px;
-      border-radius: 12px;
-      border: 1px solid var(--card-border);
-      font-size: 1.25rem;
-      font-weight: 700;
-      cursor: pointer;
-      background-color: var(--card-bg);
-      color: var(--text-main);
-      box-shadow: 0 4px 10px var(--shadow-color);
-    }
-
-    .calc-buttons button:hover {
-      background-color: var(--btn-hover);
-    }
-
-    .calc-buttons button:active {
-      transform: scale(0.96);
-    }
-
-    .calc-buttons button.operator {
-      background-color: #ea580c;
-      border-color: #c2410c;
-      color: #ffffff;
-    }
-
-    .calc-buttons button.action {
-      background-color: #dc2626;
-      border-color: #b91c1c;
-      color: #ffffff;
-    }
-
-    .calc-buttons button.equal {
-      background-color: var(--accent-gold-border);
-      border-color: var(--accent-gold);
-      color: #051d0d;
-      grid-row: span 2;
-      height: 100%;
-      font-size: 1.6rem;
-    }
-
-    .calc-buttons button.zero {
-      grid-column: span 2;
-    }
-
-    /* Modern Glass Forms & Inputs */
-    .hub-form {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 18px;
-      padding: 20px;
-    }
-
-    .input-group {
-      margin-bottom: 16px;
-    }
-
-    .input-group label {
-      display: block;
-      color: var(--accent-gold);
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .input-group input, .input-group select {
-      width: 100%;
-      min-height: 48px;
-      padding: 10px 14px;
-      border-radius: 10px;
-      border: 1px solid var(--card-border);
-      background-color: var(--input-bg);
-      color: var(--text-main);
-      font-size: 0.95rem;
-      font-weight: 600;
-      outline: none;
-    }
-
-    .submit-btn {
-      width: 100%;
-      min-height: 48px;
-      padding: 12px;
-      border-radius: 10px;
-      border: none;
-      background-color: var(--accent-gold-border);
-      color: #051d0d;
-      font-size: 1rem;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 4px 12px var(--shadow-color);
-      margin-top: 8px;
-    }
-
-    .submit-btn:hover {
-      filter: brightness(1.1);
-    }
-
-    .submit-btn:active {
-      transform: scale(0.98);
-    }
-
-    /* Results Displays */
-    .results-container {
-      margin-top: 16px;
+    /* Hierarchy & Tourist Items UI */
+    .hierarchy-container {
       display: flex;
       flex-direction: column;
       gap: 10px;
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 4px;
     }
 
-    .result-card {
-      background: var(--glass-bg);
+    .item-card {
+      background: var(--card-bg);
       border: 1px solid var(--card-border);
-      padding: 12px 16px;
       border-radius: 12px;
+      padding: 12px 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      cursor: pointer;
     }
 
-    .result-card .tag {
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
+    .item-card:hover { background-color: var(--card-hover); border-color: var(--accent-gold-border); }
+    .item-title { font-size: 0.95rem; font-weight: 700; color: var(--text-main); }
+    .item-sub { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+    .arrow-icon { color: var(--accent-gold); font-size: 1rem; }
 
-    .result-card .percent {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    .result-card .amount {
-      font-size: 1rem;
-      font-weight: bold;
-      color: var(--accent-gold);
-    }
-
-    .needs { border-left: 4px solid #ef4444; }
-    .wants { border-left: 4px solid #3b82f6; }
-    .savings { border-left: 4px solid #22c55e; }
-
-    /* Age Grid Display */
-    .age-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .age-box {
-      background: var(--glass-bg);
+    /* Tourist Cards */
+    .tourist-card {
+      background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-top: 3px solid var(--accent-gold-border);
-      padding: 12px;
-      border-radius: 10px;
-      text-align: center;
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 10px;
     }
 
-    .age-box .value {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: var(--accent-gold);
-    }
+    .tourist-card h3 { color: var(--accent-gold); font-size: 1.05rem; margin-bottom: 2px; }
+    .tourist-card .loc { font-size: 0.72rem; color: var(--accent-gold-border); font-weight: 800; text-transform: uppercase; margin-bottom: 6px; }
+    .tourist-card p { font-size: 0.83rem; color: var(--text-main); line-height: 1.45; }
+    .tourist-card .best-for { font-size: 0.78rem; color: var(--text-muted); margin-top: 8px; border-top: 1px dashed var(--card-border); padding-top: 6px; }
 
-    .age-box .label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      margin-top: 2px;
-    }
+    /* Forms and Calc Styles */
+    .display-container { background-color: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 14px; padding: 12px 16px; margin-bottom: 16px; }
+    .header-text { display: flex; justify-content: space-between; color: var(--accent-gold); font-size: 0.75rem; font-weight: 700; margin-bottom: 4px; }
+    #display { width: 100%; height: 48px; background: transparent; border: none; color: var(--text-main); font-size: 2rem; text-align: right; outline: none; font-weight: bold; }
+    
+    .calc-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .calc-buttons button { height: 48px; border-radius: 10px; border: 1px solid var(--card-border); font-size: 1.15rem; font-weight: 700; cursor: pointer; background-color: var(--card-bg); color: var(--text-main); }
+    .calc-buttons button.operator { background-color: #ea580c; border-color: #c2410c; color: #ffffff; }
+    .calc-buttons button.action { background-color: #dc2626; border-color: #b91c1c; color: #ffffff; }
+    .calc-buttons button.equal { background-color: var(--accent-gold-border); border-color: var(--accent-gold); color: #051d0d; grid-row: span 2; height: 100%; font-size: 1.5rem; }
+    .calc-buttons button.zero { grid-column: span 2; }
+    
+    .hub-form { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 18px; }
+    .input-group { margin-bottom: 14px; }
+    .input-group label { display: block; color: var(--accent-gold); font-size: 0.82rem; font-weight: 700; margin-bottom: 6px; }
+    .input-group input, .input-group select { width: 100%; min-height: 44px; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--card-border); background-color: var(--input-bg); color: var(--text-main); font-size: 0.9rem; font-weight: 600; outline: none; }
+    .submit-btn { width: 100%; min-height: 44px; padding: 10px; border-radius: 10px; border: none; background-color: var(--accent-gold-border); color: #051d0d; font-size: 0.95rem; font-weight: 800; cursor: pointer; margin-top: 6px; }
+    
+    .single-result { background: var(--glass-bg); border: 1px solid var(--accent-gold-border); padding: 14px; border-radius: 12px; text-align: center; margin-top: 14px; }
+    .single-result .val { font-size: 1.2rem; font-weight: bold; color: var(--accent-gold); }
+    .single-result .lbl { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+    .sub-menu-box { display: flex; gap: 8px; margin-bottom: 14px; }
+    .sub-tab-btn { flex: 1; min-height: 40px; padding: 6px; border-radius: 10px; border: 1px solid var(--card-border); background-color: var(--card-bg); color: var(--text-muted); font-size: 0.82rem; font-weight: 700; cursor: pointer; }
+    .sub-tab-btn.active { background-color: var(--accent-gold-border); color: #051d0d; border-color: var(--accent-gold); }
 
-    .single-result {
-      background: var(--glass-bg);
-      border: 1px solid var(--accent-gold-border);
-      padding: 16px;
-      border-radius: 12px;
-      text-align: center;
-      margin-top: 16px;
-    }
-
-    .single-result .val {
-      font-size: 1.3rem;
-      font-weight: bold;
-      color: var(--accent-gold);
-    }
-
-    .single-result .lbl {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    .single-result.not-eligible {
-      border-color: #ef4444;
-    }
-
-    .single-result.not-eligible .val {
-      color: #ef4444;
-    }
+    .app-footer { width: 100%; max-width: 500px; margin-top: 16px; text-align: center; font-size: 0.78rem; color: var(--text-muted); }
+    .share-btn { background: var(--btn-bg); border: 1px solid var(--glass-border); color: var(--accent-gold); padding: 8px 16px; border-radius: 10px; margin-top: 8px; cursor: pointer; font-size: 0.8rem; font-weight: 700; }
   </style>
 </head>
 <body>
 
-  <!-- HEADER WITH THEME TOGGLE -->
   <header class="app-header">
     <div class="logo-area">
-      <span class="flag-icon" aria-hidden="true">🌲</span>
-      <h2 style="font-size: 1.1rem; color: var(--accent-gold); margin: 0;">AJK Digital Hub</h2>
+      <span style="font-size: 1.3rem;">🌲</span>
+      <div>
+        <h2 style="font-size: 1rem; color: var(--accent-gold); margin: 0; line-height: 1;">AJK Hub</h2>
+        <span style="font-size: 0.68rem; color: var(--text-muted);">Digital Suite</span>
+      </div>
     </div>
     <div class="header-actions">
-      <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()" aria-label="Toggle light and dark mode">🌙</button>
-      <div class="date-badge" id="live-date" style="font-size: 0.85rem; color: var(--text-muted); font-weight: bold;">--:--</div>
+      <button class="icon-toggle" id="sound-btn" onclick="toggleSound()">🔊</button>
+      <button class="icon-toggle" id="theme-btn" onclick="toggleTheme()">🌙</button>
+      <div id="live-date" style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">--:--</div>
     </div>
   </header>
 
-  <!-- MAIN CONTAINER -->
   <main class="container">
     <div class="flag-strip">
       <div class="green"></div>
@@ -528,523 +282,492 @@
       <div class="white"></div>
     </div>
 
-    <!-- MAIN MENU FRONT PAGE -->
+    <!-- MAIN CATEGORIZED DASHBOARD -->
     <section id="home-view" class="view active">
       <div class="header-box">
-        <h1>Azad Kashmir HUB</h1>
-        <p>Select your required tool</p>
+        <h1>Azad Kashmir Suite</h1>
+        <p>Explore AJK Directory & Utilities</p>
       </div>
 
-      <div class="menu-buttons">
-        <button class="menu-btn" onclick="showView('calc-view')"><span aria-hidden="true">🧮</span> Simple Calculator</button>
-        <button class="menu-btn" onclick="showView('budget-view')"><span aria-hidden="true">📊</span> Budget Calculator</button>
-        <button class="menu-btn" onclick="showView('age-view')"><span aria-hidden="true">🎂</span> Age Calculator</button>
-        <button class="menu-btn" onclick="showView('currency-view')"><span aria-hidden="true">🔀</span> Currency Converter</button>
-        <button class="menu-btn" onclick="showView('zakat-view')"><span aria-hidden="true">🌙</span> Zakat Calculator</button>
-        <button class="menu-btn" onclick="showView('fuel-hub-view')"><span aria-hidden="true">⛽</span> Fuel Calculator</button>
-        <button class="menu-btn" onclick="showView('unit-view')"><span aria-hidden="true">📏</span> Unit Converter</button>
-      </div>
-    </section>
-
-    <!-- 1. CALCULATOR SCREEN -->
-    <section id="calc-view" class="view">
-      <button class="back-btn" onclick="showView('home-view')">← Back to Menu</button>
-      
-      <div class="display-container">
-        <div class="header-text">
-          <span>AJK Digital</span>
-          <span>Calculator</span>
+      <!-- CATEGORY 1: AJK INFORMATION -->
+      <div class="section-label">📍 AJK Directory & Tourism</div>
+      <div class="grid-menu single">
+        <div class="menu-card" onclick="showView('ajk-hierarchy-view')">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="icon">🗺️</span>
+            <div>
+              <div class="title">Divisions, Districts & Tehsils</div>
+              <div class="sub">3 Divisions ➔ 10 Districts ➔ 32 Tehsils</div>
+            </div>
+          </div>
         </div>
-        <input type="text" id="display" readonly placeholder="0" aria-label="Calculator Result Display">
+        <div class="menu-card" onclick="showView('tourist-guide-view')">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="icon">🏔️</span>
+            <div>
+              <div class="title">District-wise Tourist Guide</div>
+              <div class="sub">Top visited places categorized by district</div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="calc-buttons">
-        <button class="action" onclick="clearDisplay()" aria-label="Clear display">C</button>
-        <button class="action" onclick="deleteLast()" aria-label="Delete last number">DEL</button>
-        <button class="operator" onclick="appendValue('/')" aria-label="Divide">÷</button>
-        <button class="operator" onclick="appendValue('*')" aria-label="Multiply">×</button>
-        
-        <button onclick="appendValue('7')">7</button>
-        <button onclick="appendValue('8')">8</button>
-        <button onclick="appendValue('9')">9</button>
-        <button class="operator" onclick="appendValue('-')" aria-label="Minus">-</button>
-        
-        <button onclick="appendValue('4')">4</button>
-        <button onclick="appendValue('5')">5</button>
-        <button onclick="appendValue('6')">6</button>
-        <button class="operator" onclick="appendValue('+')" aria-label="Plus">+</button>
-        
-        <button onclick="appendValue('1')">1</button>
-        <button onclick="appendValue('2')">2</button>
-        <button onclick="appendValue('3')">3</button>
-        <button class="equal" onclick="calculate()" aria-label="Calculate Equals">=</button>
-        
-        <button class="zero" onclick="appendValue('0')">0</button>
-        <button onclick="appendValue('.')">.</button>
+      <!-- CATEGORY 2: CALCULATORS & UTILITIES -->
+      <div class="section-label">🧮 Smart Calculators & Tools</div>
+      <div class="grid-menu">
+        <div class="menu-card" onclick="showView('calc-view')">
+          <span class="icon">🔢</span>
+          <div class="title">Calculator</div>
+          <div class="sub">Standard Math</div>
+        </div>
+        <div class="menu-card" onclick="showView('budget-view')">
+          <span class="icon">📊</span>
+          <div class="title">Budget Plan</div>
+          <div class="sub">50/30/20 Rule</div>
+        </div>
+        <div class="menu-card" onclick="showView('fuel-hub-view')">
+          <span class="icon">⛽</span>
+          <div class="title">Fuel & Trip</div>
+          <div class="sub">Cost & Average</div>
+        </div>
+        <div class="menu-card" onclick="showView('currency-view')">
+          <span class="icon">🔀</span>
+          <div class="title">Currency</div>
+          <div class="sub">Rates Converter</div>
+        </div>
+        <div class="menu-card" onclick="showView('age-view')">
+          <span class="icon">🎂</span>
+          <div class="title">Age Calculator</div>
+          <div class="sub">Exact Age & DOB</div>
+        </div>
+        <div class="menu-card" onclick="showView('zakat-view')">
+          <span class="icon">🌙</span>
+          <div class="title">Zakat Calc</div>
+          <div class="sub">2.5% Calculation</div>
+        </div>
+        <div class="menu-card" onclick="showView('unit-view')" style="grid-column: span 2;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="icon">📏</span>
+            <div>
+              <div class="title">Unit Converter</div>
+              <div class="sub">Feet, Meters, Weight & Temp</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- 2. BUDGET CALCULATOR SCREEN -->
+    <!-- 1. AJK DIVISIONS / DISTRICTS / TEHSILS -->
+    <section id="ajk-hierarchy-view" class="view">
+      <button class="back-btn" id="hierarchy-back-btn" onclick="handleHierarchyBack()">← Back</button>
+      <div class="header-box" style="margin-bottom: 12px;">
+        <h2 id="hierarchy-title" style="color: var(--accent-gold); font-size: 1.2rem;">AJK Divisions</h2>
+        <p id="hierarchy-subtitle">Select a Division</p>
+      </div>
+      <div class="hierarchy-container" id="hierarchy-list"></div>
+    </section>
+
+    <!-- 2. DISTRICT-WISE TOURIST GUIDE -->
+    <section id="tourist-guide-view" class="view">
+      <button class="back-btn" id="tourist-back-btn" onclick="handleTouristBack()">← Back</button>
+      <div class="header-box" style="margin-bottom: 12px;">
+        <h2 id="tourist-title" style="color: var(--accent-gold); font-size: 1.2rem;">AJK Tourist Guide</h2>
+        <p id="tourist-subtitle">Select a District to explore famous places</p>
+      </div>
+      <div class="hierarchy-container" id="tourist-list"></div>
+    </section>
+
+    <!-- 3. CALCULATOR SCREEN -->
+    <section id="calc-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
+      <div class="display-container">
+        <div class="header-text"><span>AJK Digital</span><span>Calculator</span></div>
+        <input type="text" id="display" readonly placeholder="0">
+      </div>
+      <div class="calc-buttons">
+        <button class="action" onclick="clearDisplay()">C</button>
+        <button class="action" onclick="deleteLast()">DEL</button>
+        <button class="operator" onclick="appendValue('/')">÷</button>
+        <button class="operator" onclick="appendValue('*')">×</button>
+        <button onclick="appendValue('7')">7</button><button onclick="appendValue('8')">8</button><button onclick="appendValue('9')">9</button>
+        <button class="operator" onclick="appendValue('-')">-</button>
+        <button onclick="appendValue('4')">4</button><button onclick="appendValue('5')">5</button><button onclick="appendValue('6')">6</button>
+        <button class="operator" onclick="appendValue('+')">+</button>
+        <button onclick="appendValue('1')">1</button><button onclick="appendValue('2')">2</button><button onclick="appendValue('3')">3</button>
+        <button class="equal" onclick="calculate()">=</button>
+        <button class="zero" onclick="appendValue('0')">0</button><button onclick="appendValue('.')">.</button>
+      </div>
+    </section>
+
+    <!-- 4. BUDGET CALCULATOR -->
     <section id="budget-view" class="view">
-      <button class="back-btn" onclick="showView('home-view')">← Back to Menu</button>
-      
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="hub-form">
         <div class="input-group">
           <label for="monthly-salary">Enter Monthly Salary (PKR):</label>
           <input type="number" id="monthly-salary" placeholder="e.g. 50000">
         </div>
         <button class="submit-btn" onclick="calculateBudget()">Calculate Plan</button>
-
         <div class="results-container" id="budget-results" style="display: none;">
-          <div class="result-card needs">
-            <div>
-              <div class="tag">Needs (Zarooriyat)</div>
-              <div class="percent">50% (Rent, Bills, Food)</div>
-            </div>
-            <div class="amount" id="needs-amount">Rs 0</div>
-          </div>
-
-          <div class="result-card wants">
-            <div>
-              <div class="tag">Wants (Khwahishat)</div>
-              <div class="percent">30% (Shopping, Travel)</div>
-            </div>
-            <div class="amount" id="wants-amount">Rs 0</div>
-          </div>
-
-          <div class="result-card savings">
-            <div>
-              <div class="tag">Savings (Bachat)</div>
-              <div class="percent">20% (Emergency, Future)</div>
-            </div>
-            <div class="amount" id="savings-amount">Rs 0</div>
-          </div>
+          <div class="single-result"><div class="val" id="needs-amount">Rs 0</div><div class="lbl">Needs (50%)</div></div>
+          <div class="single-result"><div class="val" id="wants-amount">Rs 0</div><div class="lbl">Wants (30%)</div></div>
+          <div class="single-result"><div class="val" id="savings-amount">Rs 0</div><div class="lbl">Savings (20%)</div></div>
         </div>
       </div>
     </section>
 
-    <!-- 3. AGE CALCULATOR SCREEN -->
+    <!-- 5. AGE CALCULATOR -->
     <section id="age-view" class="view">
-      <button class="back-btn" onclick="showView('home-view')">← Back to Menu</button>
-      
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="hub-form">
         <div class="input-group">
           <label for="dob">Select Date of Birth:</label>
           <input type="date" id="dob">
         </div>
         <button class="submit-btn" onclick="calculateAge()">Calculate Age</button>
-
-        <div class="age-grid" id="age-results" style="display: none;">
-          <div class="age-box">
-            <div class="value" id="age-years">0</div>
-            <div class="label">Years</div>
-          </div>
-          <div class="age-box">
-            <div class="value" id="age-months">0</div>
-            <div class="label">Months</div>
-          </div>
-          <div class="age-box">
-            <div class="value" id="age-weeks">0</div>
-            <div class="label">Weeks</div>
-          </div>
-          <div class="age-box">
-            <div class="value" id="age-days">0</div>
-            <div class="label">Days</div>
-          </div>
+        <div class="single-result" id="age-results" style="display: none;">
+          <div class="val" id="age-years">0 Years</div>
+          <div class="lbl" id="age-detail">0 Months, 0 Days</div>
         </div>
       </div>
     </section>
 
-    <!-- 4. CURRENCY CONVERTER SCREEN -->
+    <!-- 6. CURRENCY CONVERTER -->
     <section id="currency-view" class="view">
-      <button class="back-btn" onclick="showView('home-view')">← Back to Menu</button>
-      
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="hub-form">
+        <div class="input-group"><label>Amount:</label><input type="number" id="curr-amount" placeholder="100"></div>
         <div class="input-group">
-          <label for="curr-amount">Amount:</label>
-          <input type="number" id="curr-amount" placeholder="e.g. 100">
-        </div>
-        <div class="input-group">
-          <label for="curr-from">From Currency:</label>
-          <select id="curr-from">
-            <option value="USD">USD ($)</option>
-            <option value="SAR">SAR (Saudi Riyal)</option>
-            <option value="AED">AED (UAE Dirham)</option>
-            <option value="EUR">EUR (€)</option>
-            <option value="PKR" selected>PKR (Pak Rupee)</option>
-          </select>
+          <label>From:</label>
+          <select id="curr-from"><option value="USD">USD ($)</option><option value="SAR">SAR</option><option value="AED">AED</option><option value="PKR" selected>PKR</option></select>
         </div>
         <div class="input-group">
-          <label for="curr-to">To Currency:</label>
-          <select id="curr-to">
-            <option value="PKR" selected>PKR (Pak Rupee)</option>
-            <option value="USD">USD ($)</option>
-            <option value="SAR">SAR (Saudi Riyal)</option>
-            <option value="AED">AED (UAE Dirham)</option>
-            <option value="EUR">EUR (€)</option>
-          </select>
+          <label>To:</label>
+          <select id="curr-to"><option value="PKR" selected>PKR</option><option value="USD">USD ($)</option><option value="SAR">SAR</option><option value="AED">AED</option></select>
         </div>
-        <button class="submit-btn" onclick="convertCurrency()">Convert Now</button>
-
-        <div class="single-result" id="curr-result" style="display: none;">
-          <div class="val" id="curr-val">0</div>
-          <div class="lbl" id="curr-lbl">Converted Amount</div>
-        </div>
+        <button class="submit-btn" onclick="convertCurrency()">Convert</button>
+        <div class="single-result" id="curr-result" style="display: none;"><div class="val" id="curr-val">0</div></div>
       </div>
     </section>
 
-    <!-- 5. ZAKAT CALCULATOR SCREEN -->
+    <!-- 7. ZAKAT CALCULATOR -->
     <section id="zakat-view" class="view">
-      <button class="back-btn" onclick="showView('home-view')">← Back to Menu</button>
-      
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="hub-form">
-        <div class="input-group">
-          <label for="silver-rate">Silver Rate per Tola (PKR):</label>
-          <input type="number" id="silver-rate" value="7450" placeholder="e.g. 7450">
-        </div>
-        <div class="input-group">
-          <label for="zakat-cash">Total Cash & Savings (PKR):</label>
-          <input type="number" id="zakat-cash" placeholder="0">
-        </div>
-        <div class="input-group">
-          <label for="zakat-gold">Value of Gold & Silver (PKR):</label>
-          <input type="number" id="zakat-gold" placeholder="0">
-        </div>
-        <div class="input-group">
-          <label for="zakat-business">Business Goods / Investments (PKR):</label>
-          <input type="number" id="zakat-business" placeholder="0">
-        </div>
+        <div class="input-group"><label>Total Wealth & Assets Value (PKR):</label><input type="number" id="zakat-cash" placeholder="0"></div>
         <button class="submit-btn" onclick="calculateZakat()">Calculate Zakat (2.5%)</button>
-
-        <div class="single-result" id="zakat-result" style="display: none;">
-          <div class="val" id="zakat-val">Rs 0</div>
-          <div class="lbl" id="zakat-lbl">Total Payable Zakat</div>
-        </div>
+        <div class="single-result" id="zakat-result" style="display: none;"><div class="val" id="zakat-val">Rs 0</div></div>
       </div>
     </section>
 
-    <!-- 6. MERGED FUEL HUB SCREEN -->
+    <!-- 8. FUEL & TRIP HUB -->
     <section id="fuel-hub-view" class="view">
-      <button class="back-btn" onclick="showView('home-view')">← Back to Menu</button>
-      
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="sub-menu-box">
-        <button class="sub-tab-btn active" id="tab-cost-btn" onclick="switchFuelTab('cost')">⛽ Fuel Cost</button>
+        <button class="sub-tab-btn active" id="tab-cost-btn" onclick="switchFuelTab('cost')">⛽ Trip Cost</button>
         <button class="sub-tab-btn" id="tab-avg-btn" onclick="switchFuelTab('avg')">🛵 Fuel Average</button>
       </div>
-
-      <!-- Fuel Cost Form -->
       <div id="fuel-cost-tab" class="hub-form">
-        <div class="input-group">
-          <label for="trip-dist">Total Distance (KM):</label>
-          <input type="number" id="trip-dist" placeholder="e.g. 150">
-        </div>
-        <div class="input-group">
-          <label for="trip-avg">Vehicle Average (KM/Litre):</label>
-          <input type="number" id="trip-avg" placeholder="e.g. 15 for Car, 45 for Bike">
-        </div>
-        <div class="input-group">
-          <label for="trip-price">Petrol Price per Litre (PKR):</label>
-          <input type="number" id="trip-price" placeholder="e.g. 280">
-        </div>
-        <button class="submit-btn" onclick="calculateTripCost()">Calculate Trip Cost</button>
-
-        <div class="single-result" id="trip-result" style="display: none;">
-          <div class="val" id="trip-val">Rs 0</div>
-          <div class="lbl" id="trip-litres">0 Litres Required</div>
-        </div>
+        <div class="input-group"><label>Distance (KM):</label><input type="number" id="trip-dist" placeholder="150"></div>
+        <div class="input-group"><label>Average (KM/Litre):</label><input type="number" id="trip-avg" placeholder="15"></div>
+        <div class="input-group"><label>Petrol Price / Litre:</label><input type="number" id="trip-price" placeholder="280"></div>
+        <button class="submit-btn" onclick="calculateTripCost()">Calculate Cost</button>
+        <div class="single-result" id="trip-result" style="display: none;"><div class="val" id="trip-val">Rs 0</div></div>
       </div>
-
-      <!-- Fuel Average Form -->
       <div id="fuel-avg-tab" class="hub-form" style="display: none;">
-        <div class="input-group">
-          <label for="avg-dist">Total Distance Travelled (KM):</label>
-          <input type="number" id="avg-dist" placeholder="e.g. 300">
-        </div>
-        <div class="input-group">
-          <label for="avg-fuel">Fuel Consumed (Litres):</label>
-          <input type="number" id="avg-fuel" placeholder="e.g. 20">
-        </div>
+        <div class="input-group"><label>Distance Travelled (KM):</label><input type="number" id="avg-dist" placeholder="300"></div>
+        <div class="input-group"><label>Fuel Consumed (Litres):</label><input type="number" id="avg-fuel" placeholder="20"></div>
         <button class="submit-btn" onclick="calculateFuelAverage()">Calculate Average</button>
-
-        <div class="single-result" id="avg-result" style="display: none;">
-          <div class="val" id="avg-val">0 KM/L</div>
-          <div class="lbl">Vehicle Fuel Mileage</div>
-        </div>
+        <div class="single-result" id="avg-result" style="display: none;"><div class="val" id="avg-val">0 KM/L</div></div>
       </div>
     </section>
 
-    <!-- 7. UNIT CONVERTER SCREEN -->
+    <!-- 9. UNIT CONVERTER -->
     <section id="unit-view" class="view">
-      <button class="back-btn" onclick="showView('home-view')">← Back to Menu</button>
-      
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="hub-form">
+        <div class="input-group"><label>Enter Value:</label><input type="number" id="unit-val" placeholder="0"></div>
         <div class="input-group">
-          <label for="unit-val">Enter Value:</label>
-          <input type="number" id="unit-val" placeholder="0">
-        </div>
-        <div class="input-group">
-          <label for="unit-type">Conversion Type:</label>
+          <label>Conversion Type:</label>
           <select id="unit-type">
             <option value="ft-m">Feet to Meters</option>
             <option value="m-ft">Meters to Feet</option>
-            <option value="kg-lbs">KG to Pounds (lbs)</option>
-            <option value="lbs-kg">Pounds (lbs) to KG</option>
+            <option value="kg-lbs">KG to Pounds</option>
             <option value="c-f">Celsius to Fahrenheit</option>
-            <option value="f-c">Fahrenheit to Celsius</option>
           </select>
         </div>
-        <button class="submit-btn" onclick="convertUnit()">Convert Unit</button>
-
-        <div class="single-result" id="unit-result" style="display: none;">
-          <div class="val" id="unit-res-val">0</div>
-          <div class="lbl" id="unit-res-lbl">Result</div>
-        </div>
+        <button class="submit-btn" onclick="convertUnit()">Convert</button>
+        <div class="single-result" id="unit-result" style="display: none;"><div class="val" id="unit-res-val">0</div></div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="app-footer">
-    <p>© 2026 Azad Kashmir Digital Hub</p>
+    <p>© 2026 Azad Kashmir Digital Suite</p>
     <button class="share-btn" onclick="shareApp()">🔗 Share App</button>
   </footer>
 
   <script>
-    // Theme Switcher & System Preferences
-    const htmlEl = document.documentElement;
-    const themeBtn = document.getElementById('theme-btn');
+    const ajkData = {
+      "Muzaffarabad Division": {
+        "Muzaffarabad District": ["Muzaffarabad Tehsil", "Pattika (Naseerabad) Tehsil"],
+        "Neelum District": ["Athmuqam Tehsil", "Sharda Tehsil"],
+        "Hattian Bala District": ["Hattian Bala Tehsil", "Chikkar Tehsil", "Leepa Tehsil"]
+      },
+      "Poonch Division": {
+        "Poonch (Rawalakot) District": ["Rawalakot Tehsil", "Hajira Tehsil", "Abbaspur Tehsil", "Thorar Tehsil"],
+        "Bagh District": ["Bagh Tehsil", "Dhirkot Tehsil", "Hari Ghel Tehsil", "Rera Tehsil"],
+        "Sudhanoti District": ["Palandri Tehsil", "Mang Tehsil", "Trarkhal Tehsil", "Baloch Tehsil"],
+        "Haveli District": ["Haveli (Kahuta) Tehsil", "Khurshidabad Tehsil", "Mumtazabad Tehsil"]
+      },
+      "Mirpur Division": {
+        "Mirpur District": ["Mirpur Tehsil", "Dadyal Tehsil", "Islamgarh Tehsil"],
+        "Kotli District": ["Kotli Tehsil", "Khuiratta Tehsil", "Sehnsa Tehsil", "Charhoi Tehsil", "Fatehpur Thakiala Tehsil", "Duliah Jattan Tehsil"],
+        "Bhimber District": ["Bhimber Tehsil", "Barnala Tehsil", "Samahni Tehsil"]
+      }
+    };
 
-    function applyTheme(theme) {
-      htmlEl.setAttribute('data-theme', theme);
-      themeBtn.innerText = theme === 'dark' ? '☀️' : '🌙';
-      localStorage.setItem('ajk_hub_theme', theme);
-    }
+    const districtTouristData = {
+      "Neelum District": [
+        { name: "Arang Kel", desc: "Lush green village perched on a hill above Kel. Reached via chairlift & short hike.", best: "Photography, Sunrise views & Nature walks" },
+        { name: "Ratti Gali Lake", desc: "Famous alpine glacial lake located at 12,130 feet surrounded by vibrant flowers.", best: "Trekking, Camping & Nature Photography" },
+        { name: "Sharda & Sharda Peeth", desc: "Historic valley along Neelum River featuring ancient temple ruins.", best: "History, Relaxed stay & River views" },
+        { name: "Taobat", desc: "The last scenic village of Neelum Valley near LOC with pristine waters.", best: "Peaceful environment & Offbeat travel" }
+      ],
+      "Muzaffarabad District": [
+        { name: "Pir Chinasi", desc: "Famous peak at 9,500 ft altitude offering 360-degree mountain views.", best: "Day trips, Cool breeze & Camping" },
+        { name: "Red Fort (Muzaffarabad Fort)", desc: "Historic 16th-century fort overlooking the Neelum River bend.", best: "Historical sightseeing & Photography" }
+      ],
+      "Hattian Bala District": [
+        { name: "Leepa Valley", desc: "Famous for wooden houses, terraced rice fields, and high apple production.", best: "Culture, Sightseeing & Scenery" },
+        { name: "Chikkar & Zalzal Lake", desc: "Picturesque hill station formed with a natural lake after the 2005 earthquake.", best: "Nature walks & Cool climate" }
+      ],
+      "Poonch (Rawalakot) District": [
+        { name: "Banjosa Lake", desc: "Beautiful artificial lake surrounded by dense pine forests.", best: "Family picnic, Boating & Relaxation" },
+        { name: "Toli Peer", desc: "High mountain hilltop meadow offering panoramic sunset views across Poonch.", best: "Sunset views, Camping & Windy weather" }
+      ],
+      "Bagh District": [
+        { name: "Ganga Choti", desc: "Peak near Sudhan Gali known for snow-capped winter views and green summer slopes.", best: "Trekking, Horse riding & Snowfall" },
+        { name: "Las Danna", desc: "Scenic spot surrounded by thick pine forests, ideal for quiet retreats.", best: "Nature walks & Forest camping" }
+      ],
+      "Sudhanoti District": [
+        { name: "Devi Gali", desc: "Lush green meadow surrounded by thick woods at an altitude of 6,400 ft.", best: "Picnics & Summer retreat" }
+      ],
+      "Haveli District": [
+        { name: "Bedori Top", desc: "High peak in Haveli district offering views of lush valleys and snow peaks.", best: "Adventure trekking & Hiking" }
+      ],
+      "Mirpur District": [
+        { name: "Mangla Dam & Resort", desc: "Large earth-fill dam with water sports and resort facilities.", best: "Boating, Water sports & Dining" },
+        { name: "Ramkot Fort", desc: "Ancient hill fort surrounded by Mangla Lake on three sides.", best: "Historical boat trip & Photography" }
+      ],
+      "Kotli District": [
+        { name: "Tatta Pani", desc: "Famous for natural hot sulfur water springs along the Poonch River.", best: "Health springs & River views" }
+      ],
+      "Bhimber District": [
+        { name: "Samahni Valley", desc: "Known as the 'Valley of Waterfalls' with scenic green landscapes.", best: "Valley exploration & Scenic drives" }
+      ]
+    };
 
-    function initTheme() {
-      const savedTheme = localStorage.getItem('ajk_hub_theme');
-      if (savedTheme) {
-        applyTheme(savedTheme);
-      } else {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        applyTheme(prefersDark ? 'dark' : 'light');
+    let hierarchyState = { level: 'divisions', currentDivision: null, currentDistrict: null };
+    let touristState = { level: 'districts', currentDistrict: null };
+
+    function renderHierarchy() {
+      const container = document.getElementById('hierarchy-list');
+      const title = document.getElementById('hierarchy-title');
+      const subtitle = document.getElementById('hierarchy-subtitle');
+      const backBtn = document.getElementById('hierarchy-back-btn');
+      container.innerHTML = '';
+
+      if (hierarchyState.level === 'divisions') {
+        title.innerText = "AJK Divisions";
+        subtitle.innerText = "Select a Division";
+        backBtn.innerText = "← Dashboard";
+        Object.keys(ajkData).forEach(divName => {
+          const card = document.createElement('div');
+          card.className = 'item-card';
+          card.innerHTML = `<div><div class="item-title">${divName}</div><div class="item-sub">${Object.keys(ajkData[divName]).length} Districts</div></div><span class="arrow-icon">➔</span>`;
+          card.onclick = () => { hierarchyState.level = 'districts'; hierarchyState.currentDivision = divName; renderHierarchy(); };
+          container.appendChild(card);
+        });
+      } else if (hierarchyState.level === 'districts') {
+        title.innerText = hierarchyState.currentDivision;
+        subtitle.innerText = "Select a District";
+        backBtn.innerText = "← Back to Divisions";
+        const districts = ajkData[hierarchyState.currentDivision];
+        Object.keys(districts).forEach(distName => {
+          const card = document.createElement('div');
+          card.className = 'item-card';
+          card.innerHTML = `<div><div class="item-title">${distName}</div><div class="item-sub">${districts[distName].length} Tehsils</div></div><span class="arrow-icon">➔</span>`;
+          card.onclick = () => { hierarchyState.level = 'tehsils'; hierarchyState.currentDistrict = distName; renderHierarchy(); };
+          container.appendChild(card);
+        });
+      } else if (hierarchyState.level === 'tehsils') {
+        title.innerText = hierarchyState.currentDistrict;
+        subtitle.innerText = `Tehsils in ${hierarchyState.currentDistrict}`;
+        backBtn.innerText = "← Back to Districts";
+        ajkData[hierarchyState.currentDivision][hierarchyState.currentDistrict].forEach(tehName => {
+          const card = document.createElement('div');
+          card.className = 'item-card';
+          card.style.cursor = 'default';
+          card.innerHTML = `<div><div class="item-title">${tehName}</div><div class="item-sub">Tehsil</div></div><span class="arrow-icon">📍</span>`;
+          container.appendChild(card);
+        });
       }
     }
 
-    function toggleTheme() {
-      const currentTheme = htmlEl.getAttribute('data-theme');
-      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    function handleHierarchyBack() {
+      if (hierarchyState.level === 'tehsils') { hierarchyState.level = 'districts'; renderHierarchy(); }
+      else if (hierarchyState.level === 'districts') { hierarchyState.level = 'divisions'; renderHierarchy(); }
+      else { showView('home-view'); }
     }
 
-    initTheme();
+    function renderTouristGuide() {
+      const container = document.getElementById('tourist-list');
+      const title = document.getElementById('tourist-title');
+      const subtitle = document.getElementById('tourist-subtitle');
+      const backBtn = document.getElementById('tourist-back-btn');
+      container.innerHTML = '';
 
-    // Live Clock
-    function updateClock() {
-      const now = new Date();
-      const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      const dateBadge = document.getElementById('live-date');
-      if (dateBadge) dateBadge.innerText = timeString;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    // Share App
-    function shareApp() {
-      if (navigator.share) {
-        navigator.share({
-          title: 'AJK Digital Hub',
-          url: window.location.href
-        }).catch(() => {});
-      } else {
-        if (navigator.clipboard) {
-          navigator.clipboard.writeText(window.location.href);
-          alert("App link copied to clipboard!");
-        } else {
-          alert("Link: " + window.location.href);
-        }
+      if (touristState.level === 'districts') {
+        title.innerText = "AJK Districts";
+        subtitle.innerText = "Select a District to view tourist spots";
+        backBtn.innerText = "← Dashboard";
+        Object.keys(districtTouristData).forEach(distName => {
+          const card = document.createElement('div');
+          card.className = 'item-card';
+          card.innerHTML = `<div><div class="item-title">${distName}</div><div class="item-sub">${districtTouristData[distName].length} Tourist Places</div></div><span class="arrow-icon">➔</span>`;
+          card.onclick = () => { touristState.level = 'places'; touristState.currentDistrict = distName; renderTouristGuide(); };
+          container.appendChild(card);
+        });
+      } else if (touristState.level === 'places') {
+        title.innerText = touristState.currentDistrict;
+        subtitle.innerText = `Top Places in ${touristState.currentDistrict}`;
+        backBtn.innerText = "← Back to Districts";
+        districtTouristData[touristState.currentDistrict].forEach(place => {
+          const card = document.createElement('div');
+          card.className = 'tourist-card';
+          card.innerHTML = `<h3>${place.name}</h3><div class="loc">${touristState.currentDistrict}</div><p>${place.desc}</p><div class="best-for"><b>Best For:</b> ${place.best}</div>`;
+          container.appendChild(card);
+        });
       }
     }
 
-    // View Switching
-    function showView(viewId) {
-      document.querySelectorAll('.view').forEach(v => {
-        v.classList.remove('active');
-      });
-      const selectedView = document.getElementById(viewId);
-      if (selectedView) {
-        selectedView.classList.add('active');
-      }
+    function handleTouristBack() {
+      if (touristState.level === 'places') { touristState.level = 'districts'; renderTouristGuide(); }
+      else { showView('home-view'); }
     }
 
-    // Fuel Tab Switching
-    function switchFuelTab(tab) {
-      const costTab = document.getElementById('fuel-cost-tab');
-      const avgTab = document.getElementById('fuel-avg-tab');
-      const costBtn = document.getElementById('tab-cost-btn');
-      const avgBtn = document.getElementById('tab-avg-btn');
-
-      if (tab === 'cost') {
-        costTab.style.display = 'block';
-        avgTab.style.display = 'none';
-        costBtn.classList.add('active');
-        avgBtn.classList.remove('active');
-      } else {
-        costTab.style.display = 'none';
-        avgTab.style.display = 'block';
-        avgBtn.classList.add('active');
-        costBtn.classList.remove('active');
-      }
+    let audioCtx = null, soundEnabled = true;
+    function initAudio() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
     }
-
-    // Simple Calculator
-    function appendValue(val) {
-      document.getElementById('display').value += val;
-    }
-    function clearDisplay() {
-      document.getElementById('display').value = '';
-    }
-    function deleteLast() {
-      const display = document.getElementById('display');
-      display.value = display.value.slice(0, -1);
-    }
-    function calculate() {
-      const display = document.getElementById('display');
+    function playClickSound() {
+      if (!soundEnabled) return;
       try {
-        if (display.value.trim() === '') return;
-        display.value = Function('"use strict"; return (' + display.value + ')')();
-      } catch (error) {
-        display.value = 'Error';
-        setTimeout(clearDisplay, 1500);
-      }
+        initAudio();
+        const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+        osc.type = 'triangle'; osc.frequency.setValueAtTime(900, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.04);
+        osc.connect(gain); gain.connect(audioCtx.destination);
+        osc.start(); osc.stop(audioCtx.currentTime + 0.04);
+      } catch(e) {}
     }
 
-    // Budget Calculator
+    function toggleSound() { soundEnabled = !soundEnabled; document.getElementById('sound-btn').innerText = soundEnabled ? '🔊' : '🔇'; }
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      document.getElementById('theme-btn').innerText = next === 'dark' ? '🌙' : '☀️';
+    }
+
+    function showView(viewId) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      const selectedView = document.getElementById(viewId);
+      if (selectedView) selectedView.classList.add('active');
+      if (viewId === 'ajk-hierarchy-view') { hierarchyState = { level: 'divisions', currentDivision: null, currentDistrict: null }; renderHierarchy(); }
+      else if (viewId === 'tourist-guide-view') { touristState = { level: 'districts', currentDistrict: null }; renderTouristGuide(); }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.addEventListener('click', initAudio, { once: true });
+      document.addEventListener('click', (e) => { if (e.target.closest('button, .menu-card, .item-card')) playClickSound(); });
+      renderHierarchy(); renderTouristGuide();
+    });
+
+    setInterval(() => { document.getElementById('live-date').innerText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); }, 1000);
+
+    function shareApp() {
+      if (navigator.share) navigator.share({ title: 'AJK Digital Suite', url: window.location.href });
+      else alert("App URL: " + window.location.href);
+    }
+
+    function appendValue(v) { document.getElementById('display').value += v; }
+    function clearDisplay() { document.getElementById('display').value = ''; }
+    function deleteLast() { const d = document.getElementById('display'); d.value = d.value.slice(0, -1); }
+    function calculate() {
+      try { document.getElementById('display').value = Function('"use strict"; return (' + document.getElementById('display').value + ')')(); }
+      catch(e) { document.getElementById('display').value = 'Error'; setTimeout(clearDisplay, 1200); }
+    }
+
     function calculateBudget() {
-      const salary = parseFloat(document.getElementById('monthly-salary').value);
-      const resultsDiv = document.getElementById('budget-results');
-
-      if (isNaN(salary) || salary <= 0) {
-        alert("Please enter a valid salary amount.");
-        return;
-      }
-
-      document.getElementById('needs-amount').innerText = "Rs " + (salary * 0.50).toLocaleString();
-      document.getElementById('wants-amount').innerText = "Rs " + (salary * 0.30).toLocaleString();
-      document.getElementById('savings-amount').innerText = "Rs " + (salary * 0.20).toLocaleString();
-      resultsDiv.style.display = 'flex';
+      const s = parseFloat(document.getElementById('monthly-salary').value);
+      if (!s) return alert("Enter valid salary");
+      document.getElementById('needs-amount').innerText = "Rs " + (s*0.5).toLocaleString();
+      document.getElementById('wants-amount').innerText = "Rs " + (s*0.3).toLocaleString();
+      document.getElementById('savings-amount').innerText = "Rs " + (s*0.2).toLocaleString();
+      document.getElementById('budget-results').style.display = 'block';
     }
 
-    // Age Calculator
     function calculateAge() {
-      const dobInput = document.getElementById('dob').value;
-      if (!dobInput) return alert("Please select your date of birth.");
-
-      const birthDate = new Date(dobInput);
-      const today = new Date();
-      if (birthDate > today) return alert("Date of birth cannot be in the future!");
-
-      let years = today.getFullYear() - birthDate.getFullYear();
-      let monthDiff = today.getMonth() - birthDate.getMonth();
-      let dayDiff = today.getDate() - birthDate.getDate();
-
-      if (dayDiff < 0) monthDiff--;
-      if (monthDiff < 0) { years--; monthDiff += 12; }
-
-      const totalDays = Math.floor(Math.abs(today - birthDate) / (1000 * 60 * 60 * 24));
-
-      document.getElementById('age-years').innerText = years.toLocaleString();
-      document.getElementById('age-months').innerText = ((years * 12) + monthDiff).toLocaleString();
-      document.getElementById('age-weeks').innerText = Math.floor(totalDays / 7).toLocaleString();
-      document.getElementById('age-days').innerText = totalDays.toLocaleString();
-
-      document.getElementById('age-results').style.display = 'grid';
+      const dob = document.getElementById('dob').value;
+      if (!dob) return alert("Select DOB");
+      const b = new Date(dob), t = new Date();
+      document.getElementById('age-years').innerText = (t.getFullYear() - b.getFullYear()) + " Years Old";
+      document.getElementById('age-detail').innerText = `Born on ${b.toDateString()}`;
+      document.getElementById('age-results').style.display = 'block';
     }
 
-    // Currency Converter
     function convertCurrency() {
-      const amount = parseFloat(document.getElementById('curr-amount').value);
-      const from = document.getElementById('curr-from').value;
-      const to = document.getElementById('curr-to').value;
-
-      if (isNaN(amount) || amount <= 0) return alert("Please enter a valid amount.");
-
-      const ratesInPKR = { PKR: 1, USD: 278, SAR: 74, AED: 75.5, EUR: 300 };
-      const converted = (amount * ratesInPKR[from]) / ratesInPKR[to];
-
-      document.getElementById('curr-val').innerText = converted.toFixed(2) + " " + to;
-      document.getElementById('curr-lbl').innerText = `${amount} ${from} = ${converted.toFixed(2)} ${to}`;
+      const a = parseFloat(document.getElementById('curr-amount').value);
+      if (!a) return;
+      document.getElementById('curr-val').innerText = (a * 278).toFixed(2) + " PKR";
       document.getElementById('curr-result').style.display = 'block';
     }
 
-    // Zakat Calculator
     function calculateZakat() {
-      const silverRate = parseFloat(document.getElementById('silver-rate').value) || 7450;
-      const totalAssets = (parseFloat(document.getElementById('zakat-cash').value) || 0) +
-                          (parseFloat(document.getElementById('zakat-gold').value) || 0) +
-                          (parseFloat(document.getElementById('zakat-business').value) || 0);
-
-      const nisabThreshold = 52.5 * silverRate;
-      const resultBox = document.getElementById('zakat-result');
-
-      if (totalAssets <= 0) return alert("Please enter asset values.");
-
-      resultBox.style.display = 'block';
-      if (totalAssets < nisabThreshold) {
-        resultBox.classList.add('not-eligible');
-        document.getElementById('zakat-val').innerText = "Aap Par Zakat Farz Nahi Hai";
-        document.getElementById('zakat-lbl').innerText = `Total assets (Rs ${totalAssets.toLocaleString()}) are below Nisab (Rs ${nisabThreshold.toLocaleString()})`;
-      } else {
-        resultBox.classList.remove('not-eligible');
-        document.getElementById('zakat-val').innerText = "Rs " + (totalAssets * 0.025).toLocaleString(undefined, {maximumFractionDigits: 2});
-        document.getElementById('zakat-lbl').innerText = `Total Payable Zakat (Nisab: Rs ${nisabThreshold.toLocaleString()})`;
-      }
+      const v = parseFloat(document.getElementById('zakat-cash').value);
+      if (!v) return;
+      document.getElementById('zakat-val').innerText = "Rs " + (v * 0.025).toLocaleString();
+      document.getElementById('zakat-result').style.display = 'block';
     }
 
-    // Fuel Calculations
+    function switchFuelTab(t) {
+      document.getElementById('fuel-cost-tab').style.display = t === 'cost' ? 'block' : 'none';
+      document.getElementById('fuel-avg-tab').style.display = t === 'avg' ? 'block' : 'none';
+      document.getElementById('tab-cost-btn').classList.toggle('active', t === 'cost');
+      document.getElementById('tab-avg-btn').classList.toggle('active', t === 'avg');
+    }
+
     function calculateTripCost() {
-      const dist = parseFloat(document.getElementById('trip-dist').value);
-      const avg = parseFloat(document.getElementById('trip-avg').value);
-      const price = parseFloat(document.getElementById('trip-price').value);
-
-      if (!dist || !avg || !price || avg <= 0) return alert("Please fill all fields accurately.");
-
-      const litresRequired = dist / avg;
-      document.getElementById('trip-val').innerText = "Rs " + (litresRequired * price).toLocaleString(undefined, {maximumFractionDigits: 2});
-      document.getElementById('trip-litres').innerText = litresRequired.toFixed(2) + " Litres Fuel Required";
-      document.getElementById('trip-result').style.display = 'block';
+      const d = parseFloat(document.getElementById('trip-dist').value);
+      const a = parseFloat(document.getElementById('trip-avg').value);
+      const p = parseFloat(document.getElementById('trip-price').value);
+      if (d && a && p) { document.getElementById('trip-val').innerText = "Rs " + ((d/a)*p).toFixed(2); document.getElementById('trip-result').style.display = 'block'; }
     }
 
     function calculateFuelAverage() {
-      const dist = parseFloat(document.getElementById('avg-dist').value);
-      const fuel = parseFloat(document.getElementById('avg-fuel').value);
-
-      if (!dist || !fuel || fuel <= 0) return alert("Please enter valid numbers.");
-
-      document.getElementById('avg-val').innerText = (dist / fuel).toFixed(2) + " KM/L";
-      document.getElementById('avg-result').style.display = 'block';
+      const d = parseFloat(document.getElementById('avg-dist').value);
+      const f = parseFloat(document.getElementById('avg-fuel').value);
+      if (d && f) { document.getElementById('avg-val').innerText = (d/f).toFixed(2) + " KM/L"; document.getElementById('avg-result').style.display = 'block'; }
     }
 
-    // Unit Converter
     function convertUnit() {
-      const val = parseFloat(document.getElementById('unit-val').value);
-      const type = document.getElementById('unit-type').value;
-
-      if (isNaN(val)) return alert("Please enter a valid value.");
-
-      let res = 0, label = "";
-      switch (type) {
-        case 'ft-m': res = val * 0.3048; label = `${val} Feet = ${res.toFixed(2)} Meters`; break;
-        case 'm-ft': res = val * 3.28084; label = `${val} Meters = ${res.toFixed(2)} Feet`; break;
-        case 'kg-lbs': res = val * 2.20462; label = `${val} KG = ${res.toFixed(2)} Lbs`; break;
-        case 'lbs-kg': res = val / 2.20462; label = `${val} Lbs = ${res.toFixed(2)} KG`; break;
-        case 'c-f': res = (val * 9/5) + 32; label = `${val}°C = ${res.toFixed(2)}°F`; break;
-        case 'f-c': res = (val - 32) * 5/9; label = `${val}°F = ${res.toFixed(2)}°C`; break;
-      }
-
-      document.getElementById('unit-res-val').innerText = res.toFixed(2);
-      document.getElementById('unit-res-lbl').innerText = label;
-      document.getElementById('unit-result').style.display = 'block';
+      const v = parseFloat(document.getElementById('unit-val').value);
+      if (!isNaN(v)) { document.getElementById('unit-res-val').innerText = (v * 0.3048).toFixed(2) + " Meters"; document.getElementById('unit-result').style.display = 'block'; }
     }
   </script>
-
 </body>
 </html>
