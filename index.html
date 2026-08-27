@@ -585,7 +585,7 @@
       <div class="hub-form">
         <div class="input-group">
           <label>Current Silver Price per Tola (PKR):</label>
-          <input type="number" id="silver-price-tola" placeholder="e.g. 2500" value="2500">
+          <input type="number" id="silver-price-tola" placeholder="e.g. 7300" value="7300">
         </div>
         <div class="input-group">
           <label>Total Wealth & Assets Value (PKR):</label>
@@ -907,7 +907,7 @@
 
     function calculateZakat() {
       const v = parseFloat(document.getElementById('zakat-cash').value);
-      const silverPrice = parseFloat(document.getElementById('silver-price-tola').value) || 7500;
+      const silverPrice = parseFloat(document.getElementById('silver-price-tola').value) || 7300;
       if (isNaN(v)) return alert("Enter valid wealth amount");
       
       const nisabAmount = 52.5 * silverPrice;
