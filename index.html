@@ -57,27 +57,44 @@
       min-height: 100vh;
       background: var(--bg-gradient);
       color: var(--text-main);
-      padding: 16px;
+      padding: 12px 12px 80px 12px;
     }
 
+    /* HEADER & NAV BAR STYLES */
     .app-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       width: 100%;
       max-width: 500px;
-      margin-bottom: 16px;
-      padding: 12px 18px;
+      margin-bottom: 12px;
+      padding: 10px 14px;
       background: var(--glass-bg);
       backdrop-filter: var(--backdrop-blur);
       -webkit-backdrop-filter: var(--backdrop-blur);
       border-radius: 18px;
       border: 1px solid var(--glass-border);
       box-shadow: 0 8px 32px var(--shadow-color);
+      position: sticky;
+      top: 10px;
+      z-index: 100;
     }
 
-    .logo-area { display: flex; align-items: center; gap: 10px; }
-    .header-actions { display: flex; align-items: center; gap: 8px; }
+    .logo-area { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+    .header-actions { display: flex; align-items: center; gap: 6px; }
+
+    .menu-toggle-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: var(--accent-gold);
+    }
 
     .icon-toggle {
       background: transparent;
@@ -93,7 +110,43 @@
       color: var(--accent-gold);
     }
 
-    .icon-toggle:hover { transform: scale(1.08); }
+    .icon-toggle:hover, .menu-toggle-btn:hover { transform: scale(1.05); }
+
+    /* DROPDOWN MENU SLIDE */
+    .nav-drawer {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+      max-width: 500px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--backdrop-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 12px;
+      box-shadow: 0 8px 24px var(--shadow-color);
+    }
+
+    .nav-drawer.open { display: flex; }
+
+    .nav-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+    }
+
+    .nav-btn:hover { background-color: var(--card-hover); border-color: var(--accent-gold-border); }
+    .nav-btn.emergency { border-color: #ef4444; color: #fca5a5; }
 
     .container {
       width: 100%;
@@ -125,7 +178,6 @@
     .header-box h1 { color: var(--accent-gold); font-size: 1.5rem; letter-spacing: -0.5px; margin-bottom: 4px; }
     .header-box p { color: var(--text-muted); font-size: 0.85rem; }
 
-    /* Category Section Headers */
     .section-label {
       font-size: 0.75rem;
       font-weight: 800;
@@ -189,7 +241,6 @@
     .view { display: none; opacity: 0; transform: translateY(6px); transition: opacity 0.25s ease; }
     .view.active { display: block; opacity: 1; transform: translateY(0); }
 
-    /* Hierarchy & Tourist Items UI */
     .hierarchy-container {
       display: flex;
       flex-direction: column;
@@ -215,7 +266,6 @@
     .item-sub { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
     .arrow-icon { color: var(--accent-gold); font-size: 1rem; }
 
-    /* Tourist Cards */
     .tourist-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -229,7 +279,6 @@
     .tourist-card p { font-size: 0.83rem; color: var(--text-main); line-height: 1.45; }
     .tourist-card .best-for { font-size: 0.78rem; color: var(--text-muted); margin-top: 8px; border-top: 1px dashed var(--card-border); padding-top: 6px; }
 
-    /* Forms and Calc Styles */
     .display-container { background-color: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 14px; padding: 12px 16px; margin-bottom: 16px; }
     .header-text { display: flex; justify-content: space-between; color: var(--accent-gold); font-size: 0.75rem; font-weight: 700; margin-bottom: 4px; }
     #display { width: 100%; height: 48px; background: transparent; border: none; color: var(--text-main); font-size: 2rem; text-align: right; outline: none; font-weight: bold; }
@@ -254,14 +303,54 @@
     .sub-tab-btn { flex: 1; min-height: 40px; padding: 6px; border-radius: 10px; border: 1px solid var(--card-border); background-color: var(--card-bg); color: var(--text-muted); font-size: 0.82rem; font-weight: 700; cursor: pointer; }
     .sub-tab-btn.active { background-color: var(--accent-gold-border); color: #051d0d; border-color: var(--accent-gold); }
 
-    .app-footer { width: 100%; max-width: 500px; margin-top: 16px; text-align: center; font-size: 0.78rem; color: var(--text-muted); }
+    /* EMERGENCY DIRECTORY STYLES */
+    .emergency-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+    .emergency-card { background: var(--card-bg); border: 1px solid #ef4444; border-radius: 14px; padding: 14px; display: flex; justify-content: space-between; align-items: center; }
+    .emergency-card h4 { color: #fca5a5; font-size: 0.95rem; }
+    .emergency-card p { font-size: 0.75rem; color: var(--text-muted); }
+    .call-now-btn { background: #dc2626; color: white; padding: 8px 14px; border-radius: 8px; text-decoration: none; font-weight: 800; font-size: 0.82rem; display: flex; align-items: center; gap: 4px; }
+
+    /* FOOTER & BOTTOM NAV */
+    .app-footer { width: 100%; max-width: 500px; margin-top: 20px; text-align: center; font-size: 0.78rem; color: var(--text-muted); }
     .share-btn { background: var(--btn-bg); border: 1px solid var(--glass-border); color: var(--accent-gold); padding: 8px 16px; border-radius: 10px; margin-top: 8px; cursor: pointer; font-size: 0.8rem; font-weight: 700; }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 500px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--backdrop-blur);
+      border-top: 1px solid var(--glass-border);
+      display: flex;
+      justify-content: space-around;
+      padding: 8px 0;
+      z-index: 100;
+    }
+
+    .bottom-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .bottom-nav-item .nav-icon { font-size: 1.2rem; margin-bottom: 2px; }
+    .bottom-nav-item:hover { color: var(--accent-gold); }
   </style>
 </head>
 <body>
 
+  <!-- HEADER -->
   <header class="app-header">
-    <div class="logo-area">
+    <div class="logo-area" onclick="showView('home-view')">
       <span style="font-size: 1.3rem;">🌲</span>
       <div>
         <h2 style="font-size: 1rem; color: var(--accent-gold); margin: 0; line-height: 1;">AJK Hub</h2>
@@ -269,11 +358,25 @@
       </div>
     </div>
     <div class="header-actions">
+      <button class="menu-toggle-btn" onclick="toggleDrawer()" title="Menu">☰</button>
       <button class="icon-toggle" id="sound-btn" onclick="toggleSound()">🔊</button>
       <button class="icon-toggle" id="theme-btn" onclick="toggleTheme()">🌙</button>
       <div id="live-date" style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">--:--</div>
     </div>
   </header>
+
+  <!-- NAVIGATION DRAWER (ACCESSIBLE VIA 3 LINES BUTTON) -->
+  <nav class="nav-drawer" id="nav-drawer">
+    <button class="nav-btn" onclick="navigateTo('tourist-guide-view')">
+      <span>🏔️ AJK Tourism Guide</span> ➔
+    </button>
+    <button class="nav-btn" onclick="navigateTo('ajk-hierarchy-view')">
+      <span>🗺️ AJK Info (Divisions & Tehsils)</span> ➔
+    </button>
+    <button class="nav-btn emergency" onclick="navigateTo('emergency-view')">
+      <span>🚨 Helpline & Emergency Contacts</span> ➔
+    </button>
+  </nav>
 
   <main class="container">
     <div class="flag-strip">
@@ -282,7 +385,7 @@
       <div class="white"></div>
     </div>
 
-    <!-- MAIN CATEGORIZED DASHBOARD -->
+    <!-- MAIN DASHBOARD -->
     <section id="home-view" class="view active">
       <div class="header-box">
         <h1>Azad Kashmir Suite</h1>
@@ -357,6 +460,45 @@
       </div>
     </section>
 
+    <!-- NEW SECTION: EMERGENCY & HELPLINE CONTACTS -->
+    <section id="emergency-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
+      <div class="header-box" style="margin-bottom: 12px;">
+        <h2 style="color: #ef4444; font-size: 1.2rem;">Emergency Contacts</h2>
+        <p>AJK Police, Tourism & Rescue Helplines</p>
+      </div>
+      <div class="emergency-grid">
+        <div class="emergency-card">
+          <div>
+            <h4>🏕️ Tourism Police AJK</h4>
+            <p>Tourist assistance & safety</p>
+          </div>
+          <a href="tel:1422" class="call-now-btn">📞 1422</a>
+        </div>
+        <div class="emergency-card">
+          <div>
+            <h4>🚑 Rescue 1122</h4>
+            <p>Medical & Fire Emergency</p>
+          </div>
+          <a href="tel:1122" class="call-now-btn">📞 1122</a>
+        </div>
+        <div class="emergency-card">
+          <div>
+            <h4>🚔 Police Emergency</h4>
+            <p>General Police Helpline</p>
+          </div>
+          <a href="tel:15" class="call-now-btn">📞 15</a>
+        </div>
+        <div class="emergency-card">
+          <div>
+            <h4>🛣️ National Highway Police</h4>
+            <p>Travel & Road Advisory</p>
+          </div>
+          <a href="tel:130" class="call-now-btn">📞 130</a>
+        </div>
+      </div>
+    </section>
+
     <!-- 1. AJK DIVISIONS / DISTRICTS / TEHSILS -->
     <section id="ajk-hierarchy-view" class="view">
       <button class="back-btn" id="hierarchy-back-btn" onclick="handleHierarchyBack()">← Back</button>
@@ -426,7 +568,7 @@
         </div>
         <button class="submit-btn" onclick="calculateAge()">Calculate Age</button>
         <div class="single-result" id="age-results" style="display: none;">
-          <div class="val" id="age-years">0 Years</div>
+          <div class="val" id="age-years">0 Years Old</div>
           <div class="lbl" id="age-detail">0 Months, 0 Days</div>
         </div>
       </div>
@@ -507,6 +649,26 @@
     <button class="share-btn" onclick="shareApp()">🔗 Share App</button>
   </footer>
 
+  <!-- MOBILE SMART BOTTOM NAVIGATION -->
+  <div class="bottom-nav">
+    <button class="bottom-nav-item" onclick="showView('home-view')">
+      <span class="nav-icon">🏠</span>
+      <span>Home</span>
+    </button>
+    <button class="bottom-nav-item" onclick="showView('tourist-guide-view')">
+      <span class="nav-icon">🏔️</span>
+      <span>Tourism</span>
+    </button>
+    <button class="bottom-nav-item" onclick="showView('ajk-hierarchy-view')">
+      <span class="nav-icon">🗺️</span>
+      <span>Directory</span>
+    </button>
+    <button class="bottom-nav-item" onclick="showView('emergency-view')" style="color: #fca5a5;">
+      <span class="nav-icon">🚨</span>
+      <span>Emergency</span>
+    </button>
+  </div>
+
   <script>
     const ajkData = {
       "Muzaffarabad Division": {
@@ -570,6 +732,17 @@
 
     let hierarchyState = { level: 'divisions', currentDivision: null, currentDistrict: null };
     let touristState = { level: 'districts', currentDistrict: null };
+
+    function toggleDrawer() {
+      playClickSound();
+      const drawer = document.getElementById('nav-drawer');
+      drawer.classList.toggle('open');
+    }
+
+    function navigateTo(viewId) {
+      document.getElementById('nav-drawer').classList.remove('open');
+      showView(viewId);
+    }
 
     function renderHierarchy() {
       const container = document.getElementById('hierarchy-list');
@@ -689,6 +862,7 @@
       if (selectedView) selectedView.classList.add('active');
       if (viewId === 'ajk-hierarchy-view') { hierarchyState = { level: 'divisions', currentDivision: null, currentDistrict: null }; renderHierarchy(); }
       else if (viewId === 'tourist-guide-view') { touristState = { level: 'districts', currentDistrict: null }; renderTouristGuide(); }
+      window.scrollTo(0, 0);
     }
 
     document.addEventListener('DOMContentLoaded', () => {
