@@ -348,7 +348,6 @@
 </head>
 <body>
 
-  <!-- HEADER -->
   <header class="app-header">
     <div class="logo-area" onclick="showView('home-view')">
       <span style="font-size: 1.3rem;">🌲</span>
@@ -365,7 +364,6 @@
     </div>
   </header>
 
-  <!-- NAVIGATION DRAWER (ACCESSIBLE VIA 3 LINES BUTTON) -->
   <nav class="nav-drawer" id="nav-drawer">
     <button class="nav-btn" onclick="navigateTo('tourist-guide-view')">
       <span>🏔️ AJK Tourism Guide</span> ➔
@@ -385,14 +383,12 @@
       <div class="white"></div>
     </div>
 
-    <!-- MAIN DASHBOARD -->
     <section id="home-view" class="view active">
       <div class="header-box">
         <h1>Azad Kashmir Suite</h1>
         <p>Explore AJK Directory & Utilities</p>
       </div>
 
-      <!-- CATEGORY 1: AJK INFORMATION -->
       <div class="section-label">📍 AJK Directory & Tourism</div>
       <div class="grid-menu single">
         <div class="menu-card" onclick="showView('ajk-hierarchy-view')">
@@ -415,7 +411,6 @@
         </div>
       </div>
 
-      <!-- CATEGORY 2: CALCULATORS & UTILITIES -->
       <div class="section-label">🧮 Smart Calculators & Tools</div>
       <div class="grid-menu">
         <div class="menu-card" onclick="showView('calc-view')">
@@ -460,7 +455,6 @@
       </div>
     </section>
 
-    <!-- NEW SECTION: EMERGENCY & HELPLINE CONTACTS -->
     <section id="emergency-view" class="view">
       <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="header-box" style="margin-bottom: 12px;">
@@ -499,7 +493,6 @@
       </div>
     </section>
 
-    <!-- 1. AJK DIVISIONS / DISTRICTS / TEHSILS -->
     <section id="ajk-hierarchy-view" class="view">
       <button class="back-btn" id="hierarchy-back-btn" onclick="handleHierarchyBack()">← Back</button>
       <div class="header-box" style="margin-bottom: 12px;">
@@ -509,7 +502,6 @@
       <div class="hierarchy-container" id="hierarchy-list"></div>
     </section>
 
-    <!-- 2. DISTRICT-WISE TOURIST GUIDE -->
     <section id="tourist-guide-view" class="view">
       <button class="back-btn" id="tourist-back-btn" onclick="handleTouristBack()">← Back</button>
       <div class="header-box" style="margin-bottom: 12px;">
@@ -519,7 +511,6 @@
       <div class="hierarchy-container" id="tourist-list"></div>
     </section>
 
-    <!-- 3. CALCULATOR SCREEN -->
     <section id="calc-view" class="view">
       <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="display-container">
@@ -541,7 +532,6 @@
       </div>
     </section>
 
-    <!-- 4. BUDGET CALCULATOR -->
     <section id="budget-view" class="view">
       <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="hub-form">
@@ -558,7 +548,6 @@
       </div>
     </section>
 
-    <!-- 5. AGE CALCULATOR -->
     <section id="age-view" class="view">
       <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="hub-form">
@@ -574,7 +563,6 @@
       </div>
     </section>
 
-    <!-- 6. CURRENCY CONVERTER -->
     <section id="currency-view" class="view">
       <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="hub-form">
@@ -592,17 +580,25 @@
       </div>
     </section>
 
-    <!-- 7. ZAKAT CALCULATOR -->
     <section id="zakat-view" class="view">
       <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="hub-form">
-        <div class="input-group"><label>Total Wealth & Assets Value (PKR):</label><input type="number" id="zakat-cash" placeholder="0"></div>
+        <div class="input-group">
+          <label>Current Silver Price per Tola (PKR):</label>
+          <input type="number" id="silver-price-tola" placeholder="e.g. 2500" value="2500">
+        </div>
+        <div class="input-group">
+          <label>Total Wealth & Assets Value (PKR):</label>
+          <input type="number" id="zakat-cash" placeholder="0">
+        </div>
         <button class="submit-btn" onclick="calculateZakat()">Calculate Zakat (2.5%)</button>
-        <div class="single-result" id="zakat-result" style="display: none;"><div class="val" id="zakat-val">Rs 0</div></div>
+        <div class="single-result" id="zakat-result" style="display: none;">
+          <div class="val" id="zakat-val">Rs 0</div>
+          <div class="lbl" id="zakat-status" style="margin-top: 6px; font-weight: bold;"></div>
+        </div>
       </div>
     </section>
 
-    <!-- 8. FUEL & TRIP HUB -->
     <section id="fuel-hub-view" class="view">
       <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="sub-menu-box">
@@ -624,7 +620,6 @@
       </div>
     </section>
 
-    <!-- 9. UNIT CONVERTER -->
     <section id="unit-view" class="view">
       <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="hub-form">
@@ -649,7 +644,6 @@
     <button class="share-btn" onclick="shareApp()">🔗 Share App</button>
   </footer>
 
-  <!-- MOBILE SMART BOTTOM NAVIGATION -->
   <div class="bottom-nav">
     <button class="bottom-nav-item" onclick="showView('home-view')">
       <span class="nav-icon">🏠</span>
@@ -913,8 +907,23 @@
 
     function calculateZakat() {
       const v = parseFloat(document.getElementById('zakat-cash').value);
-      if (!v) return;
-      document.getElementById('zakat-val').innerText = "Rs " + (v * 0.025).toLocaleString();
+      const silverPrice = parseFloat(document.getElementById('silver-price-tola').value) || 7500;
+      if (isNaN(v)) return alert("Enter valid wealth amount");
+      
+      const nisabAmount = 52.5 * silverPrice;
+      const zakatValElement = document.getElementById('zakat-val');
+      const zakatStatusElement = document.getElementById('zakat-status');
+
+      if (v < nisabAmount) {
+        zakatValElement.innerText = "Rs 0";
+        zakatStatusElement.innerText = `Aap par Zakat farz nahi hai. Aapka nisab kam hai (Minimum Nisab: Rs ${nisabAmount.toLocaleString()})`;
+        zakatStatusElement.style.color = "#ef4444";
+      } else {
+        const zakatAmount = v * 0.025;
+        zakatValElement.innerText = "Rs " + zakatAmount.toLocaleString();
+        zakatStatusElement.innerText = "Zakat Obligatory (2.5%)";
+        zakatStatusElement.style.color = "var(--text-muted)";
+      }
       document.getElementById('zakat-result').style.display = 'block';
     }
 
