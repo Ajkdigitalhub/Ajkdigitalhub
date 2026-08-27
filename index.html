@@ -348,6 +348,7 @@
 </head>
 <body>
 
+  <!-- HEADER -->
   <header class="app-header">
     <div class="logo-area" onclick="showView('home-view')">
       <span style="font-size: 1.3rem;">🌲</span>
@@ -364,6 +365,7 @@
     </div>
   </header>
 
+  <!-- NAVIGATION DRAWER -->
   <nav class="nav-drawer" id="nav-drawer">
     <button class="nav-btn" onclick="navigateTo('tourist-guide-view')">
       <span>🏔️ AJK Tourism Guide</span> ➔
@@ -383,6 +385,7 @@
       <div class="white"></div>
     </div>
 
+    <!-- MAIN DASHBOARD -->
     <section id="home-view" class="view active">
       <div class="header-box">
         <h1>Azad Kashmir Suite</h1>
@@ -455,6 +458,7 @@
       </div>
     </section>
 
+    <!-- EMERGENCY CONTACTS -->
     <section id="emergency-view" class="view">
       <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="header-box" style="margin-bottom: 12px;">
@@ -493,6 +497,7 @@
       </div>
     </section>
 
+    <!-- 1. AJK DIVISIONS / DISTRICTS / TEHSILS -->
     <section id="ajk-hierarchy-view" class="view">
       <button class="back-btn" id="hierarchy-back-btn" onclick="handleHierarchyBack()">← Back</button>
       <div class="header-box" style="margin-bottom: 12px;">
@@ -502,6 +507,7 @@
       <div class="hierarchy-container" id="hierarchy-list"></div>
     </section>
 
+    <!-- 2. DISTRICT-WISE TOURIST GUIDE -->
     <section id="tourist-guide-view" class="view">
       <button class="back-btn" id="tourist-back-btn" onclick="handleTouristBack()">← Back</button>
       <div class="header-box" style="margin-bottom: 12px;">
@@ -511,6 +517,7 @@
       <div class="hierarchy-container" id="tourist-list"></div>
     </section>
 
+    <!-- 3. CALCULATOR SCREEN -->
     <section id="calc-view" class="view">
       <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="display-container">
@@ -532,6 +539,7 @@
       </div>
     </section>
 
+    <!-- 4. BUDGET CALCULATOR -->
     <section id="budget-view" class="view">
       <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="hub-form">
@@ -548,6 +556,7 @@
       </div>
     </section>
 
+    <!-- 5. AGE CALCULATOR -->
     <section id="age-view" class="view">
       <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="hub-form">
@@ -563,6 +572,7 @@
       </div>
     </section>
 
+    <!-- 6. CURRENCY CONVERTER -->
     <section id="currency-view" class="view">
       <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="hub-form">
@@ -580,6 +590,7 @@
       </div>
     </section>
 
+    <!-- 7. ZAKAT CALCULATOR -->
     <section id="zakat-view" class="view">
       <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="hub-form">
@@ -599,6 +610,7 @@
       </div>
     </section>
 
+    <!-- 8. FUEL & TRIP HUB -->
     <section id="fuel-hub-view" class="view">
       <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="sub-menu-box">
@@ -620,6 +632,7 @@
       </div>
     </section>
 
+    <!-- 9. UNIT CONVERTER -->
     <section id="unit-view" class="view">
       <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
       <div class="hub-form">
@@ -644,6 +657,7 @@
     <button class="share-btn" onclick="shareApp()">🔗 Share App</button>
   </footer>
 
+  <!-- MOBILE SMART BOTTOM NAVIGATION -->
   <div class="bottom-nav">
     <button class="bottom-nav-item" onclick="showView('home-view')">
       <span class="nav-icon">🏠</span>
@@ -724,8 +738,13 @@
       ]
     };
 
-    let hierarchyState = { level: 'divisions', currentDivision: null, currentDistrict: null };
-    let touristState = { level: 'districts', currentDistrict: null };
+    let hierarchyState = JSON.parse(localStorage.getItem('hierarchyState')) || { level: 'divisions', currentDivision: null, currentDistrict: null };
+    let touristState = JSON.parse(localStorage.getItem('touristState')) || { level: 'districts', currentDistrict: null };
+
+    function saveStates() {
+      localStorage.setItem('hierarchyState', JSON.stringify(hierarchyState));
+      localStorage.setItem('touristState', JSON.stringify(touristState));
+    }
 
     function toggleDrawer() {
       playClickSound();
@@ -744,6 +763,7 @@
       const subtitle = document.getElementById('hierarchy-subtitle');
       const backBtn = document.getElementById('hierarchy-back-btn');
       container.innerHTML = '';
+      saveStates();
 
       if (hierarchyState.level === 'divisions') {
         title.innerText = "AJK Divisions";
@@ -761,24 +781,29 @@
         subtitle.innerText = "Select a District";
         backBtn.innerText = "← Back to Divisions";
         const districts = ajkData[hierarchyState.currentDivision];
-        Object.keys(districts).forEach(distName => {
-          const card = document.createElement('div');
-          card.className = 'item-card';
-          card.innerHTML = `<div><div class="item-title">${distName}</div><div class="item-sub">${districts[distName].length} Tehsils</div></div><span class="arrow-icon">➔</span>`;
-          card.onclick = () => { hierarchyState.level = 'tehsils'; hierarchyState.currentDistrict = distName; renderHierarchy(); };
-          container.appendChild(card);
-        });
+        if (districts) {
+          Object.keys(districts).forEach(distName => {
+            const card = document.createElement('div');
+            card.className = 'item-card';
+            card.innerHTML = `<div><div class="item-title">${distName}</div><div class="item-sub">${districts[distName].length} Tehsils</div></div><span class="arrow-icon">➔</span>`;
+            card.onclick = () => { hierarchyState.level = 'tehsils'; hierarchyState.currentDistrict = distName; renderHierarchy(); };
+            container.appendChild(card);
+          });
+        }
       } else if (hierarchyState.level === 'tehsils') {
         title.innerText = hierarchyState.currentDistrict;
         subtitle.innerText = `Tehsils in ${hierarchyState.currentDistrict}`;
         backBtn.innerText = "← Back to Districts";
-        ajkData[hierarchyState.currentDivision][hierarchyState.currentDistrict].forEach(tehName => {
-          const card = document.createElement('div');
-          card.className = 'item-card';
-          card.style.cursor = 'default';
-          card.innerHTML = `<div><div class="item-title">${tehName}</div><div class="item-sub">Tehsil</div></div><span class="arrow-icon">📍</span>`;
-          container.appendChild(card);
-        });
+        const tehsils = ajkData[hierarchyState.currentDivision]?.[hierarchyState.currentDistrict];
+        if (tehsils) {
+          tehsils.forEach(tehName => {
+            const card = document.createElement('div');
+            card.className = 'item-card';
+            card.style.cursor = 'default';
+            card.innerHTML = `<div><div class="item-title">${tehName}</div><div class="item-sub">Tehsil</div></div><span class="arrow-icon">📍</span>`;
+            container.appendChild(card);
+          });
+        }
       }
     }
 
@@ -794,6 +819,7 @@
       const subtitle = document.getElementById('tourist-subtitle');
       const backBtn = document.getElementById('tourist-back-btn');
       container.innerHTML = '';
+      saveStates();
 
       if (touristState.level === 'districts') {
         title.innerText = "AJK Districts";
@@ -810,12 +836,15 @@
         title.innerText = touristState.currentDistrict;
         subtitle.innerText = `Top Places in ${touristState.currentDistrict}`;
         backBtn.innerText = "← Back to Districts";
-        districtTouristData[touristState.currentDistrict].forEach(place => {
-          const card = document.createElement('div');
-          card.className = 'tourist-card';
-          card.innerHTML = `<h3>${place.name}</h3><div class="loc">${touristState.currentDistrict}</div><p>${place.desc}</p><div class="best-for"><b>Best For:</b> ${place.best}</div>`;
-          container.appendChild(card);
-        });
+        const places = districtTouristData[touristState.currentDistrict];
+        if (places) {
+          places.forEach(place => {
+            const card = document.createElement('div');
+            card.className = 'tourist-card';
+            card.innerHTML = `<h3>${place.name}</h3><div class="loc">${touristState.currentDistrict}</div><p>${place.desc}</p><div class="best-for"><b>Best For:</b> ${place.best}</div>`;
+            container.appendChild(card);
+          });
+        }
       }
     }
 
@@ -854,15 +883,20 @@
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
       const selectedView = document.getElementById(viewId);
       if (selectedView) selectedView.classList.add('active');
-      if (viewId === 'ajk-hierarchy-view') { hierarchyState = { level: 'divisions', currentDivision: null, currentDistrict: null }; renderHierarchy(); }
-      else if (viewId === 'tourist-guide-view') { touristState = { level: 'districts', currentDistrict: null }; renderTouristGuide(); }
+
+      localStorage.setItem('activeView', viewId);
+
+      if (viewId === 'ajk-hierarchy-view') { renderHierarchy(); }
+      else if (viewId === 'tourist-guide-view') { renderTouristGuide(); }
       window.scrollTo(0, 0);
     }
 
     document.addEventListener('DOMContentLoaded', () => {
       document.body.addEventListener('click', initAudio, { once: true });
       document.addEventListener('click', (e) => { if (e.target.closest('button, .menu-card, .item-card')) playClickSound(); });
-      renderHierarchy(); renderTouristGuide();
+
+      const savedView = localStorage.getItem('activeView') || 'home-view';
+      showView(savedView);
     });
 
     setInterval(() => { document.getElementById('live-date').innerText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); }, 1000);
