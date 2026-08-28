@@ -489,3 +489,591 @@
             <span class="icon">🗺️</span>
             <div>
               <div class="title">Divisions, Districts & Tehsils</div>
+              <div class="sub">3 Divisions ➔ 10 Districts ➔ 32 Tehsils</div>
+            </div>
+          </div>
+        </div>
+        <div class="menu-card" onclick="showView('tourist-guide-view')">
+          <div style="display: flex; align-items: center; gap: 12px; width: 100%;">
+            <span class="icon">🏔️</span>
+            <div>
+              <div class="title">District-wise Tourist Guide</div>
+              <div class="sub">Top visited places categorized by district</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label">🧮 Smart Calculators & Tools</div>
+      <div class="grid-menu">
+        <div class="menu-card" onclick="showView('calc-view')">
+          <span class="icon">🔢</span>
+          <div class="title">Calculator</div>
+          <div class="sub">Standard Math</div>
+        </div>
+        <div class="menu-card" onclick="showView('budget-view')">
+          <span class="icon">📊</span>
+          <div class="title">Budget Plan</div>
+          <div class="sub">50/30/20 Rule</div>
+        </div>
+        <div class="menu-card" onclick="showView('fuel-hub-view')">
+          <span class="icon">⛽</span>
+          <div class="title">Fuel & Trip</div>
+          <div class="sub">Cost & Average</div>
+        </div>
+        <div class="menu-card" onclick="showView('currency-view')">
+          <span class="icon">🔀</span>
+          <div class="title">Currency</div>
+          <div class="sub">Rates Converter</div>
+        </div>
+        <div class="menu-card" onclick="showView('age-view')">
+          <span class="icon">🎂</span>
+          <div class="title">Age Calculator</div>
+          <div class="sub">Exact Age & DOB</div>
+        </div>
+        <div class="menu-card" onclick="showView('zakat-view')">
+          <span class="icon">🌙</span>
+          <div class="title">Zakat Calc</div>
+          <div class="sub">2.5% Calculation</div>
+        </div>
+        <div class="menu-card" onclick="showView('unit-view')" style="grid-column: span 2;">
+          <div style="display: flex; align-items: center; gap: 12px; width: 100%;">
+            <span class="icon">📏</span>
+            <div>
+              <div class="title">Unit Converter</div>
+              <div class="sub">Feet, Meters, Weight & Temp</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EMERGENCY CONTACTS -->
+    <section id="emergency-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
+      <div class="header-box" style="margin-bottom: 16px;">
+        <h2 style="color: #fca5a5; font-size: 1.4rem;">Emergency Contacts</h2>
+        <p>AJK Police, Tourism & Rescue Helplines</p>
+      </div>
+      <div class="emergency-grid">
+        <div class="emergency-card">
+          <div>
+            <h4>🏕️ Tourism Police AJK</h4>
+            <p>Tourist assistance & safety</p>
+          </div>
+          <a href="tel:1422" class="call-now-btn">📞 1422</a>
+        </div>
+        <div class="emergency-card">
+          <div>
+            <h4>🚑 Rescue 1122</h4>
+            <p>Medical & Fire Emergency</p>
+          </div>
+          <a href="tel:1122" class="call-now-btn">📞 1122</a>
+        </div>
+        <div class="emergency-card">
+          <div>
+            <h4>🚔 Police Emergency</h4>
+            <p>General Police Helpline</p>
+          </div>
+          <a href="tel:15" class="call-now-btn">📞 15</a>
+        </div>
+        <div class="emergency-card">
+          <div>
+            <h4>🛣️ National Highway Police</h4>
+            <p>Travel & Road Advisory</p>
+          </div>
+          <a href="tel:130" class="call-now-btn">📞 130</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. AJK DIVISIONS / DISTRICTS / TEHSILS -->
+    <section id="ajk-hierarchy-view" class="view">
+      <button class="back-btn" id="hierarchy-back-btn" onclick="handleHierarchyBack()">← Back</button>
+      <div class="header-box" style="margin-bottom: 16px;">
+        <h2 id="hierarchy-title" style="color: var(--text-main); font-size: 1.4rem;">AJK Divisions</h2>
+        <p id="hierarchy-subtitle">Select a Division</p>
+      </div>
+      <div class="hierarchy-container" id="hierarchy-list"></div>
+    </section>
+
+    <!-- 2. DISTRICT-WISE TOURIST GUIDE -->
+    <section id="tourist-guide-view" class="view">
+      <button class="back-btn" id="tourist-back-btn" onclick="handleTouristBack()">← Back</button>
+      <div class="header-box" style="margin-bottom: 16px;">
+        <h2 id="tourist-title" style="color: var(--text-main); font-size: 1.4rem;">AJK Tourist Guide</h2>
+        <p id="tourist-subtitle">Select a District to explore famous places</p>
+      </div>
+      <div class="hierarchy-container" id="tourist-list"></div>
+    </section>
+
+    <!-- 3. CALCULATOR SCREEN -->
+    <section id="calc-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
+      <div class="display-container">
+        <div class="header-text"><span>AJK Digital</span><span>Calculator</span></div>
+        <input type="text" id="display" readonly placeholder="0">
+      </div>
+      <div class="calc-buttons">
+        <button class="action" onclick="clearDisplay()">C</button>
+        <button class="action" onclick="deleteLast()">DEL</button>
+        <button class="operator" onclick="appendValue('/')">÷</button>
+        <button class="operator" onclick="appendValue('*')">×</button>
+        <button onclick="appendValue('7')">7</button><button onclick="appendValue('8')">8</button><button onclick="appendValue('9')">9</button>
+        <button class="operator" onclick="appendValue('-')">-</button>
+        <button onclick="appendValue('4')">4</button><button onclick="appendValue('5')">5</button><button onclick="appendValue('6')">6</button>
+        <button class="operator" onclick="appendValue('+')">+</button>
+        <button onclick="appendValue('1')">1</button><button onclick="appendValue('2')">2</button><button onclick="appendValue('3')">3</button>
+        <button class="equal" onclick="calculate()">=</button>
+        <button class="zero" onclick="appendValue('0')">0</button><button onclick="appendValue('.')">.</button>
+      </div>
+    </section>
+
+    <!-- 4. BUDGET CALCULATOR -->
+    <section id="budget-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
+      <div class="hub-form">
+        <div class="input-group">
+          <label for="monthly-salary">Enter Monthly Salary (PKR):</label>
+          <input type="number" id="monthly-salary" placeholder="e.g. 50000">
+        </div>
+        <button class="submit-btn" onclick="calculateBudget()">Calculate Plan</button>
+        <div class="results-container" id="budget-results" style="display: none; margin-top: 14px;">
+          <div class="single-result"><div class="val" id="needs-amount">Rs 0</div><div class="lbl">Needs (50%)</div></div>
+          <div class="single-result"><div class="val" id="wants-amount">Rs 0</div><div class="lbl">Wants (30%)</div></div>
+          <div class="single-result"><div class="val" id="savings-amount">Rs 0</div><div class="lbl">Savings (20%)</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. AGE CALCULATOR -->
+    <section id="age-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
+      <div class="hub-form">
+        <div class="input-group">
+          <label for="dob">Select Date of Birth:</label>
+          <input type="date" id="dob">
+        </div>
+        <button class="submit-btn" onclick="calculateAge()">Calculate Age</button>
+        <div class="single-result" id="age-results" style="display: none;">
+          <div class="val" id="age-years">0 Years Old</div>
+          <div class="lbl" id="age-detail">0 Months, 0 Days</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CURRENCY CONVERTER -->
+    <section id="currency-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
+      <div class="hub-form">
+        <div class="input-group"><label>Amount:</label><input type="number" id="curr-amount" placeholder="100"></div>
+        <div class="input-group">
+          <label>From:</label>
+          <select id="curr-from"><option value="USD">USD ($)</option><option value="SAR">SAR</option><option value="AED">AED</option><option value="PKR" selected>PKR</option></select>
+        </div>
+        <div class="input-group">
+          <label>To:</label>
+          <select id="curr-to"><option value="PKR" selected>PKR</option><option value="USD">USD ($)</option><option value="SAR">SAR</option><option value="AED">AED</option></select>
+        </div>
+        <button class="submit-btn" onclick="convertCurrency()">Convert</button>
+        <div class="single-result" id="curr-result" style="display: none;"><div class="val" id="curr-val">0</div></div>
+      </div>
+    </section>
+
+    <!-- 7. ZAKAT CALCULATOR -->
+    <section id="zakat-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
+      <div class="hub-form">
+        <div class="input-group">
+          <label>Current Silver Price per Tola (PKR):</label>
+          <input type="number" id="silver-price-tola" placeholder="e.g. 7300" value="7300">
+        </div>
+        <div class="input-group">
+          <label>Total Wealth & Assets Value (PKR):</label>
+          <input type="number" id="zakat-cash" placeholder="0">
+        </div>
+        <button class="submit-btn" onclick="calculateZakat()">Calculate Zakat (2.5%)</button>
+        <div class="single-result" id="zakat-result" style="display: none;">
+          <div class="val" id="zakat-val">Rs 0</div>
+          <div class="lbl" id="zakat-status" style="margin-top: 6px; font-weight: bold;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. FUEL & TRIP HUB -->
+    <section id="fuel-hub-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
+      <div class="sub-menu-box">
+        <button class="sub-tab-btn active" id="tab-cost-btn" onclick="switchFuelTab('cost')">⛽ Trip Cost</button>
+        <button class="sub-tab-btn" id="tab-avg-btn" onclick="switchFuelTab('avg')">🛵 Fuel Average</button>
+      </div>
+      <div id="fuel-cost-tab" class="hub-form">
+        <div class="input-group"><label>Distance (KM):</label><input type="number" id="trip-dist" placeholder="150"></div>
+        <div class="input-group"><label>Average (KM/Litre):</label><input type="number" id="trip-avg" placeholder="15"></div>
+        <div class="input-group"><label>Petrol Price / Litre:</label><input type="number" id="trip-price" placeholder="280"></div>
+        <button class="submit-btn" onclick="calculateTripCost()">Calculate Cost</button>
+        <div class="single-result" id="trip-result" style="display: none;"><div class="val" id="trip-val">Rs 0</div></div>
+      </div>
+      <div id="fuel-avg-tab" class="hub-form" style="display: none;">
+        <div class="input-group"><label>Distance Travelled (KM):</label><input type="number" id="avg-dist" placeholder="300"></div>
+        <div class="input-group"><label>Fuel Consumed (Litres):</label><input type="number" id="avg-fuel" placeholder="20"></div>
+        <button class="submit-btn" onclick="calculateFuelAverage()">Calculate Average</button>
+        <div class="single-result" id="avg-result" style="display: none;"><div class="val" id="avg-val">0 KM/L</div></div>
+      </div>
+    </section>
+
+    <!-- 9. UNIT CONVERTER -->
+    <section id="unit-view" class="view">
+      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
+      <div class="hub-form">
+        <div class="input-group"><label>Enter Value:</label><input type="number" id="unit-val" placeholder="0"></div>
+        <div class="input-group">
+          <label>Conversion Type:</label>
+          <select id="unit-type">
+            <option value="ft-m">Feet to Meters</option>
+            <option value="m-ft">Meters to Feet</option>
+            <option value="kg-lbs">KG to Pounds</option>
+            <option value="c-f">Celsius to Fahrenheit</option>
+          </select>
+        </div>
+        <button class="submit-btn" onclick="convertUnit()">Convert</button>
+        <div class="single-result" id="unit-result" style="display: none;"><div class="val" id="unit-res-val">0</div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>© 2026 Azad Kashmir Digital Suite</p>
+    <button class="share-btn" onclick="shareApp()">🔗 Share App</button>
+  </footer>
+
+  <!-- MOBILE SMART BOTTOM NAVIGATION -->
+  <div class="bottom-nav">
+    <button class="bottom-nav-item" onclick="showView('home-view')">
+      <span class="nav-icon">🏠</span>
+      <span>Home</span>
+    </button>
+    <button class="bottom-nav-item" onclick="showView('tourist-guide-view')">
+      <span class="nav-icon">🏔️</span>
+      <span>Tourism</span>
+    </button>
+    <button class="bottom-nav-item" onclick="showView('ajk-hierarchy-view')">
+      <span class="nav-icon">🗺️</span>
+      <span>Directory</span>
+    </button>
+    <button class="bottom-nav-item" onclick="showView('emergency-view')" style="color: #fca5a5;">
+      <span class="nav-icon">🚨</span>
+      <span>Emergency</span>
+    </button>
+  </div>
+
+  <script>
+    const ajkData = {
+      "Muzaffarabad Division": {
+        "Muzaffarabad District": ["Muzaffarabad Tehsil", "Pattika (Naseerabad) Tehsil"],
+        "Neelum District": ["Athmuqam Tehsil", "Sharda Tehsil"],
+        "Hattian Bala District": ["Hattian Bala Tehsil", "Chikkar Tehsil", "Leepa Tehsil"]
+      },
+      "Poonch Division": {
+        "Poonch (Rawalakot) District": ["Rawalakot Tehsil", "Hajira Tehsil", "Abbaspur Tehsil", "Thorar Tehsil"],
+        "Bagh District": ["Bagh Tehsil", "Dhirkot Tehsil", "Hari Ghel Tehsil", "Rera Tehsil"],
+        "Sudhanoti District": ["Palandri Tehsil", "Mang Tehsil", "Trarkhal Tehsil", "Baloch Tehsil"],
+        "Haveli District": ["Haveli (Kahuta) Tehsil", "Khurshidabad Tehsil", "Mumtazabad Tehsil"]
+      },
+      "Mirpur Division": {
+        "Mirpur District": ["Mirpur Tehsil", "Dadyal Tehsil", "Islamgarh Tehsil"],
+        "Kotli District": ["Kotli Tehsil", "Khuiratta Tehsil", "Sehnsa Tehsil", "Charhoi Tehsil", "Fatehpur Thakiala Tehsil", "Duliah Jattan Tehsil"],
+        "Bhimber District": ["Bhimber Tehsil", "Barnala Tehsil", "Samahni Tehsil"]
+      }
+    };
+
+    const districtTouristData = {
+      "Neelum District": [
+        { name: "Arang Kel", desc: "Lush green village perched on a hill above Kel. Reached via chairlift & short hike.", best: "Photography, Sunrise views & Nature walks" },
+        { name: "Ratti Gali Lake", desc: "Famous alpine glacial lake located at 12,130 feet surrounded by vibrant flowers.", best: "Trekking, Camping & Nature Photography" },
+        { name: "Sharda & Sharda Peeth", desc: "Historic valley along Neelum River featuring ancient temple ruins.", best: "History, Relaxed stay & River views" },
+        { name: "Taobat", desc: "The last scenic village of Neelum Valley near LOC with pristine waters.", best: "Peaceful environment & Offbeat travel" }
+      ],
+      "Muzaffarabad District": [
+        { name: "Pir Chinasi", desc: "Famous peak at 9,500 ft altitude offering 360-degree mountain views.", best: "Day trips, Cool breeze & Camping" },
+        { name: "Red Fort (Muzaffarabad Fort)", desc: "Historic 16th-century fort overlooking the Neelum River bend.", best: "Historical sightseeing & Photography" }
+      ],
+      "Hattian Bala District": [
+        { name: "Leepa Valley", desc: "Famous for wooden houses, terraced rice fields, and high apple production.", best: "Culture, Sightseeing & Scenery" },
+        { name: "Chikkar & Zalzal Lake", desc: "Picturesque hill station formed with a natural lake after the 2005 earthquake.", best: "Nature walks & Cool climate" }
+      ],
+      "Poonch (Rawalakot) District": [
+        { name: "Banjosa Lake", desc: "Beautiful artificial lake surrounded by dense pine forests.", best: "Family picnic, Boating & Relaxation" },
+        { name: "Toli Peer", desc: "High mountain hilltop meadow offering panoramic sunset views across Poonch.", best: "Sunset views, Camping & Windy weather" }
+      ],
+      "Bagh District": [
+        { name: "Ganga Choti", desc: "Peak near Sudhan Gali known for snow-capped winter views and green summer slopes.", best: "Trekking, Horse riding & Snowfall" },
+        { name: "Las Danna", desc: "Scenic spot surrounded by thick pine forests, ideal for quiet retreats.", best: "Nature walks & Forest camping" }
+      ],
+      "Sudhanoti District": [
+        { name: "Devi Gali", desc: "Lush green meadow surrounded by thick woods at an altitude of 6,400 ft.", best: "Picnics & Summer retreat" }
+      ],
+      "Haveli District": [
+        { name: "Bedori Top", desc: "High peak in Haveli district offering views of lush valleys and snow peaks.", best: "Adventure trekking & Hiking" }
+      ],
+      "Mirpur District": [
+        { name: "Mangla Dam & Resort", desc: "Large earth-fill dam with water sports and resort facilities.", best: "Boating, Water sports & Dining" },
+        { name: "Ramkot Fort", desc: "Ancient hill fort surrounded by Mangla Lake on three sides.", best: "Historical boat trip & Photography" }
+      ],
+      "Kotli District": [
+        { name: "Tatta Pani", desc: "Famous for natural hot sulfur water springs along the Poonch River.", best: "Health springs & River views" }
+      ],
+      "Bhimber District": [
+        { name: "Samahni Valley", desc: "Known as the 'Valley of Waterfalls' with scenic green landscapes.", best: "Valley exploration & Scenic drives" }
+      ]
+    };
+
+    let hierarchyState = JSON.parse(localStorage.getItem('hierarchyState')) || { level: 'divisions', currentDivision: null, currentDistrict: null };
+    let touristState = JSON.parse(localStorage.getItem('touristState')) || { level: 'districts', currentDistrict: null };
+
+    function saveStates() {
+      localStorage.setItem('hierarchyState', JSON.stringify(hierarchyState));
+      localStorage.setItem('touristState', JSON.stringify(touristState));
+    }
+
+    function toggleDrawer() {
+      playClickSound();
+      const drawer = document.getElementById('nav-drawer');
+      drawer.classList.toggle('open');
+    }
+
+    function navigateTo(viewId) {
+      document.getElementById('nav-drawer').classList.remove('open');
+      showView(viewId);
+    }
+
+    function renderHierarchy() {
+      const container = document.getElementById('hierarchy-list');
+      const title = document.getElementById('hierarchy-title');
+      const subtitle = document.getElementById('hierarchy-subtitle');
+      const backBtn = document.getElementById('hierarchy-back-btn');
+      container.innerHTML = '';
+      saveStates();
+
+      if (hierarchyState.level === 'divisions') {
+        title.innerText = "AJK Divisions";
+        subtitle.innerText = "Select a Division";
+        backBtn.innerText = "← Dashboard";
+        Object.keys(ajkData).forEach(divName => {
+          const card = document.createElement('div');
+          card.className = 'item-card';
+          card.innerHTML = `<div><div class="item-title">${divName}</div><div class="item-sub">${Object.keys(ajkData[divName]).length} Districts</div></div><span class="arrow-icon">➔</span>`;
+          card.onclick = () => { hierarchyState.level = 'districts'; hierarchyState.currentDivision = divName; renderHierarchy(); };
+          container.appendChild(card);
+        });
+      } else if (hierarchyState.level === 'districts') {
+        title.innerText = hierarchyState.currentDivision;
+        subtitle.innerText = "Select a District";
+        backBtn.innerText = "← Back to Divisions";
+        const districts = ajkData[hierarchyState.currentDivision];
+        if (districts) {
+          Object.keys(districts).forEach(distName => {
+            const card = document.createElement('div');
+            card.className = 'item-card';
+            card.innerHTML = `<div><div class="item-title">${distName}</div><div class="item-sub">${districts[distName].length} Tehsils</div></div><span class="arrow-icon">➔</span>`;
+            card.onclick = () => { hierarchyState.level = 'tehsils'; hierarchyState.currentDistrict = distName; renderHierarchy(); };
+            container.appendChild(card);
+          });
+        }
+      } else if (hierarchyState.level === 'tehsils') {
+        title.innerText = hierarchyState.currentDistrict;
+        subtitle.innerText = `Tehsils in ${hierarchyState.currentDistrict}`;
+        backBtn.innerText = "← Back to Districts";
+        const tehsils = ajkData[hierarchyState.currentDivision]?.[hierarchyState.currentDistrict];
+        if (tehsils) {
+          tehsils.forEach(tehName => {
+            const card = document.createElement('div');
+            card.className = 'item-card';
+            card.style.cursor = 'default';
+            card.innerHTML = `<div><div class="item-title">${tehName}</div><div class="item-sub">Tehsil</div></div><span class="arrow-icon">📍</span>`;
+            container.appendChild(card);
+          });
+        }
+      }
+    }
+
+    function handleHierarchyBack() {
+      if (hierarchyState.level === 'tehsils') { hierarchyState.level = 'districts'; renderHierarchy(); }
+      else if (hierarchyState.level === 'districts') { hierarchyState.level = 'divisions'; renderHierarchy(); }
+      else { showView('home-view'); }
+    }
+
+    function renderTouristGuide() {
+      const container = document.getElementById('tourist-list');
+      const title = document.getElementById('tourist-title');
+      const subtitle = document.getElementById('tourist-subtitle');
+      const backBtn = document.getElementById('tourist-back-btn');
+      container.innerHTML = '';
+      saveStates();
+
+      if (touristState.level === 'districts') {
+        title.innerText = "AJK Districts";
+        subtitle.innerText = "Select a District to view tourist spots";
+        backBtn.innerText = "← Dashboard";
+        Object.keys(districtTouristData).forEach(distName => {
+          const card = document.createElement('div');
+          card.className = 'item-card';
+          card.innerHTML = `<div><div class="item-title">${distName}</div><div class="item-sub">${districtTouristData[distName].length} Tourist Places</div></div><span class="arrow-icon">➔</span>`;
+          card.onclick = () => { touristState.level = 'places'; touristState.currentDistrict = distName; renderTouristGuide(); };
+          container.appendChild(card);
+        });
+      } else if (touristState.level === 'places') {
+        title.innerText = touristState.currentDistrict;
+        subtitle.innerText = `Top Places in ${touristState.currentDistrict}`;
+        backBtn.innerText = "← Back to Districts";
+        const places = districtTouristData[touristState.currentDistrict];
+        if (places) {
+          places.forEach(place => {
+            const card = document.createElement('div');
+            card.className = 'tourist-card';
+            card.innerHTML = `<div><h3>${place.name}</h3><div class="loc">${touristState.currentDistrict}</div><p>${place.desc}</p></div><div class="best-for"><b>Best For:</b> ${place.best}</div>`;
+            container.appendChild(card);
+          });
+        }
+      }
+    }
+
+    function handleTouristBack() {
+      if (touristState.level === 'places') { touristState.level = 'districts'; renderTouristGuide(); }
+      else { showView('home-view'); }
+    }
+
+    let audioCtx = null, soundEnabled = true;
+    function initAudio() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+    }
+    function playClickSound() {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+        osc.type = 'triangle'; osc.frequency.setValueAtTime(900, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.04);
+        osc.connect(gain); gain.connect(audioCtx.destination);
+        osc.start(); osc.stop(audioCtx.currentTime + 0.04);
+      } catch(e) {}
+    }
+
+    function toggleSound() { soundEnabled = !soundEnabled; document.getElementById('sound-btn').innerText = soundEnabled ? '🔊' : '🔇'; }
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      document.getElementById('theme-btn').innerText = next === 'dark' ? '🌙' : '☀️';
+    }
+
+    function showView(viewId) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      const selectedView = document.getElementById(viewId);
+      if (selectedView) selectedView.classList.add('active');
+
+      localStorage.setItem('activeView', viewId);
+
+      if (viewId === 'ajk-hierarchy-view') { renderHierarchy(); }
+      else if (viewId === 'tourist-guide-view') { renderTouristGuide(); }
+      window.scrollTo(0, 0);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.addEventListener('click', initAudio, { once: true });
+      document.addEventListener('click', (e) => { if (e.target.closest('button, .menu-card, .item-card')) playClickSound(); });
+
+      const savedView = localStorage.getItem('activeView') || 'home-view';
+      showView(savedView);
+    });
+
+    setInterval(() => { document.getElementById('live-date').innerText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); }, 1000);
+
+    function shareApp() {
+      if (navigator.share) navigator.share({ title: 'AJK Digital Suite', url: window.location.href });
+      else alert("App URL: " + window.location.href);
+    }
+
+    function appendValue(v) { document.getElementById('display').value += v; }
+    function clearDisplay() { document.getElementById('display').value = ''; }
+    function deleteLast() { const d = document.getElementById('display'); d.value = d.value.slice(0, -1); }
+    function calculate() {
+      try { document.getElementById('display').value = Function('"use strict"; return (' + document.getElementById('display').value + ')')(); }
+      catch(e) { document.getElementById('display').value = 'Error'; setTimeout(clearDisplay, 1200); }
+    }
+
+    function calculateBudget() {
+      const s = parseFloat(document.getElementById('monthly-salary').value);
+      if (!s) return alert("Enter valid salary");
+      document.getElementById('needs-amount').innerText = "Rs " + (s*0.5).toLocaleString();
+      document.getElementById('wants-amount').innerText = "Rs " + (s*0.3).toLocaleString();
+      document.getElementById('savings-amount').innerText = "Rs " + (s*0.2).toLocaleString();
+      document.getElementById('budget-results').style.display = 'block';
+    }
+
+    function calculateAge() {
+      const dob = document.getElementById('dob').value;
+      if (!dob) return alert("Select DOB");
+      const b = new Date(dob), t = new Date();
+      document.getElementById('age-years').innerText = (t.getFullYear() - b.getFullYear()) + " Years Old";
+      document.getElementById('age-detail').innerText = `Born on ${b.toDateString()}`;
+      document.getElementById('age-results').style.display = 'block';
+    }
+
+    function convertCurrency() {
+      const a = parseFloat(document.getElementById('curr-amount').value);
+      if (!a) return;
+      document.getElementById('curr-val').innerText = (a * 278).toFixed(2) + " PKR";
+      document.getElementById('curr-result').style.display = 'block';
+    }
+
+    function calculateZakat() {
+      const v = parseFloat(document.getElementById('zakat-cash').value);
+      const silverPrice = parseFloat(document.getElementById('silver-price-tola').value) || 7300;
+      if (isNaN(v)) return alert("Enter valid wealth amount");
+      
+      const nisabAmount = 52.5 * silverPrice;
+      const zakatValElement = document.getElementById('zakat-val');
+      const zakatStatusElement = document.getElementById('zakat-status');
+
+      if (v < nisabAmount) {
+        zakatValElement.innerText = "Rs 0";
+        zakatStatusElement.innerText = `Aap par Zakat farz nahi hai. Aapka nisab kam hai (Minimum Nisab: Rs ${nisabAmount.toLocaleString()})`;
+        zakatStatusElement.style.color = "#ef4444";
+      } else {
+        const zakatAmount = v * 0.025;
+        zakatValElement.innerText = "Rs " + zakatAmount.toLocaleString();
+        zakatStatusElement.style.color = "var(--text-muted)";
+      }
+      document.getElementById('zakat-result').style.display = 'block';
+    }
+
+    function switchFuelTab(t) {
+      document.getElementById('fuel-cost-tab').style.display = t === 'cost' ? 'block' : 'none';
+      document.getElementById('fuel-avg-tab').style.display = t === 'avg' ? 'block' : 'none';
+      document.getElementById('tab-cost-btn').classList.toggle('active', t === 'cost');
+      document.getElementById('tab-avg-btn').classList.toggle('active', t === 'avg');
+    }
+
+    function calculateTripCost() {
+      const d = parseFloat(document.getElementById('trip-dist').value);
+      const a = parseFloat(document.getElementById('trip-avg').value);
+      const p = parseFloat(document.getElementById('trip-price').value);
+      if (d && a && p) { document.getElementById('trip-val').innerText = "Rs " + ((d/a)*p).toFixed(2); document.getElementById('trip-result').style.display = 'block'; }
+    }
+
+    function calculateFuelAverage() {
+      const d = parseFloat(document.getElementById('avg-dist').value);
+      const f = parseFloat(document.getElementById('avg-fuel').value);
+      if (d && f) { document.getElementById('avg-val').innerText = (d/f).toFixed(2) + " KM/L"; document.getElementById('avg-result').style.display = 'block'; }
+    }
+
+    function convertUnit() {
+      const v = parseFloat(document.getElementById('unit-val').value);
+      if (!isNaN(v)) { document.getElementById('unit-res-val').innerText = (v * 0.3048).toFixed(2) + " Meters"; document.getElementById('unit-result').style.display = 'block'; }
+    }
+  </script>
+</body>
+</html>
