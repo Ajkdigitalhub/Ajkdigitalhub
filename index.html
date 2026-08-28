@@ -6,40 +6,40 @@
   <title>AJK Digital Hub & Smart Suite</title>
   <style>
     :root {
-      /* Dark Theme Default Variables */
-      --bg-gradient: linear-gradient(135deg, #05160c 0%, #020b06 60%, #0a1f12 100%);
-      --glass-bg: rgba(10, 31, 18, 0.85);
-      --glass-border: rgba(234, 179, 8, 0.35);
-      --card-bg: rgba(6, 24, 13, 0.7);
-      --card-border: rgba(34, 197, 94, 0.25);
-      --card-hover: rgba(22, 101, 52, 0.4);
+      /* Dark Theme Default Variables - Vibrant Midnight Cyberpunk / Neon Emerald Theme */
+      --bg-gradient: radial-gradient(circle at 15% 15%, #0f172a 0%, #090d16 50%, #020617 100%);
+      --glass-bg: rgba(15, 23, 42, 0.85);
+      --glass-border: rgba(56, 189, 248, 0.25);
+      --card-bg: rgba(30, 41, 59, 0.65);
+      --card-border: rgba(56, 189, 248, 0.15);
+      --card-hover: rgba(56, 189, 248, 0.15);
       --text-main: #f8fafc;
-      --text-muted: #86efac;
-      --accent-gold: #fde047;
-      --accent-gold-border: #eab308;
-      --btn-bg: #144523;
-      --btn-hover: #166534;
-      --shadow-color: rgba(0, 0, 0, 0.45);
-      --input-bg: rgba(6, 24, 13, 0.9);
-      --backdrop-blur: blur(14px);
+      --text-muted: #94a3b8;
+      --accent-gold: #38bdf8;
+      --accent-gold-border: #0ea5e9;
+      --btn-bg: #0369a1;
+      --btn-hover: #0284c7;
+      --shadow-color: rgba(0, 0, 0, 0.6);
+      --input-bg: rgba(15, 23, 42, 0.9);
+      --backdrop-blur: blur(16px);
     }
 
     [data-theme="light"] {
-      --bg-gradient: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 60%, #fef9c3 100%);
-      --glass-bg: rgba(255, 255, 255, 0.9);
-      --glass-border: rgba(202, 138, 4, 0.4);
+      --bg-gradient: radial-gradient(circle at 15% 15%, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+      --glass-bg: rgba(255, 255, 255, 0.88);
+      --glass-border: rgba(14, 165, 233, 0.3);
       --card-bg: rgba(255, 255, 255, 0.95);
-      --card-border: rgba(187, 247, 208, 0.9);
-      --card-hover: rgba(220, 252, 231, 0.8);
-      --text-main: #062c14;
-      --text-muted: #15803d;
-      --accent-gold: #854d0e;
-      --accent-gold-border: #ca8a04;
-      --btn-bg: #dcfce7;
-      --btn-hover: #bbf7d0;
-      --shadow-color: rgba(5, 44, 20, 0.1);
+      --card-border: rgba(186, 230, 253, 0.8);
+      --card-hover: rgba(224, 242, 254, 0.9);
+      --text-main: #0c4a6e;
+      --text-muted: #0284c7;
+      --accent-gold: #0284c7;
+      --accent-gold-border: #0ea5e9;
+      --btn-bg: #e0f2fe;
+      --btn-hover: #bae6fd;
+      --shadow-color: rgba(14, 165, 233, 0.15);
       --input-bg: #ffffff;
-      --backdrop-blur: blur(10px);
+      --backdrop-blur: blur(12px);
     }
 
     * {
@@ -48,16 +48,15 @@
       padding: 0;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      display: block;
       min-height: 100vh;
       background: var(--bg-gradient);
       color: var(--text-main);
-      padding: 12px 12px 80px 12px;
+      padding: 16px 12px 110px 12px;
     }
 
     /* HEADER & NAV BAR STYLES */
@@ -66,28 +65,42 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      max-width: 500px;
-      margin-bottom: 12px;
-      padding: 10px 14px;
+      max-width: 1240px;
+      margin: 0 auto 16px auto;
+      padding: 12px 18px;
       background: var(--glass-bg);
       backdrop-filter: var(--backdrop-blur);
       -webkit-backdrop-filter: var(--backdrop-blur);
-      border-radius: 18px;
+      border-radius: 20px;
       border: 1px solid var(--glass-border);
-      box-shadow: 0 8px 32px var(--shadow-color);
+      box-shadow: 0 10px 30px var(--shadow-color);
       position: sticky;
-      top: 10px;
+      top: 12px;
       z-index: 100;
     }
 
-    .logo-area { display: flex; align-items: center; gap: 8px; cursor: pointer; }
-    .header-actions { display: flex; align-items: center; gap: 6px; }
+    .logo-area { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+    .logo-area > span {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(14, 165, 233, 0.1));
+      border: 1px solid var(--glass-border);
+      font-size: 1.2rem;
+    }
+    .logo-area h2 { font-size: 1.05rem; color: var(--accent-gold); margin: 0; line-height: 1.1; letter-spacing: 0.3px; }
+    .logo-area span { color: var(--text-muted); font-size: 0.72rem; }
+
+    .header-actions { display: flex; align-items: center; gap: 8px; }
 
     .menu-toggle-btn {
       background: var(--card-bg);
       border: 1px solid var(--glass-border);
-      border-radius: 10px;
-      padding: 6px 10px;
+      border-radius: 12px;
+      width: 38px;
+      height: 38px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -97,11 +110,11 @@
     }
 
     .icon-toggle {
-      background: transparent;
+      background: var(--card-bg);
       border: 1px solid var(--glass-border);
       border-radius: 50%;
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -110,32 +123,34 @@
       color: var(--accent-gold);
     }
 
-    .icon-toggle:hover, .menu-toggle-btn:hover { transform: scale(1.05); }
+    .icon-toggle:hover, .menu-toggle-btn:hover { transform: translateY(-2px); background: var(--btn-hover); }
+    #live-date { padding: 0 6px; color: var(--text-muted); font-size: 0.8rem; font-weight: 700; font-variant-numeric: tabular-nums; }
 
     /* DROPDOWN MENU SLIDE */
     .nav-drawer {
       display: none;
-      flex-direction: column;
-      gap: 8px;
+      flex-direction: row;
+      gap: 10px;
       width: 100%;
-      max-width: 500px;
+      max-width: 1240px;
+      margin: 0 auto 14px auto;
       background: var(--glass-bg);
       backdrop-filter: var(--backdrop-blur);
       border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      padding: 14px;
-      margin-bottom: 12px;
-      box-shadow: 0 8px 24px var(--shadow-color);
+      border-radius: 18px;
+      padding: 12px;
+      box-shadow: 0 10px 30px var(--shadow-color);
     }
 
     .nav-drawer.open { display: flex; }
 
     .nav-btn {
+      flex: 1;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       color: var(--text-main);
-      padding: 10px 14px;
-      border-radius: 10px;
+      padding: 12px 14px;
+      border-radius: 12px;
       font-size: 0.88rem;
       font-weight: 700;
       cursor: pointer;
@@ -145,18 +160,19 @@
       text-decoration: none;
     }
 
-    .nav-btn:hover { background-color: var(--card-hover); border-color: var(--accent-gold-border); }
-    .nav-btn.emergency { border-color: #ef4444; color: #fca5a5; }
+    .nav-btn:hover { background-color: var(--card-hover); border-color: var(--accent-gold-border); transform: translateY(-1px); }
+    .nav-btn.emergency { border-color: rgba(239, 68, 68, 0.4); color: #fca5a5; background: rgba(239, 68, 68, 0.08); }
 
     .container {
       width: 100%;
-      max-width: 500px;
-      padding: 20px;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 30px;
       background: var(--glass-bg);
       backdrop-filter: var(--backdrop-blur);
       -webkit-backdrop-filter: var(--backdrop-blur);
-      border-radius: 24px;
-      box-shadow: 0 16px 40px var(--shadow-color);
+      border-radius: 28px;
+      box-shadow: 0 20px 50px var(--shadow-color);
       border: 1px solid var(--glass-border);
       position: relative;
     }
@@ -165,69 +181,95 @@
       display: flex;
       height: 5px;
       width: 100%;
-      border-radius: 4px;
+      border-radius: 999px;
       overflow: hidden;
-      margin-bottom: 18px;
+      margin-bottom: 24px;
+      opacity: 0.9;
     }
 
-    .flag-strip .green { flex: 1; background-color: #16a34a; }
-    .flag-strip .gold { flex: 1; background-color: #eab308; }
-    .flag-strip .white { flex: 1; background-color: #ffffff; }
+    .flag-strip .green { flex: 1; background-color: #38bdf8; }
+    .flag-strip .gold { flex: 1; background-color: #818cf8; }
+    .flag-strip .white { flex: 1; background-color: #c084fc; }
 
-    .header-box { text-align: center; margin-bottom: 20px; }
-    .header-box h1 { color: var(--accent-gold); font-size: 1.5rem; letter-spacing: -0.5px; margin-bottom: 4px; }
-    .header-box p { color: var(--text-muted); font-size: 0.85rem; }
+    .header-box { text-align: left; margin-bottom: 28px; }
+    .header-box h1 { color: var(--text-main); font-size: clamp(1.8rem, 3.5vw, 2.6rem); letter-spacing: -0.5px; margin-bottom: 6px; line-height: 1.15; }
+    .header-box p { color: var(--text-muted); font-size: 0.92rem; }
 
     .section-label {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--accent-gold);
-      margin: 18px 0 10px 4px;
+      letter-spacing: 1.2px;
+      color: var(--text-muted);
+      margin: 24px 0 12px 2px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
+    .section-label::first-letter { color: var(--accent-gold); }
 
-    .grid-menu { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .grid-menu.single { grid-template-columns: 1fr; }
+    .grid-menu { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .grid-menu.single { grid-template-columns: repeat(2, 1fr); }
 
     .menu-card {
-      padding: 14px 12px;
-      border-radius: 14px;
+      padding: 18px 16px;
+      border-radius: 18px;
       border: 1px solid var(--card-border);
-      background-color: var(--card-bg);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
       color: var(--text-main);
       cursor: pointer;
-      box-shadow: 0 4px 12px var(--shadow-color);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 6px;
+      gap: 8px;
       text-align: left;
+      min-height: 140px;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-card::after {
+      content: "";
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      right: -25px;
+      bottom: -25px;
+      border-radius: 50%;
+      background: rgba(56, 189, 248, 0.08);
     }
 
     .menu-card:hover {
       background-color: var(--card-hover);
       border-color: var(--accent-gold-border);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
     }
 
-    .menu-card .icon { font-size: 1.5rem; }
-    .menu-card .title { font-size: 0.92rem; font-weight: 700; color: var(--text-main); }
-    .menu-card .sub { font-size: 0.75rem; color: var(--text-muted); }
+    .menu-card .icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      font-size: 1.3rem;
+    }
+    .menu-card .title { font-size: 0.95rem; font-weight: 750; color: var(--text-main); }
+    .menu-card .sub { font-size: 0.74rem; color: var(--text-muted); line-height: 1.35; }
 
     .back-btn {
-      background: rgba(225, 29, 72, 0.15);
-      border: 1px solid rgba(225, 29, 72, 0.4);
-      color: #fda4af;
-      padding: 8px 14px;
-      border-radius: 10px;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+      padding: 9px 14px;
+      border-radius: 12px;
       font-size: 0.82rem;
       font-weight: 700;
       cursor: pointer;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       display: inline-flex;
       align-items: center;
     }
@@ -242,92 +284,115 @@
     .view.active { display: block; opacity: 1; transform: translateY(0); }
 
     .hierarchy-container {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      max-height: 400px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      max-height: 520px;
       overflow-y: auto;
       padding-right: 4px;
+      scrollbar-width: thin;
     }
 
     .item-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 12px 14px;
+      border-radius: 14px;
+      padding: 14px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
+      min-height: 75px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
-    .item-card:hover { background-color: var(--card-hover); border-color: var(--accent-gold-border); }
-    .item-title { font-size: 0.95rem; font-weight: 700; color: var(--text-main); }
-    .item-sub { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+    .item-card:hover { background-color: var(--card-hover); border-color: var(--accent-gold-border); transform: translateX(2px); }
+    .item-title { font-size: 0.92rem; font-weight: 700; color: var(--text-main); }
+    .item-sub { font-size: 0.76rem; color: var(--text-muted); margin-top: 2px; }
     .arrow-icon { color: var(--accent-gold); font-size: 1rem; }
 
-    .tourist-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 14px;
-      margin-bottom: 10px;
+    #tourist-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      max-height: 550px;
+      overflow-y: auto;
+      padding-right: 4px;
     }
 
-    .tourist-card h3 { color: var(--accent-gold); font-size: 1.05rem; margin-bottom: 2px; }
-    .tourist-card .loc { font-size: 0.72rem; color: var(--accent-gold-border); font-weight: 800; text-transform: uppercase; margin-bottom: 6px; }
-    .tourist-card p { font-size: 0.83rem; color: var(--text-main); line-height: 1.45; }
-    .tourist-card .best-for { font-size: 0.78rem; color: var(--text-muted); margin-top: 8px; border-top: 1px dashed var(--card-border); padding-top: 6px; }
+    .tourist-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 190px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
 
-    .display-container { background-color: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 14px; padding: 12px 16px; margin-bottom: 16px; }
-    .header-text { display: flex; justify-content: space-between; color: var(--accent-gold); font-size: 0.75rem; font-weight: 700; margin-bottom: 4px; }
-    #display { width: 100%; height: 48px; background: transparent; border: none; color: var(--text-main); font-size: 2rem; text-align: right; outline: none; font-weight: bold; }
+    .tourist-card h3 { color: var(--accent-gold); font-size: 1.05rem; margin-bottom: 4px; }
+    .tourist-card .loc { font-size: 0.65rem; color: var(--accent-gold); background: rgba(56, 189, 248, 0.1); padding: 3px 8px; border-radius: 6px; font-weight: 800; text-transform: uppercase; margin: 4px 0 8px 0; display: inline-block; border: 1px solid rgba(56, 189, 248, 0.2); }
+    .tourist-card p { font-size: 0.82rem; color: var(--text-main); line-height: 1.5; }
+    .tourist-card .best-for { font-size: 0.74rem; color: var(--text-muted); margin-top: 10px; border-top: 1px dashed var(--card-border); padding-top: 8px; }
+
+    .display-container { background: rgba(0, 0, 0, 0.15); border: 1px solid var(--card-border); border-radius: 16px; padding: 14px 18px; margin-bottom: 14px; max-width: 650px; margin-left: auto; margin-right: auto; }
+    .header-text { display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 6px; }
+    #display { width: 100%; height: 52px; background: transparent; border: none; color: var(--text-main); font-size: 2.2rem; text-align: right; outline: none; font-weight: bold; }
     
-    .calc-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-    .calc-buttons button { height: 48px; border-radius: 10px; border: 1px solid var(--card-border); font-size: 1.15rem; font-weight: 700; cursor: pointer; background-color: var(--card-bg); color: var(--text-main); }
-    .calc-buttons button.operator { background-color: #ea580c; border-color: #c2410c; color: #ffffff; }
-    .calc-buttons button.action { background-color: #dc2626; border-color: #b91c1c; color: #ffffff; }
-    .calc-buttons button.equal { background-color: var(--accent-gold-border); border-color: var(--accent-gold); color: #051d0d; grid-row: span 2; height: 100%; font-size: 1.5rem; }
+    .calc-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 650px; margin-left: auto; margin-right: auto; }
+    .calc-buttons button { height: 56px; border-radius: 12px; border: 1px solid var(--card-border); font-size: 1.2rem; font-weight: 700; cursor: pointer; background-color: var(--card-bg); color: var(--text-main); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .calc-buttons button:hover { background-color: var(--card-hover); transform: translateY(-1px); }
+    .calc-buttons button.operator { background-color: rgba(56, 189, 248, 0.18); border-color: rgba(56, 189, 248, 0.3); color: #38bdf8; }
+    .calc-buttons button.action { background-color: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.3); color: #fca5a5; }
+    .calc-buttons button.equal { background: linear-gradient(135deg, #0284c7, #0369a1); border-color: #38bdf8; color: #ffffff; grid-row: span 2; height: 100%; font-size: 1.6rem; }
     .calc-buttons button.zero { grid-column: span 2; }
     
-    .hub-form { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 18px; }
-    .input-group { margin-bottom: 14px; }
-    .input-group label { display: block; color: var(--accent-gold); font-size: 0.82rem; font-weight: 700; margin-bottom: 6px; }
-    .input-group input, .input-group select { width: 100%; min-height: 44px; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--card-border); background-color: var(--input-bg); color: var(--text-main); font-size: 0.9rem; font-weight: 600; outline: none; }
-    .submit-btn { width: 100%; min-height: 44px; padding: 10px; border-radius: 10px; border: none; background-color: var(--accent-gold-border); color: #051d0d; font-size: 0.95rem; font-weight: 800; cursor: pointer; margin-top: 6px; }
+    .hub-form { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; padding: 22px; max-width: 650px; margin: 0 auto; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+    .input-group { margin-bottom: 16px; }
+    .input-group label { display: block; color: var(--text-muted); font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; }
+    .input-group input, .input-group select { width: 100%; min-height: 46px; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--card-border); background-color: var(--input-bg); color: var(--text-main); font-size: 0.92rem; font-weight: 600; outline: none; }
+    .input-group input:focus, .input-group select:focus { border-color: var(--accent-gold-border); box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15); }
+    .submit-btn { width: 100%; min-height: 48px; padding: 10px; border-radius: 12px; border: none; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; font-size: 0.95rem; font-weight: 800; cursor: pointer; margin-top: 8px; box-shadow: 0 6px 18px rgba(2, 132, 199, 0.25); }
+    .submit-btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
     
-    .single-result { background: var(--glass-bg); border: 1px solid var(--accent-gold-border); padding: 14px; border-radius: 12px; text-align: center; margin-top: 14px; }
-    .single-result .val { font-size: 1.2rem; font-weight: bold; color: var(--accent-gold); }
-    .single-result .lbl { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
-    .sub-menu-box { display: flex; gap: 8px; margin-bottom: 14px; }
-    .sub-tab-btn { flex: 1; min-height: 40px; padding: 6px; border-radius: 10px; border: 1px solid var(--card-border); background-color: var(--card-bg); color: var(--text-muted); font-size: 0.82rem; font-weight: 700; cursor: pointer; }
-    .sub-tab-btn.active { background-color: var(--accent-gold-border); color: #051d0d; border-color: var(--accent-gold); }
+    .single-result { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 16px; border-radius: 14px; text-align: center; margin-top: 14px; }
+    .single-result .val { font-size: 1.3rem; font-weight: bold; color: var(--text-main); }
+    .single-result .lbl { font-size: 0.8rem; color: var(--text-muted); margin-top: 3px; }
+    .sub-menu-box { display: flex; gap: 10px; margin-bottom: 16px; max-width: 650px; margin-left: auto; margin-right: auto; }
+    .sub-tab-btn { flex: 1; min-height: 44px; padding: 8px; border-radius: 12px; border: 1px solid var(--card-border); background-color: var(--card-bg); color: var(--text-muted); font-size: 0.85rem; font-weight: 700; cursor: pointer; }
+    .sub-tab-btn.active { background-color: rgba(56, 189, 248, 0.15); color: #38bdf8; border-color: rgba(56, 189, 248, 0.35); }
 
     /* EMERGENCY DIRECTORY STYLES */
-    .emergency-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
-    .emergency-card { background: var(--card-bg); border: 1px solid #ef4444; border-radius: 14px; padding: 14px; display: flex; justify-content: space-between; align-items: center; }
-    .emergency-card h4 { color: #fca5a5; font-size: 0.95rem; }
-    .emergency-card p { font-size: 0.75rem; color: var(--text-muted); }
-    .call-now-btn { background: #dc2626; color: white; padding: 8px 14px; border-radius: 8px; text-decoration: none; font-weight: 800; font-size: 0.82rem; display: flex; align-items: center; gap: 4px; }
+    .emergency-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 12px; }
+    .emergency-card { background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 16px; padding: 18px; display: flex; justify-content: space-between; align-items: center; min-height: 110px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    .emergency-card h4 { color: #fca5a5; font-size: 1rem; margin-bottom: 2px; }
+    .emergency-card p { font-size: 0.78rem; color: var(--text-muted); }
+    .call-now-btn { background: #dc2626; color: white; padding: 9px 16px; border-radius: 10px; text-decoration: none; font-weight: 800; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25); }
+    .call-now-btn:hover { background: #b91c1c; transform: translateY(-1px); }
 
     /* FOOTER & BOTTOM NAV */
-    .app-footer { width: 100%; max-width: 500px; margin-top: 20px; text-align: center; font-size: 0.78rem; color: var(--text-muted); }
-    .share-btn { background: var(--btn-bg); border: 1px solid var(--glass-border); color: var(--accent-gold); padding: 8px 16px; border-radius: 10px; margin-top: 8px; cursor: pointer; font-size: 0.8rem; font-weight: 700; }
+    .app-footer { width: 100%; max-width: 1240px; margin: 24px auto 0 auto; text-align: center; font-size: 0.8rem; color: var(--text-muted); display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .share-btn { background: var(--btn-bg); border: 1px solid var(--glass-border); color: #ffffff; padding: 10px 20px; border-radius: 12px; cursor: pointer; font-size: 0.82rem; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .share-btn:hover { background: var(--btn-hover); transform: translateY(-1px); }
 
     .bottom-nav {
       position: fixed;
-      bottom: 0;
+      bottom: 14px;
       left: 50%;
       transform: translateX(-50%);
-      width: 100%;
-      max-width: 500px;
+      width: min(600px, calc(100% - 28px));
       background: var(--glass-bg);
       backdrop-filter: var(--backdrop-blur);
-      border-top: 1px solid var(--glass-border);
+      -webkit-backdrop-filter: var(--backdrop-blur);
+      border: 1px solid var(--glass-border);
       display: flex;
       justify-content: space-around;
-      padding: 8px 0;
+      padding: 8px 10px;
+      border-radius: 20px;
       z-index: 100;
+      box-shadow: 0 10px 30px var(--shadow-color);
     }
 
     .bottom-nav-item {
@@ -335,763 +400,58 @@
       flex-direction: column;
       align-items: center;
       color: var(--text-muted);
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 700;
       cursor: pointer;
       background: none;
       border: none;
+      padding: 6px 12px;
+      border-radius: 12px;
     }
 
     .bottom-nav-item .nav-icon { font-size: 1.2rem; margin-bottom: 2px; }
-    .bottom-nav-item:hover { color: var(--accent-gold); }
-  
-/* =========================================================
-   MODERN UI REFRESH - FUNCTIONALITY UNCHANGED
-   ========================================================= */
-:root {
-  --bg-gradient: radial-gradient(circle at 20% 0%, #123a29 0%, #07130e 42%, #030807 100%);
-  --glass-bg: rgba(11, 24, 18, .82);
-  --glass-border: rgba(255,255,255,.09);
-  --card-bg: rgba(255,255,255,.045);
-  --card-border: rgba(255,255,255,.075);
-  --card-hover: rgba(34,197,94,.12);
-  --text-main: #f7faf8;
-  --text-muted: #91a99b;
-  --accent-gold: #f5cf63;
-  --accent-gold-border: #d7aa35;
-  --btn-bg: rgba(34,197,94,.12);
-  --btn-hover: rgba(34,197,94,.2);
-  --shadow-color: rgba(0,0,0,.35);
-  --input-bg: rgba(0,0,0,.24);
-  --backdrop-blur: blur(22px);
-}
-
-[data-theme="light"] {
-  --bg-gradient: radial-gradient(circle at 20% 0%, #dcfce7 0%, #f7faf8 48%, #fffdf2 100%);
-  --glass-bg: rgba(255,255,255,.82);
-  --glass-border: rgba(6,44,20,.09);
-  --card-bg: rgba(255,255,255,.7);
-  --card-border: rgba(6,44,20,.08);
-  --card-hover: rgba(34,197,94,.10);
-  --text-main: #092315;
-  --text-muted: #4d6b59;
-  --accent-gold: #9a6b00;
-  --accent-gold-border: #c58a05;
-  --btn-bg: rgba(34,197,94,.09);
-  --btn-hover: rgba(34,197,94,.16);
-  --shadow-color: rgba(6,44,20,.10);
-  --input-bg: rgba(255,255,255,.92);
-  --backdrop-blur: blur(18px);
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  -webkit-tap-highlight-color: transparent;
-}
-
-body {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  min-height:100vh;
-  background:var(--bg-gradient);
-  color:var(--text-main);
-  padding:12px 12px 92px;
-}
-
-.app-header {
-  width:100%;
-  max-width:520px;
-  margin-bottom:10px;
-  padding:10px 12px;
-  background:var(--glass-bg);
-  backdrop-filter:var(--backdrop-blur);
-  -webkit-backdrop-filter:var(--backdrop-blur);
-  border:1px solid var(--glass-border);
-  border-radius:20px;
-  box-shadow:0 14px 40px var(--shadow-color);
-  position:sticky;
-  top:10px;
-  z-index:100;
-}
-
-.logo-area { gap:10px; }
-.logo-area > span {
-  width:38px;
-  height:38px;
-  display:grid;
-  place-items:center;
-  border-radius:13px;
-  background:linear-gradient(145deg,rgba(34,197,94,.2),rgba(245,207,99,.12));
-  border:1px solid var(--glass-border);
-  font-size:1.15rem !important;
-}
-.logo-area h2 { font-size:.98rem !important; letter-spacing:.2px; }
-.logo-area span { color:var(--text-muted); }
-
-.header-actions { gap:6px; }
-.menu-toggle-btn,.icon-toggle {
-  border:1px solid var(--glass-border);
-  background:rgba(255,255,255,.035);
-  color:var(--text-main);
-  border-radius:12px;
-}
-.menu-toggle-btn {
-  width:38px;
-  height:38px;
-  padding:0;
-  color:var(--accent-gold);
-}
-.icon-toggle { width:38px; height:38px; }
-.menu-toggle-btn:hover,.icon-toggle:hover { transform:translateY(-1px); background:var(--btn-hover); }
-#live-date {
-  padding:0 5px;
-  color:var(--text-muted) !important;
-  font-variant-numeric:tabular-nums;
-}
-
-.nav-drawer {
-  width:100%;
-  max-width:520px;
-  background:var(--glass-bg);
-  backdrop-filter:var(--backdrop-blur);
-  border:1px solid var(--glass-border);
-  border-radius:18px;
-  padding:10px;
-  margin-bottom:10px;
-  box-shadow:0 14px 35px var(--shadow-color);
-}
-.nav-btn {
-  padding:13px 14px;
-  border-radius:13px;
-  background:var(--card-bg);
-  border:1px solid var(--card-border);
-  color:var(--text-main);
-}
-.nav-btn:hover { background:var(--card-hover); border-color:rgba(245,207,99,.45); }
-.nav-btn.emergency { border-color:rgba(239,68,68,.45); color:#ffb2b2; }
-
-.container {
-  width:100%;
-  max-width:520px;
-  padding:18px;
-  background:var(--glass-bg);
-  backdrop-filter:var(--backdrop-blur);
-  -webkit-backdrop-filter:var(--backdrop-blur);
-  border:1px solid var(--glass-border);
-  border-radius:28px;
-  box-shadow:0 20px 60px var(--shadow-color);
-}
-
-.flag-strip {
-  height:4px;
-  margin-bottom:22px;
-  opacity:.9;
-  border-radius:999px;
-}
-
-.header-box {
-  text-align:left;
-  margin-bottom:22px;
-}
-.header-box h1 {
-  color:var(--text-main) !important;
-  font-size:1.75rem !important;
-  letter-spacing:-.8px !important;
-  line-height:1.1;
-  margin-bottom:7px;
-}
-.header-box p { color:var(--text-muted); font-size:.84rem; }
-
-.section-label {
-  margin:22px 0 10px 2px;
-  color:var(--text-muted);
-  font-size:.69rem;
-  letter-spacing:1.2px;
-}
-.section-label:first-letter { color:var(--accent-gold); }
-
-.grid-menu { gap:10px; }
-.menu-card {
-  position:relative;
-  min-height:104px;
-  padding:15px;
-  border-radius:18px;
-  border:1px solid var(--card-border);
-  background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
-  box-shadow:0 8px 24px rgba(0,0,0,.13);
-  overflow:hidden;
-}
-.menu-card::after {
-  content:"";
-  position:absolute;
-  width:70px;
-  height:70px;
-  right:-30px;
-  bottom:-30px;
-  border-radius:50%;
-  background:rgba(34,197,94,.08);
-}
-.menu-card:hover {
-  background:var(--card-hover);
-  border-color:rgba(245,207,99,.35);
-  transform:translateY(-3px);
-}
-.menu-card .icon {
-  width:38px;
-  height:38px;
-  display:grid;
-  place-items:center;
-  border-radius:12px;
-  background:rgba(34,197,94,.11);
-  border:1px solid rgba(34,197,94,.12);
-  font-size:1.25rem;
-}
-.menu-card .title { font-size:.9rem; font-weight:750; }
-.menu-card .sub { margin-top:3px; font-size:.72rem; color:var(--text-muted); line-height:1.35; }
-
-.back-btn {
-  margin-bottom:18px;
-  padding:9px 13px;
-  border-radius:12px;
-  background:rgba(239,68,68,.08);
-  border:1px solid rgba(239,68,68,.22);
-  color:#ff9e9e;
-}
-
-.hierarchy-container {
-  gap:9px;
-  max-height:450px;
-  padding-right:2px;
-  scrollbar-width:thin;
-}
-.item-card {
-  padding:14px 15px;
-  min-height:64px;
-  border-radius:16px;
-  border:1px solid var(--card-border);
-  background:var(--card-bg);
-  box-shadow:0 5px 16px rgba(0,0,0,.08);
-}
-.item-card:hover {
-  background:var(--card-hover);
-  border-color:rgba(245,207,99,.38);
-  transform:translateX(2px);
-}
-.item-title { font-size:.9rem; }
-.item-sub { color:var(--text-muted); font-size:.72rem; }
-.arrow-icon { color:var(--accent-gold); }
-
-.tourist-card {
-  margin-bottom:10px;
-  padding:16px;
-  border-radius:18px;
-  border:1px solid var(--card-border);
-  background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
-  box-shadow:0 7px 22px rgba(0,0,0,.10);
-}
-.tourist-card h3 { font-size:1.02rem; }
-.tourist-card .loc {
-  display:inline-block;
-  padding:4px 7px;
-  margin:5px 0 8px;
-  border-radius:7px;
-  background:rgba(245,207,99,.08);
-  color:var(--accent-gold-border);
-  font-size:.62rem;
-}
-.tourist-card p { font-size:.81rem; line-height:1.55; }
-.tourist-card .best-for {
-  margin-top:11px;
-  padding-top:9px;
-  border-top:1px solid var(--card-border);
-  font-size:.72rem;
-}
-
-.display-container,.hub-form {
-  background:rgba(0,0,0,.10);
-  border:1px solid var(--card-border);
-  border-radius:20px;
-  padding:16px;
-  box-shadow:inset 0 1px rgba(255,255,255,.03);
-}
-.display-container { margin-bottom:12px; }
-.header-text { color:var(--text-muted); font-size:.68rem; letter-spacing:.7px; }
-#display {
-  height:58px;
-  font-size:2.15rem;
-  color:var(--text-main);
-}
-.calc-buttons { gap:8px; }
-.calc-buttons button {
-  height:54px;
-  border-radius:15px;
-  border:1px solid var(--card-border);
-  background:var(--card-bg);
-  color:var(--text-main);
-  box-shadow:0 4px 12px rgba(0,0,0,.10);
-}
-.calc-buttons button:hover { background:var(--card-hover); transform:translateY(-1px); }
-.calc-buttons button.operator {
-  background:rgba(34,197,94,.16);
-  border-color:rgba(34,197,94,.24);
-  color:#86efac;
-}
-.calc-buttons button.action {
-  background:rgba(239,68,68,.13);
-  border-color:rgba(239,68,68,.25);
-}
-.calc-buttons button.equal {
-  background:linear-gradient(145deg,#e4bd50,#c99b28);
-  border-color:#f5cf63;
-  color:#102116;
-}
-
-.input-group { margin-bottom:15px; }
-.input-group label {
-  color:var(--text-muted);
-  font-size:.72rem;
-  letter-spacing:.2px;
-  margin-bottom:7px;
-}
-.input-group input,.input-group select {
-  min-height:48px;
-  padding:10px 13px;
-  border-radius:13px;
-  border:1px solid var(--card-border);
-  background:var(--input-bg);
-  color:var(--text-main);
-  font-size:.9rem;
-}
-.input-group input:focus,.input-group select:focus {
-  border-color:rgba(34,197,94,.55);
-  box-shadow:0 0 0 3px rgba(34,197,94,.09);
-}
-.submit-btn {
-  min-height:48px;
-  border-radius:13px;
-  background:linear-gradient(135deg,#d9b03f,#f0d36e);
-  color:#102116;
-  box-shadow:0 8px 20px rgba(215,170,53,.16);
-}
-.submit-btn:hover { transform:translateY(-1px); filter:brightness(1.04); }
-
-.single-result {
-  margin-top:12px;
-  padding:16px;
-  border-radius:16px;
-  background:rgba(34,197,94,.065);
-  border:1px solid rgba(34,197,94,.18);
-}
-.single-result .val { color:var(--text-main); font-size:1.3rem; }
-.single-result .lbl { color:var(--text-muted); }
-
-.sub-menu-box { gap:8px; margin-bottom:10px; }
-.sub-tab-btn {
-  min-height:44px;
-  border-radius:13px;
-  background:var(--card-bg);
-  border:1px solid var(--card-border);
-}
-.sub-tab-btn.active {
-  background:rgba(34,197,94,.16);
-  border-color:rgba(34,197,94,.35);
-  color:#86efac;
-}
-
-.emergency-grid { gap:10px; }
-.emergency-card {
-  padding:15px;
-  border-radius:17px;
-  border:1px solid rgba(239,68,68,.28);
-  background:rgba(239,68,68,.045);
-}
-.emergency-card h4 { color:#ffb0b0; }
-.emergency-card p { color:var(--text-muted); }
-.call-now-btn {
-  padding:9px 13px;
-  border-radius:10px;
-  background:#dc2626;
-  box-shadow:0 6px 15px rgba(220,38,38,.18);
-}
-
-.app-footer {
-  max-width:520px;
-  margin-top:16px;
-  color:var(--text-muted);
-}
-.share-btn {
-  border-radius:12px;
-  background:var(--btn-bg);
-  border:1px solid var(--glass-border);
-  color:var(--text-main);
-  padding:9px 15px;
-}
-
-.bottom-nav {
-  width:calc(100% - 20px);
-  max-width:500px;
-  bottom:10px;
-  padding:7px 7px;
-  border:1px solid var(--glass-border);
-  border-radius:20px;
-  background:rgba(8,20,14,.88);
-  backdrop-filter:blur(24px);
-  -webkit-backdrop-filter:blur(24px);
-  box-shadow:0 12px 35px rgba(0,0,0,.35);
-}
-[data-theme="light"] .bottom-nav { background:rgba(255,255,255,.9); }
-.bottom-nav-item {
-  min-width:70px;
-  padding:6px 8px;
-  border-radius:14px;
-  color:var(--text-muted);
-}
-.bottom-nav-item:hover { color:var(--text-main); background:var(--card-hover); }
-.bottom-nav-item .nav-icon { font-size:1.1rem; margin-bottom:3px; }
-.bottom-nav-item span:last-child { font-size:.62rem; }
-
-@media (max-width:380px) {
-  body { padding-left:8px; padding-right:8px; }
-  .container { padding:14px; border-radius:23px; }
-  .app-header { border-radius:17px; }
-  .header-box h1 { font-size:1.55rem !important; }
-  #live-date { display:none; }
-  .menu-card { min-height:96px; padding:13px; }
-  .menu-card .title { font-size:.84rem; }
-}
-
-
-/* =========================================================
-   RESPONSIVE DESKTOP + MOBILE UI
-   Functionality/JS/IDs intentionally unchanged
-   ========================================================= */
-
-/* Desktop-first app shell */
-body {
-  display: block;
-  min-height: 100vh;
-  padding: 0 0 110px;
-  background:
-    radial-gradient(900px 500px at 8% 0%, rgba(31, 111, 73, .30), transparent 65%),
-    radial-gradient(700px 500px at 92% 10%, rgba(245, 207, 99, .10), transparent 65%),
-    #07100c;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
-  background-size: 44px 44px;
-  mask-image: linear-gradient(to bottom, black, transparent 75%);
-}
-
-.app-header {
-  position: sticky;
-  top: 16px;
-  width: calc(100% - 48px);
-  max-width: 1240px;
-  margin: 16px auto;
-  padding: 12px 18px;
-  border-radius: 18px;
-}
-
-.nav-drawer {
-  width: calc(100% - 48px);
-  max-width: 1240px;
-  margin: 0 auto 14px;
-  display: none;
-  flex-direction: row;
-  gap: 10px;
-  padding: 10px;
-}
-.nav-drawer.open { display: flex; }
-.nav-btn { flex: 1; }
-
-.container {
-  width: calc(100% - 48px);
-  max-width: 1240px;
-  margin: 0 auto;
-  min-height: calc(100vh - 155px);
-  padding: 34px;
-  border-radius: 30px;
-}
-
-.flag-strip {
-  width: 100%;
-  height: 5px;
-  margin-bottom: 30px;
-}
-
-.header-box {
-  max-width: 760px;
-  margin: 0 auto 32px 0;
-}
-.header-box h1 { font-size: clamp(2rem, 4vw, 3.3rem) !important; }
-.header-box p { font-size: .98rem; }
-
-.section-label {
-  margin-top: 30px;
-  margin-bottom: 14px;
-  font-size: .72rem;
-}
-
-.grid-menu {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-}
-.grid-menu.single {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.menu-card {
-  min-height: 150px;
-  padding: 20px;
-  justify-content: center;
-}
-.menu-card .icon {
-  width: 46px;
-  height: 46px;
-  font-size: 1.4rem;
-}
-.menu-card .title { font-size: 1rem; }
-.menu-card .sub { font-size: .76rem; }
-
-#home-view .grid-menu.single .menu-card {
-  min-height: 145px;
-}
-
-#home-view .grid-menu:not(.single) .menu-card[style*="grid-column"] {
-  grid-column: span 2 !important;
-}
-
-.hierarchy-container {
-  max-height: 560px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-.item-card { min-height: 82px; }
-
-.tourist-card {
-  min-height: 190px;
-  margin-bottom: 0;
-}
-
-#tourist-list {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-#tourist-list .tourist-card { min-height: 210px; }
-
-.emergency-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-.emergency-card { min-height: 120px; }
-
-.hub-form {
-  max-width: 720px;
-  margin: 0 auto;
-}
-#calc-view .display-container,
-#calc-view .calc-buttons {
-  max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.calc-buttons button { height: 66px; }
-
-.app-footer {
-  width: calc(100% - 48px);
-  max-width: 1240px;
-  margin: 18px auto 0;
-}
-
-.bottom-nav {
-  width: min(620px, calc(100% - 32px));
-  bottom: 16px;
-  border-radius: 20px;
-}
-
-/* Wider desktop: give dashboard a real app-dashboard feel */
-@media (min-width: 1050px) {
-  #home-view {
-    display: grid;
-    grid-template-columns: 1fr 1.25fr;
-    column-gap: 36px;
-    align-items: start;
-  }
-
-  #home-view .header-box {
-    grid-column: 1 / -1;
-  }
-
-  #home-view .section-label:nth-of-type(1),
-  #home-view .grid-menu.single {
-    grid-column: 1;
-  }
-
-  #home-view .section-label:nth-of-type(2),
-  #home-view .grid-menu:not(.single) {
-    grid-column: 2;
-  }
-
-  #home-view .grid-menu.single {
-    grid-template-columns: 1fr;
-  }
-
-  #home-view .grid-menu.single .menu-card {
-    min-height: 118px;
-  }
-}
-
-/* Tablet */
-@media (max-width: 900px) {
-  .container { padding: 26px; }
-  .grid-menu { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .hierarchy-container,
-  #tourist-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
-/* Mobile: transform into compact app layout */
-@media (max-width: 600px) {
-  body {
-    padding: 8px 8px 90px;
-    background:
-      radial-gradient(500px 350px at 0% 0%, rgba(31,111,73,.24), transparent 65%),
-      #07100c;
-  }
-
-  .app-header {
-    position: sticky;
-    top: 8px;
-    width: 100%;
-    margin: 0 0 8px;
-    padding: 9px 10px;
-    border-radius: 17px;
-  }
-
-  .nav-drawer {
-    width: 100%;
-    margin: 0 0 8px;
-    flex-direction: column;
-  }
-
-  .container {
-    width: 100%;
-    min-height: auto;
-    margin: 0;
-    padding: 17px;
-    border-radius: 23px;
-  }
-
-  .flag-strip { margin-bottom: 20px; }
-
-  .header-box {
-    margin-bottom: 20px;
-  }
-  .header-box h1 {
-    font-size: 1.65rem !important;
-  }
-
-  .grid-menu,
-  .grid-menu.single {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 9px;
-  }
-
-  .menu-card {
-    min-height: 112px;
-    padding: 13px;
-    border-radius: 16px;
-  }
-
-  .menu-card .icon {
-    width: 36px;
-    height: 36px;
-    font-size: 1.15rem;
-  }
-  .menu-card .title { font-size: .83rem; }
-  .menu-card .sub { font-size: .68rem; }
-
-  #home-view .grid-menu.single .menu-card {
-    min-height: 100px;
-  }
-
-  #home-view .grid-menu:not(.single) .menu-card[style*="grid-column"] {
-    grid-column: span 2 !important;
-  }
-
-  .hierarchy-container,
-  #tourist-list {
-    display: flex;
-    flex-direction: column;
-    max-height: 440px;
-  }
-
-  .item-card { min-height: 64px; }
-  .tourist-card { min-height: auto; }
-
-  .emergency-grid {
-    display: flex;
-    flex-direction: column;
-  }
-  .emergency-card { min-height: 0; }
-
-  .hub-form,
-  #calc-view .display-container,
-  #calc-view .calc-buttons {
-    max-width: none;
-  }
-
-  .calc-buttons button { height: 54px; }
-
-  .app-footer {
-    width: 100%;
-    margin-top: 12px;
-  }
-
-  .bottom-nav {
-    width: calc(100% - 16px);
-    bottom: 8px;
-  }
-}
-
-/* Very small phones */
-@media (max-width: 370px) {
-  .container { padding: 13px; }
-  .menu-card { min-height: 100px; padding: 11px; }
-  .menu-card .title { font-size: .78rem; }
-  .menu-card .sub { font-size: .64rem; }
-  .bottom-nav-item { min-width: 58px; }
-}
-
-</style>
+    .bottom-nav-item:hover { color: var(--text-main); background: var(--card-hover); }
+
+    /* RESPONSIVE DESIGN ADJUSTMENTS */
+    @media (max-width: 1024px) {
+      .grid-menu { grid-template-columns: repeat(3, 1fr); }
+      .hierarchy-container, #tourist-list { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 10px 8px 100px 8px; }
+      .app-header { width: 100%; max-width: none; margin: 0 0 12px 0; border-radius: 16px; padding: 10px 14px; }
+      .nav-drawer { width: 100%; max-width: none; margin: 0 0 12px 0; flex-direction: column; border-radius: 16px; }
+      .container { width: 100%; max-width: none; padding: 20px 16px; border-radius: 22px; }
+      .grid-menu, .grid-menu.single { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .menu-card { min-height: 120px; padding: 14px; border-radius: 16px; }
+      .hierarchy-container, #tourist-list { grid-template-columns: 1fr; max-height: 450px; }
+      .emergency-grid { grid-template-columns: 1fr; }
+      #live-date { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .grid-menu, .grid-menu.single { grid-template-columns: 1fr; }
+      .bottom-nav-item { padding: 4px 8px; font-size: 0.6rem; }
+    }
+  </style>
 </head>
 <body>
 
   <!-- HEADER -->
   <header class="app-header">
     <div class="logo-area" onclick="showView('home-view')">
-      <span style="font-size: 1.3rem;">🌲</span>
+      <span>🌲</span>
       <div>
-        <h2 style="font-size: 1rem; color: var(--accent-gold); margin: 0; line-height: 1;">AJK Hub</h2>
-        <span style="font-size: 0.68rem; color: var(--text-muted);">Digital Suite</span>
+        <h2>AJK Hub</h2>
+        <span>Digital Suite</span>
       </div>
     </div>
     <div class="header-actions">
       <button class="menu-toggle-btn" onclick="toggleDrawer()" title="Menu">☰</button>
       <button class="icon-toggle" id="sound-btn" onclick="toggleSound()">🔊</button>
       <button class="icon-toggle" id="theme-btn" onclick="toggleTheme()">🌙</button>
-      <div id="live-date" style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">--:--</div>
+      <div id="live-date">--:--</div>
     </div>
   </header>
 
@@ -1125,596 +485,7 @@ body::before {
       <div class="section-label">📍 AJK Directory & Tourism</div>
       <div class="grid-menu single">
         <div class="menu-card" onclick="showView('ajk-hierarchy-view')">
-          <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 12px; width: 100%;">
             <span class="icon">🗺️</span>
             <div>
               <div class="title">Divisions, Districts & Tehsils</div>
-              <div class="sub">3 Divisions ➔ 10 Districts ➔ 32 Tehsils</div>
-            </div>
-          </div>
-        </div>
-        <div class="menu-card" onclick="showView('tourist-guide-view')">
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <span class="icon">🏔️</span>
-            <div>
-              <div class="title">District-wise Tourist Guide</div>
-              <div class="sub">Top visited places categorized by district</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="section-label">🧮 Smart Calculators & Tools</div>
-      <div class="grid-menu">
-        <div class="menu-card" onclick="showView('calc-view')">
-          <span class="icon">🔢</span>
-          <div class="title">Calculator</div>
-          <div class="sub">Standard Math</div>
-        </div>
-        <div class="menu-card" onclick="showView('budget-view')">
-          <span class="icon">📊</span>
-          <div class="title">Budget Plan</div>
-          <div class="sub">50/30/20 Rule</div>
-        </div>
-        <div class="menu-card" onclick="showView('fuel-hub-view')">
-          <span class="icon">⛽</span>
-          <div class="title">Fuel & Trip</div>
-          <div class="sub">Cost & Average</div>
-        </div>
-        <div class="menu-card" onclick="showView('currency-view')">
-          <span class="icon">🔀</span>
-          <div class="title">Currency</div>
-          <div class="sub">Rates Converter</div>
-        </div>
-        <div class="menu-card" onclick="showView('age-view')">
-          <span class="icon">🎂</span>
-          <div class="title">Age Calculator</div>
-          <div class="sub">Exact Age & DOB</div>
-        </div>
-        <div class="menu-card" onclick="showView('zakat-view')">
-          <span class="icon">🌙</span>
-          <div class="title">Zakat Calc</div>
-          <div class="sub">2.5% Calculation</div>
-        </div>
-        <div class="menu-card" onclick="showView('unit-view')" style="grid-column: span 2;">
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <span class="icon">📏</span>
-            <div>
-              <div class="title">Unit Converter</div>
-              <div class="sub">Feet, Meters, Weight & Temp</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EMERGENCY CONTACTS -->
-    <section id="emergency-view" class="view">
-      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
-      <div class="header-box" style="margin-bottom: 12px;">
-        <h2 style="color: #ef4444; font-size: 1.2rem;">Emergency Contacts</h2>
-        <p>AJK Police, Tourism & Rescue Helplines</p>
-      </div>
-      <div class="emergency-grid">
-        <div class="emergency-card">
-          <div>
-            <h4>🏕️ Tourism Police AJK</h4>
-            <p>Tourist assistance & safety</p>
-          </div>
-          <a href="tel:1422" class="call-now-btn">📞 1422</a>
-        </div>
-        <div class="emergency-card">
-          <div>
-            <h4>🚑 Rescue 1122</h4>
-            <p>Medical & Fire Emergency</p>
-          </div>
-          <a href="tel:1122" class="call-now-btn">📞 1122</a>
-        </div>
-        <div class="emergency-card">
-          <div>
-            <h4>🚔 Police Emergency</h4>
-            <p>General Police Helpline</p>
-          </div>
-          <a href="tel:15" class="call-now-btn">📞 15</a>
-        </div>
-        <div class="emergency-card">
-          <div>
-            <h4>🛣️ National Highway Police</h4>
-            <p>Travel & Road Advisory</p>
-          </div>
-          <a href="tel:130" class="call-now-btn">📞 130</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 1. AJK DIVISIONS / DISTRICTS / TEHSILS -->
-    <section id="ajk-hierarchy-view" class="view">
-      <button class="back-btn" id="hierarchy-back-btn" onclick="handleHierarchyBack()">← Back</button>
-      <div class="header-box" style="margin-bottom: 12px;">
-        <h2 id="hierarchy-title" style="color: var(--accent-gold); font-size: 1.2rem;">AJK Divisions</h2>
-        <p id="hierarchy-subtitle">Select a Division</p>
-      </div>
-      <div class="hierarchy-container" id="hierarchy-list"></div>
-    </section>
-
-    <!-- 2. DISTRICT-WISE TOURIST GUIDE -->
-    <section id="tourist-guide-view" class="view">
-      <button class="back-btn" id="tourist-back-btn" onclick="handleTouristBack()">← Back</button>
-      <div class="header-box" style="margin-bottom: 12px;">
-        <h2 id="tourist-title" style="color: var(--accent-gold); font-size: 1.2rem;">AJK Tourist Guide</h2>
-        <p id="tourist-subtitle">Select a District to explore famous places</p>
-      </div>
-      <div class="hierarchy-container" id="tourist-list"></div>
-    </section>
-
-    <!-- 3. CALCULATOR SCREEN -->
-    <section id="calc-view" class="view">
-      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
-      <div class="display-container">
-        <div class="header-text"><span>AJK Digital</span><span>Calculator</span></div>
-        <input type="text" id="display" readonly placeholder="0">
-      </div>
-      <div class="calc-buttons">
-        <button class="action" onclick="clearDisplay()">C</button>
-        <button class="action" onclick="deleteLast()">DEL</button>
-        <button class="operator" onclick="appendValue('/')">÷</button>
-        <button class="operator" onclick="appendValue('*')">×</button>
-        <button onclick="appendValue('7')">7</button><button onclick="appendValue('8')">8</button><button onclick="appendValue('9')">9</button>
-        <button class="operator" onclick="appendValue('-')">-</button>
-        <button onclick="appendValue('4')">4</button><button onclick="appendValue('5')">5</button><button onclick="appendValue('6')">6</button>
-        <button class="operator" onclick="appendValue('+')">+</button>
-        <button onclick="appendValue('1')">1</button><button onclick="appendValue('2')">2</button><button onclick="appendValue('3')">3</button>
-        <button class="equal" onclick="calculate()">=</button>
-        <button class="zero" onclick="appendValue('0')">0</button><button onclick="appendValue('.')">.</button>
-      </div>
-    </section>
-
-    <!-- 4. BUDGET CALCULATOR -->
-    <section id="budget-view" class="view">
-      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
-      <div class="hub-form">
-        <div class="input-group">
-          <label for="monthly-salary">Enter Monthly Salary (PKR):</label>
-          <input type="number" id="monthly-salary" placeholder="e.g. 50000">
-        </div>
-        <button class="submit-btn" onclick="calculateBudget()">Calculate Plan</button>
-        <div class="results-container" id="budget-results" style="display: none;">
-          <div class="single-result"><div class="val" id="needs-amount">Rs 0</div><div class="lbl">Needs (50%)</div></div>
-          <div class="single-result"><div class="val" id="wants-amount">Rs 0</div><div class="lbl">Wants (30%)</div></div>
-          <div class="single-result"><div class="val" id="savings-amount">Rs 0</div><div class="lbl">Savings (20%)</div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. AGE CALCULATOR -->
-    <section id="age-view" class="view">
-      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
-      <div class="hub-form">
-        <div class="input-group">
-          <label for="dob">Select Date of Birth:</label>
-          <input type="date" id="dob">
-        </div>
-        <button class="submit-btn" onclick="calculateAge()">Calculate Age</button>
-        <div class="single-result" id="age-results" style="display: none;">
-          <div class="val" id="age-years">0 Years Old</div>
-          <div class="lbl" id="age-detail">0 Months, 0 Days</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. CURRENCY CONVERTER -->
-    <section id="currency-view" class="view">
-      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
-      <div class="hub-form">
-        <div class="input-group"><label>Amount:</label><input type="number" id="curr-amount" placeholder="100"></div>
-        <div class="input-group">
-          <label>From:</label>
-          <select id="curr-from"><option value="USD">USD ($)</option><option value="SAR">SAR</option><option value="AED">AED</option><option value="PKR" selected>PKR</option></select>
-        </div>
-        <div class="input-group">
-          <label>To:</label>
-          <select id="curr-to"><option value="PKR" selected>PKR</option><option value="USD">USD ($)</option><option value="SAR">SAR</option><option value="AED">AED</option></select>
-        </div>
-        <button class="submit-btn" onclick="convertCurrency()">Convert</button>
-        <div class="single-result" id="curr-result" style="display: none;"><div class="val" id="curr-val">0</div></div>
-      </div>
-    </section>
-
-    <!-- 7. ZAKAT CALCULATOR -->
-    <section id="zakat-view" class="view">
-      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
-      <div class="hub-form">
-        <div class="input-group">
-          <label>Current Silver Price per Tola (PKR):</label>
-          <input type="number" id="silver-price-tola" placeholder="e.g. 7300" value="7300">
-        </div>
-        <div class="input-group">
-          <label>Total Wealth & Assets Value (PKR):</label>
-          <input type="number" id="zakat-cash" placeholder="0">
-        </div>
-        <button class="submit-btn" onclick="calculateZakat()">Calculate Zakat (2.5%)</button>
-        <div class="single-result" id="zakat-result" style="display: none;">
-          <div class="val" id="zakat-val">Rs 0</div>
-          <div class="lbl" id="zakat-status" style="margin-top: 6px; font-weight: bold;"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 8. FUEL & TRIP HUB -->
-    <section id="fuel-hub-view" class="view">
-      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
-      <div class="sub-menu-box">
-        <button class="sub-tab-btn active" id="tab-cost-btn" onclick="switchFuelTab('cost')">⛽ Trip Cost</button>
-        <button class="sub-tab-btn" id="tab-avg-btn" onclick="switchFuelTab('avg')">🛵 Fuel Average</button>
-      </div>
-      <div id="fuel-cost-tab" class="hub-form">
-        <div class="input-group"><label>Distance (KM):</label><input type="number" id="trip-dist" placeholder="150"></div>
-        <div class="input-group"><label>Average (KM/Litre):</label><input type="number" id="trip-avg" placeholder="15"></div>
-        <div class="input-group"><label>Petrol Price / Litre:</label><input type="number" id="trip-price" placeholder="280"></div>
-        <button class="submit-btn" onclick="calculateTripCost()">Calculate Cost</button>
-        <div class="single-result" id="trip-result" style="display: none;"><div class="val" id="trip-val">Rs 0</div></div>
-      </div>
-      <div id="fuel-avg-tab" class="hub-form" style="display: none;">
-        <div class="input-group"><label>Distance Travelled (KM):</label><input type="number" id="avg-dist" placeholder="300"></div>
-        <div class="input-group"><label>Fuel Consumed (Litres):</label><input type="number" id="avg-fuel" placeholder="20"></div>
-        <button class="submit-btn" onclick="calculateFuelAverage()">Calculate Average</button>
-        <div class="single-result" id="avg-result" style="display: none;"><div class="val" id="avg-val">0 KM/L</div></div>
-      </div>
-    </section>
-
-    <!-- 9. UNIT CONVERTER -->
-    <section id="unit-view" class="view">
-      <button class="back-btn" onclick="showView('home-view')">← Dashboard</button>
-      <div class="hub-form">
-        <div class="input-group"><label>Enter Value:</label><input type="number" id="unit-val" placeholder="0"></div>
-        <div class="input-group">
-          <label>Conversion Type:</label>
-          <select id="unit-type">
-            <option value="ft-m">Feet to Meters</option>
-            <option value="m-ft">Meters to Feet</option>
-            <option value="kg-lbs">KG to Pounds</option>
-            <option value="c-f">Celsius to Fahrenheit</option>
-          </select>
-        </div>
-        <button class="submit-btn" onclick="convertUnit()">Convert</button>
-        <div class="single-result" id="unit-result" style="display: none;"><div class="val" id="unit-res-val">0</div></div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="app-footer">
-    <p>© 2026 Azad Kashmir Digital Suite</p>
-    <button class="share-btn" onclick="shareApp()">🔗 Share App</button>
-  </footer>
-
-  <!-- MOBILE SMART BOTTOM NAVIGATION -->
-  <div class="bottom-nav">
-    <button class="bottom-nav-item" onclick="showView('home-view')">
-      <span class="nav-icon">🏠</span>
-      <span>Home</span>
-    </button>
-    <button class="bottom-nav-item" onclick="showView('tourist-guide-view')">
-      <span class="nav-icon">🏔️</span>
-      <span>Tourism</span>
-    </button>
-    <button class="bottom-nav-item" onclick="showView('ajk-hierarchy-view')">
-      <span class="nav-icon">🗺️</span>
-      <span>Directory</span>
-    </button>
-    <button class="bottom-nav-item" onclick="showView('emergency-view')" style="color: #fca5a5;">
-      <span class="nav-icon">🚨</span>
-      <span>Emergency</span>
-    </button>
-  </div>
-
-  <script>
-    const ajkData = {
-      "Muzaffarabad Division": {
-        "Muzaffarabad District": ["Muzaffarabad Tehsil", "Pattika (Naseerabad) Tehsil"],
-        "Neelum District": ["Athmuqam Tehsil", "Sharda Tehsil"],
-        "Hattian Bala District": ["Hattian Bala Tehsil", "Chikkar Tehsil", "Leepa Tehsil"]
-      },
-      "Poonch Division": {
-        "Poonch (Rawalakot) District": ["Rawalakot Tehsil", "Hajira Tehsil", "Abbaspur Tehsil", "Thorar Tehsil"],
-        "Bagh District": ["Bagh Tehsil", "Dhirkot Tehsil", "Hari Ghel Tehsil", "Rera Tehsil"],
-        "Sudhanoti District": ["Palandri Tehsil", "Mang Tehsil", "Trarkhal Tehsil", "Baloch Tehsil"],
-        "Haveli District": ["Haveli (Kahuta) Tehsil", "Khurshidabad Tehsil", "Mumtazabad Tehsil"]
-      },
-      "Mirpur Division": {
-        "Mirpur District": ["Mirpur Tehsil", "Dadyal Tehsil", "Islamgarh Tehsil"],
-        "Kotli District": ["Kotli Tehsil", "Khuiratta Tehsil", "Sehnsa Tehsil", "Charhoi Tehsil", "Fatehpur Thakiala Tehsil", "Duliah Jattan Tehsil"],
-        "Bhimber District": ["Bhimber Tehsil", "Barnala Tehsil", "Samahni Tehsil"]
-      }
-    };
-
-    const districtTouristData = {
-      "Neelum District": [
-        { name: "Arang Kel", desc: "Lush green village perched on a hill above Kel. Reached via chairlift & short hike.", best: "Photography, Sunrise views & Nature walks" },
-        { name: "Ratti Gali Lake", desc: "Famous alpine glacial lake located at 12,130 feet surrounded by vibrant flowers.", best: "Trekking, Camping & Nature Photography" },
-        { name: "Sharda & Sharda Peeth", desc: "Historic valley along Neelum River featuring ancient temple ruins.", best: "History, Relaxed stay & River views" },
-        { name: "Taobat", desc: "The last scenic village of Neelum Valley near LOC with pristine waters.", best: "Peaceful environment & Offbeat travel" }
-      ],
-      "Muzaffarabad District": [
-        { name: "Pir Chinasi", desc: "Famous peak at 9,500 ft altitude offering 360-degree mountain views.", best: "Day trips, Cool breeze & Camping" },
-        { name: "Red Fort (Muzaffarabad Fort)", desc: "Historic 16th-century fort overlooking the Neelum River bend.", best: "Historical sightseeing & Photography" }
-      ],
-      "Hattian Bala District": [
-        { name: "Leepa Valley", desc: "Famous for wooden houses, terraced rice fields, and high apple production.", best: "Culture, Sightseeing & Scenery" },
-        { name: "Chikkar & Zalzal Lake", desc: "Picturesque hill station formed with a natural lake after the 2005 earthquake.", best: "Nature walks & Cool climate" }
-      ],
-      "Poonch (Rawalakot) District": [
-        { name: "Banjosa Lake", desc: "Beautiful artificial lake surrounded by dense pine forests.", best: "Family picnic, Boating & Relaxation" },
-        { name: "Toli Peer", desc: "High mountain hilltop meadow offering panoramic sunset views across Poonch.", best: "Sunset views, Camping & Windy weather" }
-      ],
-      "Bagh District": [
-        { name: "Ganga Choti", desc: "Peak near Sudhan Gali known for snow-capped winter views and green summer slopes.", best: "Trekking, Horse riding & Snowfall" },
-        { name: "Las Danna", desc: "Scenic spot surrounded by thick pine forests, ideal for quiet retreats.", best: "Nature walks & Forest camping" }
-      ],
-      "Sudhanoti District": [
-        { name: "Devi Gali", desc: "Lush green meadow surrounded by thick woods at an altitude of 6,400 ft.", best: "Picnics & Summer retreat" }
-      ],
-      "Haveli District": [
-        { name: "Bedori Top", desc: "High peak in Haveli district offering views of lush valleys and snow peaks.", best: "Adventure trekking & Hiking" }
-      ],
-      "Mirpur District": [
-        { name: "Mangla Dam & Resort", desc: "Large earth-fill dam with water sports and resort facilities.", best: "Boating, Water sports & Dining" },
-        { name: "Ramkot Fort", desc: "Ancient hill fort surrounded by Mangla Lake on three sides.", best: "Historical boat trip & Photography" }
-      ],
-      "Kotli District": [
-        { name: "Tatta Pani", desc: "Famous for natural hot sulfur water springs along the Poonch River.", best: "Health springs & River views" }
-      ],
-      "Bhimber District": [
-        { name: "Samahni Valley", desc: "Known as the 'Valley of Waterfalls' with scenic green landscapes.", best: "Valley exploration & Scenic drives" }
-      ]
-    };
-
-    let hierarchyState = JSON.parse(localStorage.getItem('hierarchyState')) || { level: 'divisions', currentDivision: null, currentDistrict: null };
-    let touristState = JSON.parse(localStorage.getItem('touristState')) || { level: 'districts', currentDistrict: null };
-
-    function saveStates() {
-      localStorage.setItem('hierarchyState', JSON.stringify(hierarchyState));
-      localStorage.setItem('touristState', JSON.stringify(touristState));
-    }
-
-    function toggleDrawer() {
-      playClickSound();
-      const drawer = document.getElementById('nav-drawer');
-      drawer.classList.toggle('open');
-    }
-
-    function navigateTo(viewId) {
-      document.getElementById('nav-drawer').classList.remove('open');
-      showView(viewId);
-    }
-
-    function renderHierarchy() {
-      const container = document.getElementById('hierarchy-list');
-      const title = document.getElementById('hierarchy-title');
-      const subtitle = document.getElementById('hierarchy-subtitle');
-      const backBtn = document.getElementById('hierarchy-back-btn');
-      container.innerHTML = '';
-      saveStates();
-
-      if (hierarchyState.level === 'divisions') {
-        title.innerText = "AJK Divisions";
-        subtitle.innerText = "Select a Division";
-        backBtn.innerText = "← Dashboard";
-        Object.keys(ajkData).forEach(divName => {
-          const card = document.createElement('div');
-          card.className = 'item-card';
-          card.innerHTML = `<div><div class="item-title">${divName}</div><div class="item-sub">${Object.keys(ajkData[divName]).length} Districts</div></div><span class="arrow-icon">➔</span>`;
-          card.onclick = () => { hierarchyState.level = 'districts'; hierarchyState.currentDivision = divName; renderHierarchy(); };
-          container.appendChild(card);
-        });
-      } else if (hierarchyState.level === 'districts') {
-        title.innerText = hierarchyState.currentDivision;
-        subtitle.innerText = "Select a District";
-        backBtn.innerText = "← Back to Divisions";
-        const districts = ajkData[hierarchyState.currentDivision];
-        if (districts) {
-          Object.keys(districts).forEach(distName => {
-            const card = document.createElement('div');
-            card.className = 'item-card';
-            card.innerHTML = `<div><div class="item-title">${distName}</div><div class="item-sub">${districts[distName].length} Tehsils</div></div><span class="arrow-icon">➔</span>`;
-            card.onclick = () => { hierarchyState.level = 'tehsils'; hierarchyState.currentDistrict = distName; renderHierarchy(); };
-            container.appendChild(card);
-          });
-        }
-      } else if (hierarchyState.level === 'tehsils') {
-        title.innerText = hierarchyState.currentDistrict;
-        subtitle.innerText = `Tehsils in ${hierarchyState.currentDistrict}`;
-        backBtn.innerText = "← Back to Districts";
-        const tehsils = ajkData[hierarchyState.currentDivision]?.[hierarchyState.currentDistrict];
-        if (tehsils) {
-          tehsils.forEach(tehName => {
-            const card = document.createElement('div');
-            card.className = 'item-card';
-            card.style.cursor = 'default';
-            card.innerHTML = `<div><div class="item-title">${tehName}</div><div class="item-sub">Tehsil</div></div><span class="arrow-icon">📍</span>`;
-            container.appendChild(card);
-          });
-        }
-      }
-    }
-
-    function handleHierarchyBack() {
-      if (hierarchyState.level === 'tehsils') { hierarchyState.level = 'districts'; renderHierarchy(); }
-      else if (hierarchyState.level === 'districts') { hierarchyState.level = 'divisions'; renderHierarchy(); }
-      else { showView('home-view'); }
-    }
-
-    function renderTouristGuide() {
-      const container = document.getElementById('tourist-list');
-      const title = document.getElementById('tourist-title');
-      const subtitle = document.getElementById('tourist-subtitle');
-      const backBtn = document.getElementById('tourist-back-btn');
-      container.innerHTML = '';
-      saveStates();
-
-      if (touristState.level === 'districts') {
-        title.innerText = "AJK Districts";
-        subtitle.innerText = "Select a District to view tourist spots";
-        backBtn.innerText = "← Dashboard";
-        Object.keys(districtTouristData).forEach(distName => {
-          const card = document.createElement('div');
-          card.className = 'item-card';
-          card.innerHTML = `<div><div class="item-title">${distName}</div><div class="item-sub">${districtTouristData[distName].length} Tourist Places</div></div><span class="arrow-icon">➔</span>`;
-          card.onclick = () => { touristState.level = 'places'; touristState.currentDistrict = distName; renderTouristGuide(); };
-          container.appendChild(card);
-        });
-      } else if (touristState.level === 'places') {
-        title.innerText = touristState.currentDistrict;
-        subtitle.innerText = `Top Places in ${touristState.currentDistrict}`;
-        backBtn.innerText = "← Back to Districts";
-        const places = districtTouristData[touristState.currentDistrict];
-        if (places) {
-          places.forEach(place => {
-            const card = document.createElement('div');
-            card.className = 'tourist-card';
-            card.innerHTML = `<h3>${place.name}</h3><div class="loc">${touristState.currentDistrict}</div><p>${place.desc}</p><div class="best-for"><b>Best For:</b> ${place.best}</div>`;
-            container.appendChild(card);
-          });
-        }
-      }
-    }
-
-    function handleTouristBack() {
-      if (touristState.level === 'places') { touristState.level = 'districts'; renderTouristGuide(); }
-      else { showView('home-view'); }
-    }
-
-    let audioCtx = null, soundEnabled = true;
-    function initAudio() {
-      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      if (audioCtx.state === 'suspended') audioCtx.resume();
-    }
-    function playClickSound() {
-      if (!soundEnabled) return;
-      try {
-        initAudio();
-        const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
-        osc.type = 'triangle'; osc.frequency.setValueAtTime(900, audioCtx.currentTime);
-        gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.04);
-        osc.connect(gain); gain.connect(audioCtx.destination);
-        osc.start(); osc.stop(audioCtx.currentTime + 0.04);
-      } catch(e) {}
-    }
-
-    function toggleSound() { soundEnabled = !soundEnabled; document.getElementById('sound-btn').innerText = soundEnabled ? '🔊' : '🔇'; }
-    function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      document.getElementById('theme-btn').innerText = next === 'dark' ? '🌙' : '☀️';
-    }
-
-    function showView(viewId) {
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-      const selectedView = document.getElementById(viewId);
-      if (selectedView) selectedView.classList.add('active');
-
-      localStorage.setItem('activeView', viewId);
-
-      if (viewId === 'ajk-hierarchy-view') { renderHierarchy(); }
-      else if (viewId === 'tourist-guide-view') { renderTouristGuide(); }
-      window.scrollTo(0, 0);
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      document.body.addEventListener('click', initAudio, { once: true });
-      document.addEventListener('click', (e) => { if (e.target.closest('button, .menu-card, .item-card')) playClickSound(); });
-
-      const savedView = localStorage.getItem('activeView') || 'home-view';
-      showView(savedView);
-    });
-
-    setInterval(() => { document.getElementById('live-date').innerText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); }, 1000);
-
-    function shareApp() {
-      if (navigator.share) navigator.share({ title: 'AJK Digital Suite', url: window.location.href });
-      else alert("App URL: " + window.location.href);
-    }
-
-    function appendValue(v) { document.getElementById('display').value += v; }
-    function clearDisplay() { document.getElementById('display').value = ''; }
-    function deleteLast() { const d = document.getElementById('display'); d.value = d.value.slice(0, -1); }
-    function calculate() {
-      try { document.getElementById('display').value = Function('"use strict"; return (' + document.getElementById('display').value + ')')(); }
-      catch(e) { document.getElementById('display').value = 'Error'; setTimeout(clearDisplay, 1200); }
-    }
-
-    function calculateBudget() {
-      const s = parseFloat(document.getElementById('monthly-salary').value);
-      if (!s) return alert("Enter valid salary");
-      document.getElementById('needs-amount').innerText = "Rs " + (s*0.5).toLocaleString();
-      document.getElementById('wants-amount').innerText = "Rs " + (s*0.3).toLocaleString();
-      document.getElementById('savings-amount').innerText = "Rs " + (s*0.2).toLocaleString();
-      document.getElementById('budget-results').style.display = 'block';
-    }
-
-    function calculateAge() {
-      const dob = document.getElementById('dob').value;
-      if (!dob) return alert("Select DOB");
-      const b = new Date(dob), t = new Date();
-      document.getElementById('age-years').innerText = (t.getFullYear() - b.getFullYear()) + " Years Old";
-      document.getElementById('age-detail').innerText = `Born on ${b.toDateString()}`;
-      document.getElementById('age-results').style.display = 'block';
-    }
-
-    function convertCurrency() {
-      const a = parseFloat(document.getElementById('curr-amount').value);
-      if (!a) return;
-      document.getElementById('curr-val').innerText = (a * 278).toFixed(2) + " PKR";
-      document.getElementById('curr-result').style.display = 'block';
-    }
-
-    function calculateZakat() {
-      const v = parseFloat(document.getElementById('zakat-cash').value);
-      const silverPrice = parseFloat(document.getElementById('silver-price-tola').value) || 7300;
-      if (isNaN(v)) return alert("Enter valid wealth amount");
-      
-      const nisabAmount = 52.5 * silverPrice;
-      const zakatValElement = document.getElementById('zakat-val');
-      const zakatStatusElement = document.getElementById('zakat-status');
-
-      if (v < nisabAmount) {
-        zakatValElement.innerText = "Rs 0";
-        zakatStatusElement.innerText = `Aap par Zakat farz nahi hai. Aapka nisab kam hai (Minimum Nisab: Rs ${nisabAmount.toLocaleString()})`;
-        zakatStatusElement.style.color = "#ef4444";
-      } else {
-        const zakatAmount = v * 0.025;
-        zakatValElement.innerText = "Rs " + zakatAmount.toLocaleString();
-        zakatStatusElement.innerText = "Zakat Obligatory (2.5%)";
-        zakatStatusElement.style.color = "var(--text-muted)";
-      }
-      document.getElementById('zakat-result').style.display = 'block';
-    }
-
-    function switchFuelTab(t) {
-      document.getElementById('fuel-cost-tab').style.display = t === 'cost' ? 'block' : 'none';
-      document.getElementById('fuel-avg-tab').style.display = t === 'avg' ? 'block' : 'none';
-      document.getElementById('tab-cost-btn').classList.toggle('active', t === 'cost');
-      document.getElementById('tab-avg-btn').classList.toggle('active', t === 'avg');
-    }
-
-    function calculateTripCost() {
-      const d = parseFloat(document.getElementById('trip-dist').value);
-      const a = parseFloat(document.getElementById('trip-avg').value);
-      const p = parseFloat(document.getElementById('trip-price').value);
-      if (d && a && p) { document.getElementById('trip-val').innerText = "Rs " + ((d/a)*p).toFixed(2); document.getElementById('trip-result').style.display = 'block'; }
-    }
-
-    function calculateFuelAverage() {
-      const d = parseFloat(document.getElementById('avg-dist').value);
-      const f = parseFloat(document.getElementById('avg-fuel').value);
-      if (d && f) { document.getElementById('avg-val').innerText = (d/f).toFixed(2) + " KM/L"; document.getElementById('avg-result').style.display = 'block'; }
-    }
-
-    function convertUnit() {
-      const v = parseFloat(document.getElementById('unit-val').value);
-      if (!isNaN(v)) { document.getElementById('unit-res-val').innerText = (v * 0.3048).toFixed(2) + " Meters"; document.getElementById('unit-result').style.display = 'block'; }
-    }
-  </script>
-</body>
-</html>
